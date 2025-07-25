@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/model/todo.dart';
+import '../../../model/entities/todo.dart';
 import 'category_button.dart';
 
 class TodoItem extends StatelessWidget {

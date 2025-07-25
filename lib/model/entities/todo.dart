@@ -1,6 +1,6 @@
 import 'package:uuid/uuid.dart';
 
-import 'category.dart';
+import '../enums/category.dart';
 
 
 class Todo {

@@ -1,0 +1,29 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_bloc/model/enums/load_status.dart';
+import 'package:todo_app_bloc/network/supabase_services.dart';
+import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
+
+class TodoListCubit extends Cubit<TodoListState> {
+  TodoListCubit() : super(const TodoListState());
+
+  void fetchTodos() async {
+    if (state.loadTodoStatus == LoadStatus.loading) {
+      return;
+    }
+    emit(state.copyWith(loadTodoStatus: LoadStatus.loading));
+    try {
+      final todos = await SupabaseServices.fetchTodoList();
+      final uncompletedTodo = todos.where((todo) => !todo.isCompleted).toList();
+      final completedTodo = todos.where((todo) => todo.isCompleted).toList();
+      emit(
+        state.copyWith(
+          loadTodoStatus: LoadStatus.success,
+          unCompletedTodos: uncompletedTodo,
+          completedTodos: completedTodo,
+        ),
+      );
+    } catch (e) {
+      emit(state.copyWith(loadTodoStatus: LoadStatus.failure));
+    }
+  }
+}

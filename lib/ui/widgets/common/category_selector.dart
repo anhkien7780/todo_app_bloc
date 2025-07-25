@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/model/category.dart';
+import '../../../model/enums/category.dart';
 import 'category_button.dart';
 
 class CategorySelector extends StatelessWidget {
