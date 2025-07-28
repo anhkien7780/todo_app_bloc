@@ -56,7 +56,9 @@ class TodoListBody extends StatelessWidget {
                       builder: (context, state) {
                         return TodoList(
                           todoList: state.unCompletedTodos,
-                          onToggleCheckBox: (todo) {},
+                          onToggleCheckBox: (todo) {
+                            context.read<TodoListCubit>().toggleCheckBox(todo);
+                          },
                         );
                       },
                     ),
@@ -79,7 +81,9 @@ class TodoListBody extends StatelessWidget {
                               ),
                             TodoList(
                               todoList: state.completedTodos,
-                              onToggleCheckBox: (todo) {},
+                              onToggleCheckBox: (todo) {
+                                context.read<TodoListCubit>().toggleCheckBox(todo);
+                              },
                             ),
                           ],
                         );

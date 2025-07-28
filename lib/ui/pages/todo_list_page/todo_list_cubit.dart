@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/network/supabase_services.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
@@ -25,5 +26,24 @@ class TodoListCubit extends Cubit<TodoListState> {
     } catch (e) {
       emit(state.copyWith(loadTodoStatus: LoadStatus.failure));
     }
+  }
+
+  void toggleCheckBox(Todo todo) async {
+    final toggledTodo = await SupabaseServices.toggleCheckBox(todo);
+    final newCompleted = List<Todo>.from(state.completedTodos);
+    final newUnCompleted = List<Todo>.from(state.unCompletedTodos);
+    if (todo.isCompleted) {
+      newCompleted.remove(todo);
+      newUnCompleted.add(toggledTodo);
+    } else {
+      newUnCompleted.remove(todo);
+      newCompleted.add(toggledTodo);
+    }
+    emit(
+      state.copyWith(
+        unCompletedTodos: newUnCompleted,
+        completedTodos: newCompleted,
+      ),
+    );
   }
 }

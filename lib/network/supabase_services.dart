@@ -20,4 +20,18 @@ class SupabaseServices {
       throw Exception("Fetch todo list is failed: ${e.toString()}");
     }
   }
+
+  static Future<Todo> toggleCheckBox(Todo todo) async {
+    try {
+      final response = await supabaseClient
+          .from("todos")
+          .update({"is_completed": !todo.isCompleted})
+          .eq("id", todo.id)
+          .select();
+      final todos = response.map((todo) => Todo.fromJson(todo)).toList();
+      return todos[0];
+    } catch (e) {
+      throw Exception("Toggle check box is failed: ${e.toString()}");
+    }
+  }
 }
