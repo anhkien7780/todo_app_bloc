@@ -45,4 +45,17 @@ class SupabaseServices {
       throw Exception("Delete todo is failed: ${e.toString()}");
     }
   }
+
+  static Future<Todo> addTodo(Todo todo) async {
+    try {
+      final response = await supabaseClient
+          .from("todos")
+          .insert(todo)
+          .select();
+      final todos = response.map((todo) => Todo.fromJson(todo)).toList();
+      return todos[0];
+    } catch (e) {
+      throw Exception("Add todo is failed: ${e.toString()}");
+    }
+  }
 }

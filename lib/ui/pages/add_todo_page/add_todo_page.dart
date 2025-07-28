@@ -40,12 +40,7 @@ class AddTodo extends StatelessWidget {
                     },
                   ),
                   SizedBox(height: 24),
-                  BlocProvider(
-                    create: (BuildContext context) {
-                      return AddTodoCubit();
-                    },
-                    child: AddTodoBody(),
-                  ),
+                  AddTodoBody(),
                   const SizedBox(height: 110),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -53,7 +48,21 @@ class AddTodo extends StatelessWidget {
                       width: double.infinity,
                       height: 56,
                       child: OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          final todo = context.read<AddTodoCubit>().getTodo();
+                          if (todo.taskTitle.trim().isEmpty) {
+                            ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(
+                              const SnackBar(
+                                content: Text("Task title is empty"),
+                              ),
+                            );
+                          } else {
+                            onAddButtonPressed(todo);
+                            Navigator.of(context).pop();
+                          }
+                        },
                         style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(
                             Color(0xff4A3780),

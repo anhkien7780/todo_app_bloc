@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_state.dart';
 
@@ -22,12 +23,24 @@ class AddTodoCubit extends Cubit<AddTodoState> {
     emit(state.copyWith(date: date));
   }
 
-  void setTime(String time){
+  void setTime(String time) {
     timeTextController.text = time;
     emit(state.copyWith(time: time));
   }
 
-  void setNotes(String notes){
+  void setNotes(String notes) {
     emit(state.copyWith(notes: notes));
+  }
+
+  Todo getTodo() {
+    final todo = Todo(
+      taskTitle: state.taskTitle,
+      category: state.selectedCategory,
+      date: state.date,
+      time: state.time,
+      note: state.notes,
+      isCompleted: false,
+    );
+    return todo;
   }
 }

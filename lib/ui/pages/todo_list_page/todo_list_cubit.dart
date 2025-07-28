@@ -47,6 +47,14 @@ class TodoListCubit extends Cubit<TodoListState> {
     );
   }
 
+  void addTodo(Todo todo) async {
+    final addedTodo = await SupabaseServices.addTodo(todo);
+    final newUnCompleted = List<Todo>.from(state.unCompletedTodos);
+    final newCompleted = List<Todo>.from(state.completedTodos);
+    newUnCompleted.add(addedTodo);
+    emit(state.copyWith(unCompletedTodos: newUnCompleted, completedTodos: newCompleted));
+  }
+
   void deleteTodo(Todo todo) async {
     await SupabaseServices.deleteTodo(todo);
     if (todo.isCompleted) {

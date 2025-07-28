@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
+import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_page.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
@@ -105,12 +106,20 @@ class TodoListBody extends StatelessWidget {
                   fixedSize: WidgetStatePropertyAll(Size(358, 56)),
                 ),
                 onPressed: () {
+                  final cubit = context.read<TodoListCubit>();
                   showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
                     useSafeArea: true,
                     builder: (context) {
-                      return AddTodo(onAddButtonPressed: (todo) {});
+                      return BlocProvider(
+                        create: (context) {
+                          return AddTodoCubit();
+                        },
+                        child: AddTodo(onAddButtonPressed: (todo) {
+                          cubit.addTodo(todo);
+                        }),
+                      );
                     },
                   );
                 },
