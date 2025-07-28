@@ -34,4 +34,15 @@ class SupabaseServices {
       throw Exception("Toggle check box is failed: ${e.toString()}");
     }
   }
+
+  static Future<void> deleteTodo(Todo todo) async{
+    try{
+      await supabaseClient
+          .from("todos")
+          .delete()
+          .eq("id", todo.id);
+    } catch (e){
+      throw Exception("Delete todo is failed: ${e.toString()}");
+    }
+  }
 }

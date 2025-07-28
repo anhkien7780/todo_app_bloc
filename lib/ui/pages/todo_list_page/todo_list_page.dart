@@ -82,7 +82,9 @@ class TodoListBody extends StatelessWidget {
                             TodoList(
                               todoList: state.completedTodos,
                               onToggleCheckBox: (todo) {
-                                context.read<TodoListCubit>().toggleCheckBox(todo);
+                                context.read<TodoListCubit>().toggleCheckBox(
+                                  todo,
+                                );
                               },
                             ),
                           ],
@@ -151,7 +153,9 @@ class TodoList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Dismissible(
             key: Key(todoList[index].id),
-            onDismissed: (direction) {},
+            onDismissed: (direction) {
+              context.read<TodoListCubit>().deleteTodo(todoList[index]);
+            },
             child: TodoItem(
               todo: todoList[index],
               onToggleCheckBox: onToggleCheckBox,
