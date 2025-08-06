@@ -3,11 +3,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 
 class SupabaseServices {
-  static final String _url = "https://ijywzybzbkkqtlqrwkiu.supabase.co";
+  static final String supabaseUrl = "https://ijywzybzbkkqtlqrwkiu.supabase.co";
   static final String _anonKey = dotenv.env["SUPABASE_API_KEY"] ?? "";
 
   static Future<Supabase> supabaseInit() async =>
-      await Supabase.initialize(url: _url, anonKey: _anonKey);
+      await Supabase.initialize(url: supabaseUrl, anonKey: _anonKey);
 
   static SupabaseClient supabaseClient = Supabase.instance.client;
 
