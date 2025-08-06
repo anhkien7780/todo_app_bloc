@@ -19,6 +19,7 @@ class TodoListBody extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
+            Positioned.fill(child: TodosScreenHeader()),
             Positioned.fill(
               top: 158,
               child: Padding(
@@ -68,14 +69,13 @@ class TodoListBody extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned.fill(child: TodosScreenHeader()),
             Positioned(
               bottom: 24,
               right: 16,
               left: 16,
               child: OutlinedButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(AppColors.background),
+                  backgroundColor: WidgetStatePropertyAll(AppColors.primary),
                   fixedSize: WidgetStatePropertyAll(Size(358, 56)),
                 ),
                 onPressed: () {

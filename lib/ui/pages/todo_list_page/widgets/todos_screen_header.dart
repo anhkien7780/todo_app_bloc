@@ -25,12 +25,12 @@ class TodosScreenHeader extends StatelessWidget {
               Positioned(
                 top: 78,
                 left: -191,
-                child: SVGImage(imageUri: "lib/assets/images/ic_ellipse_1.svg"),
+                child: SVGImage(imageUri: "assets/images/ic_ellipse_1.svg"),
               ),
               Positioned(
                 top: -27,
                 right: -82,
-                child: SVGImage(imageUri: "lib/assets/images/ic_ellipse_2.svg"),
+                child: SVGImage(imageUri: "assets/images/ic_ellipse_2.svg"),
               ),
               Positioned(
                 top: 34,

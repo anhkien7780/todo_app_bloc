@@ -52,6 +52,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                   return CustomTextField(
                     hint: "Notes",
                     title: "Notes",
+                    borderColor: Colors.transparent,
                     height: 177,
                     onChange: (value) {
                       context.read<AddTodoCubit>().setNotes(value);
@@ -119,7 +120,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                   height: 20,
                   width: 20,
                   child: SVGImage(
-                    imageUri: "lib/assets/images/ic_calendar.svg",
+                    imageUri: "assets/images/ic_calendar.svg",
                   ),
                 ),
               ),
@@ -149,7 +150,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                 icon: SizedBox(
                   height: 20,
                   width: 20,
-                  child: SVGImage(imageUri: "lib/assets/images/ic_clock.svg"),
+                  child: SVGImage(imageUri: "assets/images/ic_clock.svg"),
                 ),
               ),
               maxLines: 1,

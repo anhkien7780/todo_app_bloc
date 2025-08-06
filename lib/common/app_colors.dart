@@ -18,7 +18,7 @@ class AppColors {
 
   ///Button
   static const Color buttonBGWhite = Colors.white;
-  static const Color buttonBGDisable = Color(0xFFE7E2F3);
+  static const Color buttonBGDisable = Color(0xBAFFFFFF);
   static const Color buttonBGPrimary = primary;
   static const Color buttonBorder = Colors.white;
   static const Color categoryTaskButton = Color(0xffDBECF6);

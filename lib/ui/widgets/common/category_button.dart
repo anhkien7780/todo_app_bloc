@@ -36,13 +36,13 @@ class CategoryButton extends StatelessWidget {
     String path;
     switch (category) {
       case Category.task:
-        path = "lib/assets/images/ic_task.svg";
+        path = "assets/images/ic_task.svg";
         break;
       case Category.event:
-        path = "lib/assets/images/ic_event.svg";
+        path = "assets/images/ic_event.svg";
         break;
       case Category.goal:
-        path = "lib/assets/images/ic_goal.svg";
+        path = "assets/images/ic_goal.svg";
         break;
     }
     return Center(

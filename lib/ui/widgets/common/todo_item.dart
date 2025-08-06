@@ -77,7 +77,9 @@ class TodoItem extends StatelessWidget {
             ),
           ),
           Checkbox(
-            checkColor: AppColors.primary,
+            fillColor: todo.isCompleted
+                ? WidgetStatePropertyAll(AppColors.primary)
+                : WidgetStatePropertyAll(AppColors.buttonBGWhite),
             value: todo.isCompleted,
             onChanged: (_) {
               onToggleCheckBox(todo);

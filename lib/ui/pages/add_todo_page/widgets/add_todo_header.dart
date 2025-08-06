@@ -17,12 +17,12 @@ class AddNewTaskScreenHeader extends StatelessWidget {
         Positioned(
           top: -48,
           left: -191,
-          child: SVGImage(imageUri: "lib/assets/images/ic_ellipse_1.svg"),
+          child: SVGImage(imageUri: "assets/images/ic_ellipse_1.svg"),
         ),
         Positioned(
           top: -27,
           right: -82,
-          child: SVGImage(imageUri: "lib/assets/images/ic_ellipse_2.svg"),
+          child: SVGImage(imageUri: "assets/images/ic_ellipse_2.svg"),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +36,7 @@ class AddNewTaskScreenHeader extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: Colors.white,
                 ),
-                child: SVGImage(imageUri: "lib/assets/images/ic_close_x.svg"),
+                child: SVGImage(imageUri: "assets/images/ic_close_x.svg"),
               ),
             ),
             Text(
