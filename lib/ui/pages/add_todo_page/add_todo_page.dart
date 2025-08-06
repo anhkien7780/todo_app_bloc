@@ -1,15 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_state.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/widgets/add_todo_body.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/widgets/add_todo_header.dart';
-import 'package:todo_app_bloc/ui/widgets/common/category_selector.dart';
-import 'package:todo_app_bloc/ui/widgets/common/custom_text_field.dart';
-import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
 class AddTodo extends StatelessWidget {
   final Function(Todo todo) onAddButtonPressed;
@@ -53,12 +48,12 @@ class AddTodo extends StatelessWidget {
                           final todo = context.read<AddTodoCubit>().getTodo();
                           if (todo.taskTitle.trim().isEmpty) {
                             ScaffoldMessenger.of(context)
-                                ..hideCurrentSnackBar()
-                                ..showSnackBar(
-                              const SnackBar(
-                                content: Text("Task title is empty"),
-                              ),
-                            );
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(
+                                const SnackBar(
+                                  content: Text("Task title is empty"),
+                                ),
+                              );
                           } else {
                             onAddButtonPressed(todo);
                             Navigator.of(context).pop();
@@ -66,7 +61,7 @@ class AddTodo extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(
-                            Color(0xff4A3780),
+                            AppColors.buttonBGPrimary,
                           ),
                         ),
                         child: const Text(
@@ -74,7 +69,7 @@ class AddTodo extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
-                            color: Colors.white,
+                            color: AppColors.textWhite,
                           ),
                         ),
                       ),
@@ -89,5 +84,3 @@ class AddTodo extends StatelessWidget {
     );
   }
 }
-
-

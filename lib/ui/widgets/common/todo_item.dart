@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_bloc/common/app_colors.dart';
 
 import '../../../model/entities/todo.dart';
 import 'category_button.dart';
@@ -17,7 +18,7 @@ class TodoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(color: Colors.white),
+      decoration: BoxDecoration(color: AppColors.buttonBGWhite),
       height: 80,
       child: Row(
         spacing: 12,
@@ -30,7 +31,9 @@ class TodoItem extends StatelessWidget {
               Container(
                 height: 48,
                 width: 48,
-                color: Colors.white.withAlpha(todo.isCompleted ? 100 : 0),
+                color: todo.isCompleted
+                    ? AppColors.buttonBGDisable
+                    : Colors.transparent,
               ),
             ],
           ),
@@ -49,7 +52,9 @@ class TodoItem extends StatelessWidget {
                     decoration: todo.isCompleted
                         ? TextDecoration.lineThrough
                         : null,
-                    color: Colors.black.withAlpha(todo.isCompleted ? 170 : 250),
+                    color: AppColors.textBlack.withAlpha(
+                      todo.isCompleted ? 170 : 250,
+                    ),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -64,7 +69,7 @@ class TodoItem extends StatelessWidget {
                       decoration: todo.isCompleted
                           ? TextDecoration.lineThrough
                           : null,
-                      color: Color(0xff1B1B1D).withAlpha(170),
+                      color: AppColors.textBlack.withAlpha(170),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -72,6 +77,7 @@ class TodoItem extends StatelessWidget {
             ),
           ),
           Checkbox(
+            checkColor: AppColors.primary,
             value: todo.isCompleted,
             onChanged: (_) {
               onToggleCheckBox(todo);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:todo_app_bloc/common/app_colors.dart';
 
 import '../../../model/enums/category.dart';
 
@@ -27,10 +28,7 @@ class CategoryButton extends StatelessWidget {
             ? Border.fromBorderSide(BorderSide(color: Colors.grey, width: 2))
             : null,
       ),
-      child: IconButton(
-        onPressed: onPressed,
-        icon: _buildIcon(),
-      ),
+      child: IconButton(onPressed: onPressed, icon: _buildIcon()),
     );
   }
 
@@ -38,13 +36,13 @@ class CategoryButton extends StatelessWidget {
     String path;
     switch (category) {
       case Category.task:
-        path = "lib/assets/icons/ic_task.svg";
+        path = "lib/assets/images/ic_task.svg";
         break;
       case Category.event:
-        path = "lib/assets/icons/ic_event.svg";
+        path = "lib/assets/images/ic_event.svg";
         break;
       case Category.goal:
-        path = "lib/assets/icons/ic_goal.svg";
+        path = "lib/assets/images/ic_goal.svg";
         break;
     }
     return Center(
@@ -55,11 +53,11 @@ class CategoryButton extends StatelessWidget {
   Color _buildColor() {
     switch (category) {
       case Category.task:
-        return Color(0xffDBECF6);
+        return AppColors.categoryTaskButton;
       case Category.event:
-        return Color(0xffE7E2F3);
+        return AppColors.categoryEventButton;
       case Category.goal:
-        return Color(0xffFEF5D3);
+        return AppColors.categoryGoalButton;
     }
   }
 }

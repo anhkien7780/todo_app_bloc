@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_state.dart';
 import 'package:todo_app_bloc/ui/widgets/common/category_selector.dart';
@@ -75,7 +76,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
       context: context,
       builder: (context) => Container(
         height: 200,
-        color: Colors.white,
+        color: AppColors.textWhite,
         child: SafeArea(
           top: false,
           child: CupertinoDatePicker(
@@ -117,7 +118,9 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                 icon: SizedBox(
                   height: 20,
                   width: 20,
-                  child: SVGImage(imageUri: "lib/assets/icons/ic_calendar.svg"),
+                  child: SVGImage(
+                    imageUri: "lib/assets/images/ic_calendar.svg",
+                  ),
                 ),
               ),
               maxLines: 1,
@@ -146,7 +149,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                 icon: SizedBox(
                   height: 20,
                   width: 20,
-                  child: SVGImage(imageUri: "lib/assets/icons/ic_clock.svg"),
+                  child: SVGImage(imageUri: "lib/assets/images/ic_clock.svg"),
                 ),
               ),
               maxLines: 1,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
 import 'package:todo_app_bloc/ui/widgets/common/todo_item.dart';
@@ -36,7 +37,7 @@ class TodoListView extends StatelessWidget {
           );
         },
         separatorBuilder: (_, _) =>
-            Divider(height: 1, color: Color(0xffE5E9ED)),
+            Divider(height: 1, color: AppColors.horizontalDivider),
         itemCount: todoList.length,
       ),
     );

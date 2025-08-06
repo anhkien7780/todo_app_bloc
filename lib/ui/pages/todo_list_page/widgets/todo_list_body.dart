@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_page.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
@@ -13,12 +14,11 @@ class TodoListBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF1F5F9),
+      backgroundColor: AppColors.background,
       body: Center(
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Positioned.fill(child: TodosScreenHeader()),
             Positioned.fill(
               top: 158,
               child: Padding(
@@ -46,7 +46,7 @@ class TodoListBody extends StatelessWidget {
                                 child: Text(
                                   "Completed",
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: AppColors.textBlack,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -68,13 +68,14 @@ class TodoListBody extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned.fill(child: TodosScreenHeader()),
             Positioned(
               bottom: 24,
               right: 16,
               left: 16,
               child: OutlinedButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Color(0xff4A3780)),
+                  backgroundColor: WidgetStatePropertyAll(AppColors.background),
                   fixedSize: WidgetStatePropertyAll(Size(358, 56)),
                 ),
                 onPressed: () {
@@ -88,9 +89,11 @@ class TodoListBody extends StatelessWidget {
                         create: (context) {
                           return AddTodoCubit();
                         },
-                        child: AddTodo(onAddButtonPressed: (todo) {
-                          cubit.addTodo(todo);
-                        }),
+                        child: AddTodo(
+                          onAddButtonPressed: (todo) {
+                            cubit.addTodo(todo);
+                          },
+                        ),
                       );
                     },
                   );
@@ -100,7 +103,7 @@ class TodoListBody extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                    color: AppColors.textWhite,
                   ),
                 ),
               ),

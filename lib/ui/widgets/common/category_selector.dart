@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_bloc/common/app_colors.dart';
 
 import '../../../model/enums/category.dart';
 import 'category_button.dart';
@@ -24,7 +25,7 @@ class CategorySelector extends StatelessWidget {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: Colors.black,
+            color: AppColors.textBlack,
           ),
         ),
         Row(
