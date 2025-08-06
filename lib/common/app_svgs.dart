@@ -1,5 +1,5 @@
-class AppImages {
-  AppImages._();
+class AppSvgs {
+  AppSvgs._();
 
   static const icCalendar = "assets/ic_calendar.svg";
   static const icClock = "assets/ic_clock.svg";

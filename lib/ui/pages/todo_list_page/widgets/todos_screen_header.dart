@@ -36,7 +36,7 @@ class TodosScreenHeader extends StatelessWidget {
     return Positioned(
       top: 78,
       left: -191,
-      child: SVGImage(imageUri: AppImages.icEllipse1),
+      child: SVGImage(imageUri: AppSvgs.icEllipse1),
     );
   }
 
@@ -44,7 +44,7 @@ class TodosScreenHeader extends StatelessWidget {
     return Positioned(
       top: -27,
       right: -82,
-      child: SVGImage(imageUri: AppImages.icEllipse2),
+      child: SVGImage(imageUri: AppSvgs.icEllipse2),
     );
   }
 

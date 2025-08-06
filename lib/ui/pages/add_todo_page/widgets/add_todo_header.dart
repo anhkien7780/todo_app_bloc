@@ -45,7 +45,7 @@ class AddNewTaskScreenHeader extends StatelessWidget {
     return Positioned(
       top: -48,
       left: -191,
-      child: SVGImage(imageUri: AppImages.icEllipse1),
+      child: SVGImage(imageUri: AppSvgs.icEllipse1),
     );
   }
 
@@ -53,7 +53,7 @@ class AddNewTaskScreenHeader extends StatelessWidget {
     return Positioned(
       top: -27,
       right: -82,
-      child: SVGImage(imageUri: AppImages.icEllipse2),
+      child: SVGImage(imageUri: AppSvgs.icEllipse2),
     );
   }
 
@@ -67,7 +67,7 @@ class AddNewTaskScreenHeader extends StatelessWidget {
           shape: BoxShape.circle,
           color: Colors.white,
         ),
-        child: SVGImage(imageUri: AppImages.icCloseX),
+        child: SVGImage(imageUri: AppSvgs.icCloseX),
       ),
     );
   }

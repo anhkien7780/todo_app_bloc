@@ -121,7 +121,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                   icon: SizedBox(
                     height: AppDimens.iconSmallSize,
                     width: AppDimens.iconSmallSize,
-                    child: SVGImage(imageUri: AppImages.icCalendar),
+                    child: SVGImage(imageUri: AppSvgs.icCalendar),
                   ),
                 ),
                 maxLines: 1,
@@ -151,7 +151,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                   icon: SizedBox(
                     height: AppDimens.iconSmallSize,
                     width: AppDimens.iconSmallSize,
-                    child: SVGImage(imageUri: AppImages.icClock),
+                    child: SVGImage(imageUri: AppSvgs.icClock),
                   ),
                 ),
                 maxLines: 1,

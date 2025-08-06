@@ -43,13 +43,13 @@ class CategoryButton extends StatelessWidget {
     String path;
     switch (category) {
       case Category.task:
-        path = AppImages.icTask;
+        path = AppSvgs.icTask;
         break;
       case Category.event:
-        path = AppImages.icEvent;
+        path = AppSvgs.icEvent;
         break;
       case Category.goal:
-        path = AppImages.icGoal;
+        path = AppSvgs.icGoal;
         break;
     }
     return Center(
