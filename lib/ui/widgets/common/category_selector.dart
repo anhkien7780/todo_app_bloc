@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
+import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
+
 import 'category_button.dart';
 
 class CategorySelector extends StatelessWidget {
@@ -20,14 +21,7 @@ class CategorySelector extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       spacing: AppDimens.marginLarge,
       children: [
-        const Text(
-          "Category",
-          style: TextStyle(
-            fontSize: AppDimens.textSmall,
-            fontWeight: FontWeight.w600,
-            color: AppColors.textBlack,
-          ),
-        ),
+        Text("Category", style: AppTextStyles.blackS14SemiBold),
         Row(
           spacing: AppDimens.marginNormal,
           children: [

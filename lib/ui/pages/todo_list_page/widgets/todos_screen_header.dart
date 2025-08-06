@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_svgs.dart';
+import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
 class TodosScreenHeader extends StatelessWidget {
@@ -56,26 +57,12 @@ class TodosScreenHeader extends StatelessWidget {
           vertical: AppDimens.paddingNormal,
           horizontal: 110,
         ),
-        child: Text(
-          date,
-          style: TextStyle(
-            fontSize: AppDimens.textMedium,
-            fontWeight: FontWeight.w600,
-            color: AppColors.textWhite,
-          ),
-        ),
+        child: Text(date, style: AppTextStyles.whiteS16SemiBold),
       ),
     );
   }
 
   Text _buildCenterTitle({required String title}) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontSize: AppDimens.textLarge,
-        fontWeight: FontWeight.w700,
-        color: AppColors.textWhite,
-      ),
-    );
+    return Text(title, style: AppTextStyles.whiteS30Bold);
   }
 }

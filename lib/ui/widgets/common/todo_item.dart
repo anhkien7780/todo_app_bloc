@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
+import 'package:todo_app_bloc/common/app_text_styles.dart';
 
 import '../../../model/entities/todo.dart';
 import 'category_button.dart';
@@ -52,13 +53,11 @@ class TodoItem extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.fade,
           softWrap: false,
-          style: TextStyle(
-            fontSize: AppDimens.textMedium,
+          style: AppTextStyles.blackS16SemiBold.copyWith(
             decoration: todo.isCompleted ? TextDecoration.lineThrough : null,
             color: AppColors.textBlack.withAlpha(
               todo.isCompleted ? AppDimens.blurAlpha : AppDimens.normalAlpha,
             ),
-            fontWeight: FontWeight.w600,
           ),
         ),
         if (todo.time != null && todo.time!.isNotEmpty)
@@ -67,11 +66,9 @@ class TodoItem extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.fade,
             softWrap: false,
-            style: TextStyle(
-              fontSize: AppDimens.textSmall,
+            style: AppTextStyles.blackS14Medium.copyWith(
               decoration: todo.isCompleted ? TextDecoration.lineThrough : null,
               color: AppColors.textBlack.withAlpha(AppDimens.blurAlpha),
-              fontWeight: FontWeight.w500,
             ),
           ),
       ],

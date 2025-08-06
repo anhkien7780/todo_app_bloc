@@ -2,8 +2,8 @@ class AppDimens {
   AppDimens._();
 
   ///Common
-  static const int blurAlpha = 170;
-  static const int normalAlpha = 170;
+  static const int blurAlpha = 150;
+  static const int normalAlpha = 255;
 
   ///Text
   static const double textLarge = 30;

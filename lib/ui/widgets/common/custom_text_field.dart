@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
+import 'package:todo_app_bloc/common/app_text_styles.dart';
 
 class CustomTextField extends StatelessWidget {
   final double? width;
@@ -36,10 +37,7 @@ class CustomTextField extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
-              fontSize: AppDimens.textSmall,
-              fontWeight: FontWeight.w600,
-            ),
+            style: AppTextStyles.blackS14SemiBold,
           ),
           Container(
             height: height,
@@ -74,11 +72,7 @@ class CustomTextField extends StatelessWidget {
                 ),
                 hint: Text(
                   hint,
-                  style: TextStyle(
-                    fontSize: AppDimens.textMedium,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.textFieldHint,
-                  ),
+                  style: AppTextStyles.blackS16,
                 ),
                 suffixIcon: suffixIcon,
               ),
