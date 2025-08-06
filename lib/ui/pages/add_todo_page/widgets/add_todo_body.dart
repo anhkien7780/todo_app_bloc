@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
-import 'package:todo_app_bloc/common/app_images.dart';
+import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_state.dart';
 import 'package:todo_app_bloc/ui/widgets/common/category_selector.dart';

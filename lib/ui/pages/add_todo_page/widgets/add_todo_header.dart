@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
-import 'package:todo_app_bloc/common/app_images.dart';
+import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
 class AddNewTaskScreenHeader extends StatelessWidget {

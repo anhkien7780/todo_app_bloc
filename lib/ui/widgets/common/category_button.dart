@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
-import 'package:todo_app_bloc/common/app_images.dart';
+import 'package:todo_app_bloc/common/app_svgs.dart';
 
 import '../../../model/enums/category.dart';
 
