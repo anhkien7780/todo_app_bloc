@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
+import 'package:todo_app_bloc/common/app_dimens.dart';
 
 class CustomTextField extends StatelessWidget {
   final double? width;
@@ -30,18 +31,21 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width,
       child: Column(
-        spacing: 8,
+        spacing: AppDimens.marginSmaller,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            style: TextStyle(
+              fontSize: AppDimens.textSmall,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           Container(
             height: height,
             decoration: BoxDecoration(
               color: AppColors.textFieldBGEnable,
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(AppDimens.cornerRadiusSmall),
             ),
             child: TextField(
               controller: controller,
@@ -49,15 +53,21 @@ class CustomTextField extends StatelessWidget {
               maxLines: maxLines,
               clipBehavior: Clip.hardEdge,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(left: 12, right: 12),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: AppDimens.marginNormal,
+                ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(
+                    AppDimens.cornerRadiusSmall,
+                  ),
                   borderSide: BorderSide(
                     color: borderColor ?? AppColors.textFieldEnableBorder,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.circular(
+                    AppDimens.cornerRadiusSmall,
+                  ),
                   borderSide: BorderSide(
                     color: borderColor ?? AppColors.textFieldEnableBorder,
                   ),
@@ -65,7 +75,7 @@ class CustomTextField extends StatelessWidget {
                 hint: Text(
                   hint,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: AppDimens.textMedium,
                     fontWeight: FontWeight.w400,
                     color: AppColors.textFieldHint,
                   ),

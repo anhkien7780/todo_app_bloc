@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
+import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_state.dart';
 import 'package:todo_app_bloc/ui/widgets/common/category_selector.dart';
@@ -20,11 +21,11 @@ class _AddTodoBodyState extends State<AddTodoBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppDimens.paddingNormal),
       child: Column(
         children: [
           Column(
-            spacing: 24,
+            spacing: AppDimens.marginLarge,
             children: [
               CustomTextField(
                 title: "Task Title",
@@ -53,7 +54,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                     hint: "Notes",
                     title: "Notes",
                     borderColor: Colors.transparent,
-                    height: 177,
+                    height: AppDimens.textFieldHeightNormal,
                     onChange: (value) {
                       context.read<AddTodoCubit>().setNotes(value);
                     },
@@ -76,7 +77,7 @@ class _AddTodoBodyState extends State<AddTodoBody> {
     showCupertinoModalPopup(
       context: context,
       builder: (context) => Container(
-        height: 200,
+        height: AppDimens.cupertinoModelPopupHeight,
         color: AppColors.textWhite,
         child: SafeArea(
           top: false,
@@ -93,69 +94,69 @@ class _AddTodoBodyState extends State<AddTodoBody> {
   Widget _buildDateTimeSelector({required BuildContext context}) {
     DateTime dateTime = DateTime.now();
     return Row(
-      spacing: 8,
+      spacing: AppDimens.marginSmaller,
       children: [
-        BlocBuilder<AddTodoCubit, AddTodoState>(
-          builder: (context, state) {
-            final cubit = context.read<AddTodoCubit>();
-            return CustomTextField(
-              controller: cubit.dateTextController,
-              hint: "Date",
-              title: "Date",
-              width: 175,
-              suffixIcon: IconButton(
-                onPressed: () {
-                  _buildCupertinoDateTime(
-                    context: context,
-                    initialDateTime: dateTime,
-                    mode: CupertinoDatePickerMode.date,
-                    onDateTimeChanged: (newDate) {
-                      cubit.setDate(
-                        DateFormat("MMMM dd, yyyy").format(newDate),
-                      );
-                    },
-                  );
-                },
-                icon: SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: SVGImage(
-                    imageUri: "assets/images/ic_calendar.svg",
+        Flexible(
+          child: BlocBuilder<AddTodoCubit, AddTodoState>(
+            builder: (context, state) {
+              final cubit = context.read<AddTodoCubit>();
+              return CustomTextField(
+                controller: cubit.dateTextController,
+                hint: "Date",
+                title: "Date",
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    _buildCupertinoDateTime(
+                      context: context,
+                      initialDateTime: dateTime,
+                      mode: CupertinoDatePickerMode.date,
+                      onDateTimeChanged: (newDate) {
+                        cubit.setDate(
+                          DateFormat("MMMM dd, yyyy").format(newDate),
+                        );
+                      },
+                    );
+                  },
+                  icon: SizedBox(
+                    height: AppDimens.iconSmallSize,
+                    width: AppDimens.iconSmallSize,
+                    child: SVGImage(imageUri: "assets/images/ic_calendar.svg"),
                   ),
                 ),
-              ),
-              maxLines: 1,
-            );
-          },
+                maxLines: 1,
+              );
+            },
+          ),
         ),
-        BlocBuilder<AddTodoCubit, AddTodoState>(
-          builder: (context, state) {
-            final cubit = context.read<AddTodoCubit>();
-            return CustomTextField(
-              hint: "Time",
-              title: "Time",
-              controller: cubit.timeTextController,
-              width: 175,
-              suffixIcon: IconButton(
-                onPressed: () {
-                  _buildCupertinoDateTime(
-                    context: context,
-                    initialDateTime: dateTime,
-                    mode: CupertinoDatePickerMode.time,
-                    onDateTimeChanged: (newTime) {
-                      cubit.setTime(DateFormat.jm().format(newTime));
-                    },
-                  );
-                },
-                icon: SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: SVGImage(imageUri: "assets/images/ic_clock.svg"),
+        Flexible(
+          child: BlocBuilder<AddTodoCubit, AddTodoState>(
+            builder: (context, state) {
+              final cubit = context.read<AddTodoCubit>();
+              return CustomTextField(
+                hint: "Time",
+                title: "Time",
+                controller: cubit.timeTextController,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    _buildCupertinoDateTime(
+                      context: context,
+                      initialDateTime: dateTime,
+                      mode: CupertinoDatePickerMode.time,
+                      onDateTimeChanged: (newTime) {
+                        cubit.setTime(DateFormat.jm().format(newTime));
+                      },
+                    );
+                  },
+                  icon: SizedBox(
+                    height: AppDimens.iconSmallSize,
+                    width: AppDimens.iconSmallSize,
+                    child: SVGImage(imageUri: "assets/images/ic_clock.svg"),
+                  ),
                 ),
-              ),
-              maxLines: 1,
-            );
-          },
+                maxLines: 1,
+              );
+            },
+          ),
         ),
       ],
     );

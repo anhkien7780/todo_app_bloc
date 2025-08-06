@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
+import 'package:todo_app_bloc/common/app_dimens.dart';
 
 import '../../../model/enums/category.dart';
 
@@ -19,13 +20,18 @@ class CategoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 48,
-      height: 48,
+      width: AppDimens.circleButtonSize,
+      height: AppDimens.circleButtonSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: _buildColor(),
         border: isSelected
-            ? Border.fromBorderSide(BorderSide(color: Colors.grey, width: 2))
+            ? Border.fromBorderSide(
+                BorderSide(
+                  color: Colors.grey,
+                  width: AppDimens.categoryButtonBorderWidth,
+                ),
+              )
             : null,
       ),
       child: IconButton(onPressed: onPressed, icon: _buildIcon()),
@@ -46,7 +52,12 @@ class CategoryButton extends StatelessWidget {
         break;
     }
     return Center(
-      child: SvgPicture.asset(width: 24, height: 24, path, fit: BoxFit.contain),
+      child: SvgPicture.asset(
+        width: AppDimens.iconNormalSize,
+        height: AppDimens.iconNormalSize,
+        path,
+        fit: BoxFit.contain,
+      ),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
+import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
 class AddNewTaskScreenHeader extends StatelessWidget {
@@ -13,44 +14,60 @@ class AddNewTaskScreenHeader extends StatelessWidget {
       fit: StackFit.loose,
       alignment: Alignment.center,
       children: [
-        Container(width: double.infinity, height: 96, color: AppColors.primary),
-        Positioned(
-          top: -48,
-          left: -191,
-          child: SVGImage(imageUri: "assets/images/ic_ellipse_1.svg"),
+        Container(
+          width: double.infinity,
+          height: AppDimens.addTodoPageHeaderHeight,
+          color: AppColors.primary,
         ),
-        Positioned(
-          top: -27,
-          right: -82,
-          child: SVGImage(imageUri: "assets/images/ic_ellipse_2.svg"),
-        ),
+        _buildEllipse1(),
+        _buildEllipse2(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              onPressed: onCloseButtonPressed,
-              icon: Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: SVGImage(imageUri: "assets/images/ic_close_x.svg"),
-              ),
-            ),
-            Text(
+            _buildCloseButton(),
+            const Text(
               "Add New Task",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: AppDimens.textMedium,
                 fontWeight: FontWeight.w600,
                 color: AppColors.textWhite,
               ),
             ),
-            SizedBox(width: 48),
+            const SizedBox(width: AppDimens.circleButtonSize),
           ],
         ),
       ],
+    );
+  }
+
+  Positioned _buildEllipse1() {
+    return Positioned(
+      top: -48,
+      left: -191,
+      child: SVGImage(imageUri: "assets/images/ic_ellipse_1.svg"),
+    );
+  }
+
+  Positioned _buildEllipse2() {
+    return Positioned(
+      top: -27,
+      right: -82,
+      child: SVGImage(imageUri: "assets/images/ic_ellipse_2.svg"),
+    );
+  }
+
+  IconButton _buildCloseButton() {
+    return IconButton(
+      onPressed: onCloseButtonPressed,
+      icon: Container(
+        width: AppDimens.circleButtonSize,
+        height: AppDimens.circleButtonSize,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+        ),
+        child: SVGImage(imageUri: "assets/images/ic_close_x.svg"),
+      ),
     );
   }
 }

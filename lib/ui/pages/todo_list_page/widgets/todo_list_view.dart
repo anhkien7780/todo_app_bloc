@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
+import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
 import 'package:todo_app_bloc/ui/widgets/common/todo_item.dart';
@@ -19,7 +20,9 @@ class TodoListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppDimens.cornerRadiusNormal),
+      ),
       child: ListView.separated(
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -36,8 +39,10 @@ class TodoListView extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (_, _) =>
-            Divider(height: 1, color: AppColors.horizontalDivider),
+        separatorBuilder: (_, _) => Divider(
+          height: AppDimens.dividerSize,
+          color: AppColors.horizontalDivider,
+        ),
         itemCount: todoList.length,
       ),
     );

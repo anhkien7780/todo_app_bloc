@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
+import 'package:todo_app_bloc/common/app_dimens.dart';
 
 import '../../../model/enums/category.dart';
 import 'category_button.dart';
@@ -18,18 +19,18 @@ class CategorySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
-      spacing: 24,
+      spacing: AppDimens.marginLarge,
       children: [
         const Text(
           "Category",
           style: TextStyle(
-            fontSize: 14,
+            fontSize: AppDimens.textSmall,
             fontWeight: FontWeight.w600,
             color: AppColors.textBlack,
           ),
         ),
         Row(
-          spacing: 16,
+          spacing: AppDimens.marginNormal,
           children: [
             CategoryButton(
               category: Category.task,
