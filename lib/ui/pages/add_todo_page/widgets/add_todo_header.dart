@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
+import 'package:todo_app_bloc/common/app_images.dart';
 import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
 class AddNewTaskScreenHeader extends StatelessWidget {
@@ -44,7 +45,7 @@ class AddNewTaskScreenHeader extends StatelessWidget {
     return Positioned(
       top: -48,
       left: -191,
-      child: SVGImage(imageUri: "assets/images/ic_ellipse_1.svg"),
+      child: SVGImage(imageUri: AppImages.icEllipse1),
     );
   }
 
@@ -52,7 +53,7 @@ class AddNewTaskScreenHeader extends StatelessWidget {
     return Positioned(
       top: -27,
       right: -82,
-      child: SVGImage(imageUri: "assets/images/ic_ellipse_2.svg"),
+      child: SVGImage(imageUri: AppImages.icEllipse2),
     );
   }
 
@@ -66,7 +67,7 @@ class AddNewTaskScreenHeader extends StatelessWidget {
           shape: BoxShape.circle,
           color: Colors.white,
         ),
-        child: SVGImage(imageUri: "assets/images/ic_close_x.svg"),
+        child: SVGImage(imageUri: AppImages.icCloseX),
       ),
     );
   }

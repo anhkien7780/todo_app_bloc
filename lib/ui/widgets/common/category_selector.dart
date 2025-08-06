@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
-
-import '../../../model/enums/category.dart';
+import 'package:todo_app_bloc/model/enums/category.dart';
 import 'category_button.dart';
 
 class CategorySelector extends StatelessWidget {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
+import 'package:todo_app_bloc/common/app_images.dart';
 
 import '../../../model/enums/category.dart';
 
@@ -42,13 +43,13 @@ class CategoryButton extends StatelessWidget {
     String path;
     switch (category) {
       case Category.task:
-        path = "assets/images/ic_task.svg";
+        path = AppImages.icTask;
         break;
       case Category.event:
-        path = "assets/images/ic_event.svg";
+        path = AppImages.icEvent;
         break;
       case Category.goal:
-        path = "assets/images/ic_goal.svg";
+        path = AppImages.icGoal;
         break;
     }
     return Center(
