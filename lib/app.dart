@@ -6,7 +6,6 @@ import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
 import 'package:todo_app_bloc/model/enums/language.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/router/router_config.dart';
-import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
 import 'package:todo_app_bloc/ui/widgets/loading/app_loading_indicator.dart';
 
 import 'generated/l10n.dart';
@@ -39,13 +38,6 @@ class _MyAppState extends State<MyApp> {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AppSettingCubit>(create: (context) => AppSettingCubit()),
-          //TODO:
-          BlocProvider<TodoListCubit>(
-            create: (context) {
-              final todoRepo = RepositoryProvider.of<TodoRepository>(context);
-              return TodoListCubit(repository: todoRepo);
-            },
-          ),
         ],
         child: BlocBuilder<AppSettingCubit, AppSettingState>(
           buildWhen: (pre, current) {
