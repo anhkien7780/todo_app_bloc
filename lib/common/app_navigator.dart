@@ -12,6 +12,10 @@ class AppNavigator {
     GoRouter.of(context).pop(result);
   }
 
+  void navigatorPop<T extends Object?>([T? result]) {
+    Navigator.of(context).pop(result);
+  }
+
   void popUntilNamed(String name) {
     Navigator.popUntil(context, ModalRoute.withName(name));
   }
@@ -37,6 +41,20 @@ class AppNavigator {
     Object? extra,
   }) async {
     return GoRouter.of(context).pushReplacementNamed(
+      name,
+      pathParameters: pathParameters,
+      queryParameters: queryParameters,
+      extra: extra,
+    );
+  }
+
+  void goNamed(
+    String name, {
+    Map<String, String> pathParameters = const <String, String>{},
+    Map<String, dynamic> queryParameters = const <String, dynamic>{},
+    Object? extra,
+  }) {
+    return GoRouter.of(context).goNamed(
       name,
       pathParameters: pathParameters,
       queryParameters: queryParameters,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
 import 'package:todo_app_bloc/model/enums/language.dart';
@@ -7,7 +8,6 @@ import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/router/router_config.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
 import 'package:todo_app_bloc/ui/widgets/loading/app_loading_indicator.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'generated/l10n.dart';
 import 'global_blocs/settings/app_setting_state.dart';
@@ -39,10 +39,11 @@ class _MyAppState extends State<MyApp> {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AppSettingCubit>(create: (context) => AppSettingCubit()),
+          //TODO:
           BlocProvider<TodoListCubit>(
             create: (context) {
               final todoRepo = RepositoryProvider.of<TodoRepository>(context);
-              return TodoListCubit(todoRepository: todoRepo);
+              return TodoListCubit(repository: todoRepo);
             },
           ),
         ],

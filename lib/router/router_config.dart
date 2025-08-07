@@ -15,19 +15,17 @@ class AppRouter {
   );
 
   static const String splash = "/";
-  static const String todoList = "todo_list";
+  static const String todoList = "/todo_list";
 
   static final _routes = <RouteBase>[
     GoRoute(
       path: splash,
       builder: (context, state) => const SplashPage(),
-      routes: <RouteBase>[
-        GoRoute(
-          path: todoList,
-          name: todoList,
-          builder: (context, state) => const TodoListPage(),
-        ),
-      ],
+    ),
+    GoRoute(
+      path: todoList,
+      name: todoList,
+      builder: (context, state) => const TodoListPage(),
     ),
   ];
 }

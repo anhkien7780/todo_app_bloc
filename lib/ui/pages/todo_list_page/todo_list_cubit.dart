@@ -6,9 +6,9 @@ import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
 
 class TodoListCubit extends Cubit<TodoListState> {
-  TodoListCubit({required this.todoRepository}) : super(const TodoListState());
+  TodoListCubit({required this.repository}) : super(const TodoListState());
 
-  final TodoRepository todoRepository;
+  final TodoRepository repository;
 
   void fetchTodos() async {
     if (state.loadTodoStatus == LoadStatus.loading) {
@@ -16,7 +16,7 @@ class TodoListCubit extends Cubit<TodoListState> {
     }
     emit(state.copyWith(loadTodoStatus: LoadStatus.loading));
     try {
-      final todos = await todoRepository.fetchTodos();
+      final todos = await repository.fetchTodos();
       final uncompletedTodo = todos.where((todo) => !todo.isCompleted).toList();
       final completedTodo = todos.where((todo) => todo.isCompleted).toList();
       emit(
@@ -32,7 +32,7 @@ class TodoListCubit extends Cubit<TodoListState> {
   }
 
   void toggleCheckBox(Todo todo) async {
-    final toggledTodo = await todoRepository.toggleCheckBox(todo);
+    final toggledTodo = await repository.toggleCheckBox(todo);
     final newCompleted = List<Todo>.from(state.completedTodos);
     final newUnCompleted = List<Todo>.from(state.unCompletedTodos);
     if (todo.isCompleted) {
@@ -51,7 +51,7 @@ class TodoListCubit extends Cubit<TodoListState> {
   }
 
   void addTodo(Todo todo) async {
-    final addedTodo = await todoRepository.addTodo(todo);
+    final addedTodo = await repository.addTodo(todo);
     final newUnCompleted = List<Todo>.from(state.unCompletedTodos);
     final newCompleted = List<Todo>.from(state.completedTodos);
     newUnCompleted.add(addedTodo);

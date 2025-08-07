@@ -30,4 +30,7 @@ class AppColors {
 
   ///Logo
   static const Color logoBorderColor = Colors.white;
+
+  ///Circle Loading Indicator
+  static const Color circleLoading = Colors.white;
 }

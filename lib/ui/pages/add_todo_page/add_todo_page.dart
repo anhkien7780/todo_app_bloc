@@ -3,22 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
-import 'package:todo_app_bloc/model/entities/todo.dart';
+import 'package:todo_app_bloc/generated/l10n.dart';
+import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
+import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_navigator.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/widgets/add_todo_body.dart';
 import 'package:todo_app_bloc/ui/pages/add_todo_page/widgets/add_todo_header.dart';
 
 class AddTodo extends StatelessWidget {
-  final Function(Todo todo) onAddButtonPressed;
-
-  const AddTodo({super.key, required this.onAddButtonPressed});
+  const AddTodo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () {
-        FocusScope.of(context).unfocus();
+    return BlocProvider<AddTodoCubit>(
+      create: (BuildContext context) {
+        return AddTodoCubit(
+          repository: context.read<TodoRepository>(),
+          navigator: AddTodoNavigator(context: context),
+        );
       },
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -40,7 +42,9 @@ class AddTodo extends StatelessWidget {
                       child: Column(
                         children: [
                           AddNewTaskScreenHeader(
-                            onCloseButtonPressed: () => Navigator.pop(context),
+                            onCloseButtonPressed: () => context
+                                .read<AddTodoCubit>()
+                                .onCloseButtonPressed(),
                           ),
                           SizedBox(height: AppDimens.marginLarge),
                           AddTodoBody(),
@@ -66,23 +70,13 @@ class AddTodo extends StatelessWidget {
         width: double.infinity,
         height: AppDimens.buttonHeight,
         child: OutlinedButton(
-          onPressed: () {
-            final todo = context.read<AddTodoCubit>().getTodo();
-            if (todo.taskTitle.trim().isEmpty) {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  const SnackBar(content: Text("Task title is empty")),
-                );
-            } else {
-              onAddButtonPressed(todo);
-              Navigator.of(context).pop();
-            }
+          onPressed: () async {
+            await context.read<AddTodoCubit>().onSaveButtonPressed();
           },
           style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(AppColors.buttonBGPrimary),
           ),
-          child: Text("Save", style: AppTextStyles.whiteS16Bold),
+          child: Text(S.of(context).save, style: AppTextStyles.whiteS16Bold),
         ),
       ),
     );
