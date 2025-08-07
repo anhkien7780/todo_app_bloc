@@ -1,0 +1,13 @@
+{
+  "@@locale": "en",
+  "failedToLoadTodos": "Failed to load todos",
+  "completed": "Completed",
+  "addNewTask": "Add New Task",
+  "taskTitleIsEmpty": "Task title is empty",
+  "save": "Save",
+  "taskTitle": "Task Title",
+  "category": "Category",
+  "date": "Date",
+  "time": "Time",
+  "notes": "Notes"
+}

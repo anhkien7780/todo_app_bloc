@@ -27,4 +27,7 @@ class AppColors {
 
   ///Divider
   static const Color horizontalDivider = Color(0xFFE5E9ED);
+
+  ///Logo
+  static const Color logoBorderColor = Colors.white;
 }

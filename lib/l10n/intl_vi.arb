@@ -1,0 +1,13 @@
+{
+  "@@locale": "vi",
+  "failedToLoadTodos": "Tải danh sách việc làm thất bại",
+  "completed": "Hoàn thành",
+  "addNewTask": "Thêm công việc mới",
+  "taskTitleIsEmpty": "Tiêu đề không được để trống",
+  "save": "Lưu",
+  "taskTitle": "Tiêu đề",
+  "category": "Danh mục",
+  "date": "Ngày",
+  "time": "Thời gian",
+  "notes": "Ghi chú"
+}
