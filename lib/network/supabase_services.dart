@@ -1,13 +1,12 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:todo_app_bloc/configs/app_configs.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 
 class SupabaseServices {
-  static final String supabaseUrl = "https://ijywzybzbkkqtlqrwkiu.supabase.co";
-  static final String _anonKey = dotenv.env["SUPABASE_API_KEY"] ?? "";
-
-  static Future<Supabase> supabaseInit() async =>
-      await Supabase.initialize(url: supabaseUrl, anonKey: _anonKey);
+  static Future<Supabase> supabaseInit() async => await Supabase.initialize(
+    url: AppConfigs.baseUrl,
+    anonKey: TodoSupabaseConfig.anonKey,
+  );
 
   static SupabaseClient supabaseClient = Supabase.instance.client;
 
@@ -35,23 +34,17 @@ class SupabaseServices {
     }
   }
 
-  static Future<void> deleteTodo(Todo todo) async{
-    try{
-      await supabaseClient
-          .from("todos")
-          .delete()
-          .eq("id", todo.id);
-    } catch (e){
+  static Future<void> deleteTodo(Todo todo) async {
+    try {
+      await supabaseClient.from("todos").delete().eq("id", todo.id);
+    } catch (e) {
       throw Exception("Delete todo is failed: ${e.toString()}");
     }
   }
 
   static Future<Todo> addTodo(Todo todo) async {
     try {
-      final response = await supabaseClient
-          .from("todos")
-          .insert(todo)
-          .select();
+      final response = await supabaseClient.from("todos").insert(todo).select();
       final todos = response.map((todo) => Todo.fromJson(todo)).toList();
       return todos[0];
     } catch (e) {

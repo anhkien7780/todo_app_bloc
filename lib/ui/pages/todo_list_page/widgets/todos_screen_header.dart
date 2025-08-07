@@ -4,6 +4,7 @@ import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
+import 'package:todo_app_bloc/configs/app_configs.dart';
 import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
 class TodosScreenHeader extends StatelessWidget {
@@ -12,7 +13,7 @@ class TodosScreenHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime dateTime = DateTime.now();
-    String date = DateFormat("MMMM dd, yyyy").format(dateTime);
+    String date = DateFormat(AppConfigs.dateDisplayFormat).format(dateTime);
     return Column(
       children: [
         Stack(

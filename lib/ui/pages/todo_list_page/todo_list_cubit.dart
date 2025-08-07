@@ -2,10 +2,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/network/supabase_services.dart';
+import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
 
 class TodoListCubit extends Cubit<TodoListState> {
-  TodoListCubit() : super(const TodoListState());
+  TodoListCubit({required this.todoRepository}) : super(const TodoListState());
+
+  final TodoRepository todoRepository;
 
   void fetchTodos() async {
     if (state.loadTodoStatus == LoadStatus.loading) {
@@ -13,7 +16,7 @@ class TodoListCubit extends Cubit<TodoListState> {
     }
     emit(state.copyWith(loadTodoStatus: LoadStatus.loading));
     try {
-      final todos = await SupabaseServices.fetchTodoList();
+      final todos = await todoRepository.fetchTodos();
       final uncompletedTodo = todos.where((todo) => !todo.isCompleted).toList();
       final completedTodo = todos.where((todo) => todo.isCompleted).toList();
       emit(
@@ -29,7 +32,7 @@ class TodoListCubit extends Cubit<TodoListState> {
   }
 
   void toggleCheckBox(Todo todo) async {
-    final toggledTodo = await SupabaseServices.toggleCheckBox(todo);
+    final toggledTodo = await todoRepository.toggleCheckBox(todo);
     final newCompleted = List<Todo>.from(state.completedTodos);
     final newUnCompleted = List<Todo>.from(state.unCompletedTodos);
     if (todo.isCompleted) {
@@ -48,11 +51,16 @@ class TodoListCubit extends Cubit<TodoListState> {
   }
 
   void addTodo(Todo todo) async {
-    final addedTodo = await SupabaseServices.addTodo(todo);
+    final addedTodo = await todoRepository.addTodo(todo);
     final newUnCompleted = List<Todo>.from(state.unCompletedTodos);
     final newCompleted = List<Todo>.from(state.completedTodos);
     newUnCompleted.add(addedTodo);
-    emit(state.copyWith(unCompletedTodos: newUnCompleted, completedTodos: newCompleted));
+    emit(
+      state.copyWith(
+        unCompletedTodos: newUnCompleted,
+        completedTodos: newCompleted,
+      ),
+    );
   }
 
   void deleteTodo(Todo todo) async {

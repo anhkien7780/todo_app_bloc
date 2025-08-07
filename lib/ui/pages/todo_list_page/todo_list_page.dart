@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
+import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/widgets/todo_list_body.dart';
@@ -13,7 +14,7 @@ class TodoListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        final cubit = TodoListCubit();
+        final cubit = TodoListCubit(todoRepository: TodoRepositoryImpl());
         cubit.fetchTodos();
         return cubit;
       },

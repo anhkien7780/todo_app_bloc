@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:todo_app_bloc/configs/app_env_config.dart';
 import 'package:todo_app_bloc/model/enums/language.dart';
 
@@ -24,4 +25,10 @@ class AppConfigs {
 
   ///Font
   static const fontFamily = "Inter";
+
+
+}
+
+class TodoSupabaseConfig {
+  static final String anonKey = dotenv.env["SUPABASE_API_KEY"] ?? "";
 }
