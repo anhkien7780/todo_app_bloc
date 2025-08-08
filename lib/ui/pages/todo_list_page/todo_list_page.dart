@@ -6,8 +6,8 @@ import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_page.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
+import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_navigator.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/widgets/todo_list_view.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/widgets/todos_screen_header.dart';
@@ -20,7 +20,10 @@ class TodoListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        return TodoListCubit(repository: context.read<TodoRepository>());
+        return TodoListCubit(
+          repository: context.read<TodoRepository>(),
+          navigator: TodoListNavigator(context: context),
+        );
       },
       child: TodoListChildPage(),
     );
@@ -90,10 +93,13 @@ class TodoListBody extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppDimens.marginNormal,
-        ).copyWith(bottom: 90),
+        ).copyWith(bottom: AppDimens.buttonHeight + AppDimens.marginLarge),
         child: ListView(
           children: [
             BlocBuilder<TodoListCubit, TodoListState>(
+              buildWhen: (prev, current) {
+                return prev.unCompletedTodos != current.unCompletedTodos;
+              },
               builder: (context, state) {
                 return TodoListView(
                   todoList: state.unCompletedTodos,
@@ -104,6 +110,9 @@ class TodoListBody extends StatelessWidget {
               },
             ),
             BlocBuilder<TodoListCubit, TodoListState>(
+              buildWhen: (prev, current) {
+                return prev.completedTodos != current.completedTodos;
+              },
               builder: (context, state) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,6 +144,7 @@ class TodoListBody extends StatelessWidget {
   }
 
   Positioned _buildAddNewTaskButton(BuildContext context) {
+    TodoListCubit cubit = context.read<TodoListCubit>();
     return Positioned(
       bottom: AppDimens.marginLarge,
       right: AppDimens.marginNormal,
@@ -145,19 +155,15 @@ class TodoListBody extends StatelessWidget {
           style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(AppColors.primary),
           ),
-          onPressed: () async {
-            final cubit = context.read<TodoListCubit>();
-            final flag = await showModalBottomSheet<bool>(
-              context: context,
-              isScrollControlled: true,
-              useSafeArea: true,
-              builder: (_) {
-                return AddTodo();
+          onPressed: () {
+            //TODO: Ask mentor about that shieet
+            cubit.navigator.showAddTodoPage(
+              onDismissed: (result) {
+                if (result != null) {
+                  cubit.refetchTodo();
+                }
               },
             );
-            if(flag != null && flag) {
-              cubit.fetchTodos();
-            }
           },
           child: Text(
             S.of(context).addNewTask,

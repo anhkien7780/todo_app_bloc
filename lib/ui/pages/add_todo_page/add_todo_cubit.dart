@@ -51,7 +51,7 @@ class AddTodoCubit extends Cubit<AddTodoState> {
   }
 
   void onCloseButtonPressed() {
-    navigator.navigatorPop(false);
+    navigator.navigatorPop();
   }
 
   Future<void> onSaveButtonPressed() async {

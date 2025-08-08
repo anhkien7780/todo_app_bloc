@@ -3,17 +3,38 @@ import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/network/supabase_services.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
+import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_navigator.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
 
 class TodoListCubit extends Cubit<TodoListState> {
-  TodoListCubit({required this.repository}) : super(const TodoListState());
+  TodoListCubit({required this.repository, required this.navigator})
+    : super(const TodoListState());
 
   final TodoRepository repository;
+  final TodoListNavigator navigator;
 
   void fetchTodos() async {
     if (state.loadTodoStatus == LoadStatus.loading) {
       return;
     }
+    emit(state.copyWith(loadTodoStatus: LoadStatus.loading));
+    try {
+      final todos = await repository.fetchTodos();
+      final uncompletedTodo = todos.where((todo) => !todo.isCompleted).toList();
+      final completedTodo = todos.where((todo) => todo.isCompleted).toList();
+      emit(
+        state.copyWith(
+          loadTodoStatus: LoadStatus.success,
+          unCompletedTodos: uncompletedTodo,
+          completedTodos: completedTodo,
+        ),
+      );
+    } catch (e) {
+      emit(state.copyWith(loadTodoStatus: LoadStatus.failure));
+    }
+  }
+
+  void refetchTodo() async {
     emit(state.copyWith(loadTodoStatus: LoadStatus.loading));
     try {
       final todos = await repository.fetchTodos();
