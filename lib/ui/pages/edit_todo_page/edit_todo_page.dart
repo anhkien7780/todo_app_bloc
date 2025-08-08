@@ -219,6 +219,8 @@ class _EditTodoBodyState extends State<EditTodoBody> {
           top: false,
           child: CupertinoDatePicker(
             initialDateTime: initialDateTime,
+            minimumDate: AppConfigs.identityMinDate,
+            maximumDate: AppConfigs.identityMaxDate,
             mode: mode,
             onDateTimeChanged: onDateTimeChanged,
           ),
@@ -232,7 +234,7 @@ class _EditTodoBodyState extends State<EditTodoBody> {
     return Row(
       spacing: AppDimens.marginSmaller,
       children: [
-        Flexible(
+        Flexible(// TODO: bo bloc build
           child: BlocBuilder<EditTodoCubit, EditTodoState>(
             buildWhen: (prev, current) => prev.date != current.date,
             builder: (context, state) {

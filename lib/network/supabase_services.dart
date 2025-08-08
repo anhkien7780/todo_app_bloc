@@ -20,6 +20,8 @@ class SupabaseServices {
     }
   }
 
+  void adb(){}
+
   static Future<Todo> toggleCheckBox(Todo todo) async {
     try {
       final response = await supabaseClient

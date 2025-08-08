@@ -59,7 +59,7 @@ class TodoListCubit extends Cubit<TodoListState> {
       ),
     );
   }
-
+  // TODO: xoa
   void addTodo(Todo todo) async {
     final addedTodo = await repository.addTodo(todo);
     final newUnCompleted = List<Todo>.from(state.unCompletedTodos);
@@ -73,6 +73,7 @@ class TodoListCubit extends Cubit<TodoListState> {
     );
   }
 
+  // TODO: Dialog confirm
   void deleteTodo(Todo todo) async {
     await SupabaseServices.deleteTodo(todo);
     if (todo.isCompleted) {

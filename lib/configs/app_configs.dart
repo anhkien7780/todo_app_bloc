@@ -17,16 +17,14 @@ class AppConfigs {
   static const defaultLanguage = Language.english;
 
   ///DateFormat
-  static const dateDisplayFormat = "MMMM dd, yyyy";
+  static String dateDisplayFormat = defaultLanguage.dateFormat;
 
   ///Date range
   static final identityMinDate = DateTime(1900, 1, 1);
-  static final identityMaxDate = DateTime.now();
+  static final identityMaxDate = DateTime(3000, 1, 1);
 
   ///Font
   static const fontFamily = "Inter";
-
-
 }
 
 class TodoSupabaseConfig {

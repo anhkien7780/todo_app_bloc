@@ -54,7 +54,7 @@ class EditTodoCubit extends Cubit<EditTodoState> {
 
   void setDate(String date) {
     dateTextController.text = date;
-    emit(state.copyWith(date: date));
+    emit(state.copyWith(date: date));// TODO:
   }
 
   void setTime(String time) {
