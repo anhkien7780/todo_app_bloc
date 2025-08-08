@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
-import 'package:todo_app_bloc/common/app_images.dart';
+import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_navigator.dart';
@@ -59,7 +59,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
                 border: Border.all(color: AppColors.logoBorderColor, width: 2),
               ),
               child: SvgPicture.asset(
-                AppImages.todoLogoPSvg,
+                AppSvgs.todoLogoPSvg,
                 width: 100,
                 fit: BoxFit.cover,
               ),
