@@ -2,27 +2,54 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
+import 'package:todo_app_bloc/model/enums/edit_todo_page_mode.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_navigator.dart';
 
 import 'edit_todo_state.dart';
 
 class EditTodoCubit extends Cubit<EditTodoState> {
-  EditTodoCubit({required this.repository, required this.navigator})
-    : super(EditTodoState());
+  EditTodoCubit({
+    required this.repository,
+    required this.navigator,
+    required this.mode,
+  }) : super(EditTodoState(mode: mode));
 
   final TodoRepository repository;
   final EditTodoNavigator navigator;
+  final EditTodoPageMode mode;
 
   final dateTextController = TextEditingController();
   final timeTextController = TextEditingController();
+  final taskTitleController = TextEditingController();
+  final notesController = TextEditingController();
 
   void onTaskTitleChange(String taskTitle) {
+    taskTitleController.text = taskTitle;
     emit(state.copyWith(taskTitle: taskTitle));
   }
 
   void setSelectedCategory(Category category) {
     emit(state.copyWith(selectedCategory: category));
+  }
+
+  void setTodo(Todo? todo) {
+    if (todo == null) return;
+    dateTextController.text = todo.date ?? "";
+    timeTextController.text = todo.time ?? "";
+    taskTitleController.text = todo.taskTitle;
+    notesController.text = todo.note ?? "";
+    emit(
+      state.copyWith(
+        id: todo.id,
+        date: todo.date,
+        time: todo.time,
+        taskTitle: todo.taskTitle,
+        notes: todo.note,
+        selectedCategory: todo.category,
+        isCompleted: todo.isCompleted,
+      ),
+    );
   }
 
   void setDate(String date) {
@@ -35,18 +62,29 @@ class EditTodoCubit extends Cubit<EditTodoState> {
     emit(state.copyWith(time: time));
   }
 
+  void setTaskTitle(String taskTitle) {
+    taskTitleController.text = taskTitle;
+    emit(state.copyWith(taskTitle: taskTitle));
+  }
+
   void setNotes(String notes) {
+    notesController.text = notes;
     emit(state.copyWith(notes: notes));
+  }
+
+  void setMode(EditTodoPageMode mode) {
+    emit(state.copyWith(mode: mode));
   }
 
   Todo getTodo() {
     final todo = Todo(
+      id: state.id,
       taskTitle: state.taskTitle,
       category: state.selectedCategory,
       date: state.date,
       time: state.time,
       note: state.notes,
-      isCompleted: false,
+      isCompleted: state.isCompleted,
     );
     return todo;
   }
@@ -59,15 +97,12 @@ class EditTodoCubit extends Cubit<EditTodoState> {
     if (state.taskTitle.trim().isEmpty) {
       return;
     }
-    final todo = Todo(
-      taskTitle: state.taskTitle,
-      category: state.selectedCategory,
-      date: state.date,
-      time: state.time,
-      note: state.notes,
-      isCompleted: false,
-    );
-    await repository.addTodo(todo);
+    final todo = getTodo();
+    if (state.mode == EditTodoPageMode.add) {
+      await repository.addTodo(todo);
+    } else {
+      await repository.updateTodo(todo);
+    }
     navigator.navigatorPop(true);
   }
 }

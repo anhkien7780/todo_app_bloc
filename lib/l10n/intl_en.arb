@@ -9,5 +9,6 @@
   "category": "Category",
   "date": "Date",
   "time": "Time",
+  "editTask": "Edit Task",
   "notes": "Notes"
 }

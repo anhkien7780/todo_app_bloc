@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
     "completed": MessageLookupByLibrary.simpleMessage("Hoàn thành"),
     "date": MessageLookupByLibrary.simpleMessage("Ngày"),
+    "editTask": MessageLookupByLibrary.simpleMessage("Sửa công việc"),
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Tải danh sách việc làm thất bại",
     ),

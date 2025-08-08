@@ -89,7 +89,7 @@ class TodoListBody extends StatelessWidget {
 
   Positioned _buildTodoList() {
     return Positioned.fill(
-      top: 158,
+      top: (AppDimens.todoListPageHeaderHeight / 2) + AppDimens.marginLarge,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppDimens.marginNormal,
@@ -155,15 +155,9 @@ class TodoListBody extends StatelessWidget {
           style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(AppColors.primary),
           ),
-          onPressed: () {
-            //TODO: Ask mentor about that shieet
-            cubit.navigator.showAddTodoPage(
-              onDismissed: (result) {
-                if (result != false) {
-                  cubit.fetchTodos();
-                }
-              },
-            );
+          onPressed: () async {
+            final result = await cubit.navigator.showEditTodoPage();
+            cubit.handleResultFromEditTodoPage(result);
           },
           child: Text(
             S.of(context).addNewTask,

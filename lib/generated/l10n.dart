@@ -109,6 +109,11 @@ class S {
     return Intl.message('Time', name: 'time', desc: '', args: []);
   }
 
+  /// `Edit Task`
+  String get editTask {
+    return Intl.message('Edit Task', name: 'editTask', desc: '', args: []);
+  }
+
   /// `Notes`
   String get notes {
     return Intl.message('Notes', name: 'notes', desc: '', args: []);

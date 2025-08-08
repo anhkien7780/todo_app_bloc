@@ -6,6 +6,8 @@ abstract class TodoRepository {
 
   Future<Todo> addTodo(Todo todo);
 
+  Future<Todo> updateTodo(Todo todo);
+
   Future<void> removeTodo(Todo todo);
 
   Future<Todo> toggleCheckBox(Todo todo);
@@ -15,6 +17,11 @@ class TodoRepositoryImpl extends TodoRepository {
   @override
   Future<Todo> addTodo(Todo todo) {
     return SupabaseServices.addTodo(todo);
+  }
+
+  @override
+  Future<Todo> updateTodo(Todo todo) {
+    return SupabaseServices.updateTodo(todo);
   }
 
   @override

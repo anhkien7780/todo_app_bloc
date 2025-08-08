@@ -34,6 +34,20 @@ class SupabaseServices {
     }
   }
 
+  static Future<Todo> updateTodo(Todo todo) async {
+    try {
+      final response = await supabaseClient
+          .from("todos")
+          .update(todo.toJson())
+          .eq("id", todo.id)
+          .select();
+      final todos = response.map((todo) => Todo.fromJson(todo)).toList();
+      return todos[0];
+    } catch (e) {
+      throw Exception("Update todo is failed: ${e.toString()}");
+    }
+  }
+
   static Future<void> deleteTodo(Todo todo) async {
     try {
       await supabaseClient.from("todos").delete().eq("id", todo.id);

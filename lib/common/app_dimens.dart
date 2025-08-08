@@ -21,7 +21,7 @@ class AppDimens {
   static const double cornerRadiusSmall = 6;
 
   ///Header
-  static const double listTodoPageHeaderHeight = 240;
+  static const double todoListPageHeaderHeight = 240;
   static const double addTodoPageHeaderHeight = 96;
 
   ///Todo Item

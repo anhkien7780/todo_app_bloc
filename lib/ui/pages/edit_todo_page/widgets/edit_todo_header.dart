@@ -4,12 +4,18 @@ import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
+import 'package:todo_app_bloc/model/enums/edit_todo_page_mode.dart';
 import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
 class EditTodoHeader extends StatelessWidget {
   final VoidCallback onCloseButtonPressed;
+  final EditTodoPageMode mode;
 
-  const EditTodoHeader({super.key, required this.onCloseButtonPressed});
+  const EditTodoHeader({
+    super.key,
+    required this.onCloseButtonPressed,
+    required this.mode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,9 @@ class EditTodoHeader extends StatelessWidget {
           children: [
             _buildCloseButton(),
             Text(
-              S.of(context).addNewTask,
+              mode == EditTodoPageMode.add
+                  ? S.of(context).addNewTask
+                  : S.of(context).editTask,
               style: AppTextStyles.whiteS16SemiBold,
             ),
             const SizedBox(width: AppDimens.circleButtonSize),

@@ -34,6 +34,12 @@ class TodoListCubit extends Cubit<TodoListState> {
     }
   }
 
+  void handleResultFromEditTodoPage(bool? result) {
+    if (result != true) {
+      return;
+    }
+    fetchTodos();
+  }
 
   void toggleCheckBox(Todo todo) async {
     final toggledTodo = await repository.toggleCheckBox(todo);

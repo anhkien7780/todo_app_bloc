@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "date": MessageLookupByLibrary.simpleMessage("Date"),
+    "editTask": MessageLookupByLibrary.simpleMessage("Edit Task"),
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Failed to load todos",
     ),

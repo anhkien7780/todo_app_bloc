@@ -18,6 +18,7 @@ class TodoListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<TodoListCubit>();
     return Container(
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
@@ -28,14 +29,24 @@ class TodoListView extends StatelessWidget {
         shrinkWrap: true,
         addAutomaticKeepAlives: false,
         itemBuilder: (context, index) {
-          return Dismissible(
-            key: Key(todoList[index].id),
-            onDismissed: (direction) {
-              context.read<TodoListCubit>().deleteTodo(todoList[index]);
+          return GestureDetector(
+            onTap: () async {
+              final result = await cubit.navigator.showEditTodoPage(
+                todo: todoList[index],
+              );
+              if (result == true) {
+                cubit.fetchTodos();
+              }
             },
-            child: TodoItem(
-              todo: todoList[index],
-              onToggleCheckBox: onToggleCheckBox,
+            child: Dismissible(
+              key: Key(todoList[index].id),
+              onDismissed: (direction) {
+                cubit.deleteTodo(todoList[index]);
+              },
+              child: TodoItem(
+                todo: todoList[index],
+                onToggleCheckBox: onToggleCheckBox,
+              ),
             ),
           );
         },
