@@ -3,15 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_navigator.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_state.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_navigator.dart';
 
-class AddTodoCubit extends Cubit<AddTodoState> {
-  AddTodoCubit({required this.repository, required this.navigator})
-    : super(AddTodoState());
+import 'edit_todo_state.dart';
+
+class EditTodoCubit extends Cubit<EditTodoState> {
+  EditTodoCubit({required this.repository, required this.navigator})
+    : super(EditTodoState());
 
   final TodoRepository repository;
-  final AddTodoNavigator navigator;
+  final EditTodoNavigator navigator;
 
   final dateTextController = TextEditingController();
   final timeTextController = TextEditingController();
@@ -51,7 +52,7 @@ class AddTodoCubit extends Cubit<AddTodoState> {
   }
 
   void onCloseButtonPressed() {
-    navigator.navigatorPop();
+    navigator.navigatorPop(false);
   }
 
   Future<void> onSaveButtonPressed() async {

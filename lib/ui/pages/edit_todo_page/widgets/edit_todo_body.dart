@@ -6,20 +6,21 @@ import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/configs/app_configs.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_state.dart';
+import 'package:todo_app_bloc/generated/l10n.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_cubit.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_state.dart';
 import 'package:todo_app_bloc/ui/widgets/common/category_selector.dart';
 import 'package:todo_app_bloc/ui/widgets/common/custom_text_field.dart';
 import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
-class AddTodoBody extends StatefulWidget {
-  const AddTodoBody({super.key});
+class EditTodoBody extends StatefulWidget {
+  const EditTodoBody({super.key});
 
   @override
-  State<AddTodoBody> createState() => _AddTodoBodyState();
+  State<EditTodoBody> createState() => _EditTodoBodyState();
 }
 
-class _AddTodoBodyState extends State<AddTodoBody> {
+class _EditTodoBodyState extends State<EditTodoBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,19 +31,19 @@ class _AddTodoBodyState extends State<AddTodoBody> {
             spacing: AppDimens.marginLarge,
             children: [
               CustomTextField(
-                title: "Task Title",
+                title: S.of(context).taskTitle,
                 maxLines: 1,
-                hint: "Task Title",
+                hint: S.of(context).taskTitle,
                 onChange: (value) {
-                  context.read<AddTodoCubit>().onTaskTitleChange(value);
+                  context.read<EditTodoCubit>().onTaskTitleChange(value);
                 },
               ),
-              BlocBuilder<AddTodoCubit, AddTodoState>(
+              BlocBuilder<EditTodoCubit, EditTodoState>(
                 builder: (context, state) {
                   return CategorySelector(
                     selectedCategory: state.selectedCategory,
                     onChange: (category) {
-                      context.read<AddTodoCubit>().setSelectedCategory(
+                      context.read<EditTodoCubit>().setSelectedCategory(
                         category,
                       );
                     },
@@ -50,15 +51,15 @@ class _AddTodoBodyState extends State<AddTodoBody> {
                 },
               ),
               _buildDateTimeSelector(context: context),
-              BlocBuilder<AddTodoCubit, AddTodoState>(
+              BlocBuilder<EditTodoCubit, EditTodoState>(
                 builder: (context, state) {
                   return CustomTextField(
-                    hint: "Notes",
-                    title: "Notes",
+                    hint: S.of(context).notes,
+                    title: S.of(context).notes,
                     borderColor: Colors.transparent,
                     height: AppDimens.textFieldHeightNormal,
                     onChange: (value) {
-                      context.read<AddTodoCubit>().setNotes(value);
+                      context.read<EditTodoCubit>().setNotes(value);
                     },
                   );
                 },
@@ -99,13 +100,13 @@ class _AddTodoBodyState extends State<AddTodoBody> {
       spacing: AppDimens.marginSmaller,
       children: [
         Flexible(
-          child: BlocBuilder<AddTodoCubit, AddTodoState>(
+          child: BlocBuilder<EditTodoCubit, EditTodoState>(
             builder: (context, state) {
-              final cubit = context.read<AddTodoCubit>();
+              final cubit = context.read<EditTodoCubit>();
               return CustomTextField(
                 controller: cubit.dateTextController,
-                hint: "Date",
-                title: "Date",
+                hint: S.of(context).date,
+                title: S.of(context).date,
                 suffixIcon: IconButton(
                   onPressed: () {
                     _buildCupertinoDateTime(
@@ -133,12 +134,12 @@ class _AddTodoBodyState extends State<AddTodoBody> {
           ),
         ),
         Flexible(
-          child: BlocBuilder<AddTodoCubit, AddTodoState>(
+          child: BlocBuilder<EditTodoCubit, EditTodoState>(
             builder: (context, state) {
-              final cubit = context.read<AddTodoCubit>();
+              final cubit = context.read<EditTodoCubit>();
               return CustomTextField(
-                hint: "Time",
-                title: "Time",
+                hint: S.of(context).time,
+                title: S.of(context).time,
                 controller: cubit.timeTextController,
                 suffixIcon: IconButton(
                   onPressed: () {

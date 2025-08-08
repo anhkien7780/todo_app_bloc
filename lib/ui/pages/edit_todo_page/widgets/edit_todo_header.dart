@@ -3,12 +3,13 @@ import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
+import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
 
-class AddNewTaskScreenHeader extends StatelessWidget {
+class EditTodoHeader extends StatelessWidget {
   final VoidCallback onCloseButtonPressed;
 
-  const AddNewTaskScreenHeader({super.key, required this.onCloseButtonPressed});
+  const EditTodoHeader({super.key, required this.onCloseButtonPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,10 @@ class AddNewTaskScreenHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildCloseButton(),
-            Text("Add New Task", style: AppTextStyles.whiteS16SemiBold),
+            Text(
+              S.of(context).addNewTask,
+              style: AppTextStyles.whiteS16SemiBold,
+            ),
             const SizedBox(width: AppDimens.circleButtonSize),
           ],
         ),

@@ -34,23 +34,6 @@ class TodoListCubit extends Cubit<TodoListState> {
     }
   }
 
-  void refetchTodo() async {
-    emit(state.copyWith(loadTodoStatus: LoadStatus.loading));
-    try {
-      final todos = await repository.fetchTodos();
-      final uncompletedTodo = todos.where((todo) => !todo.isCompleted).toList();
-      final completedTodo = todos.where((todo) => todo.isCompleted).toList();
-      emit(
-        state.copyWith(
-          loadTodoStatus: LoadStatus.success,
-          unCompletedTodos: uncompletedTodo,
-          completedTodos: completedTodo,
-        ),
-      );
-    } catch (e) {
-      emit(state.copyWith(loadTodoStatus: LoadStatus.failure));
-    }
-  }
 
   void toggleCheckBox(Todo todo) async {
     final toggledTodo = await repository.toggleCheckBox(todo);

@@ -5,21 +5,21 @@ import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_cubit.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/add_todo_navigator.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/widgets/add_todo_body.dart';
-import 'package:todo_app_bloc/ui/pages/add_todo_page/widgets/add_todo_header.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_cubit.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_navigator.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/edit_todo_body.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/edit_todo_header.dart';
 
 class AddTodo extends StatelessWidget {
   const AddTodo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AddTodoCubit>(
+    return BlocProvider<EditTodoCubit>(
       create: (BuildContext context) {
-        return AddTodoCubit(
+        return EditTodoCubit(
           repository: context.read<TodoRepository>(),
-          navigator: AddTodoNavigator(context: context),
+          navigator: EditTodoNavigator(context: context),
         );
       },
       child: Scaffold(
@@ -41,13 +41,13 @@ class AddTodo extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          AddNewTaskScreenHeader(
+                          EditTodoHeader(
                             onCloseButtonPressed: () => context
-                                .read<AddTodoCubit>()
+                                .read<EditTodoCubit>()
                                 .onCloseButtonPressed(),
                           ),
                           SizedBox(height: AppDimens.marginLarge),
-                          AddTodoBody(),
+                          EditTodoBody(),
                           Spacer(),
                           _buildSaveButton(context),
                         ],
@@ -71,7 +71,7 @@ class AddTodo extends StatelessWidget {
         height: AppDimens.buttonHeight,
         child: OutlinedButton(
           onPressed: () async {
-            await context.read<AddTodoCubit>().onSaveButtonPressed();
+            await context.read<EditTodoCubit>().onSaveButtonPressed();
           },
           style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(AppColors.buttonBGPrimary),

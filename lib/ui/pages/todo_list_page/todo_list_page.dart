@@ -159,8 +159,8 @@ class TodoListBody extends StatelessWidget {
             //TODO: Ask mentor about that shieet
             cubit.navigator.showAddTodoPage(
               onDismissed: (result) {
-                if (result != null) {
-                  cubit.refetchTodo();
+                if (result != false) {
+                  cubit.fetchTodos();
                 }
               },
             );
