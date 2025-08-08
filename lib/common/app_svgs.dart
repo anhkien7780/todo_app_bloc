@@ -10,4 +10,6 @@ class AppSvgs {
   static const icGoal = "assets/svgs/ic_goal.svg";
   static const icTask = "assets/svgs/ic_task.svg";
   static const todoLogoPSvg = "assets/svgs/ic_todo_logo.svg";
+  static const icUSFlag = "assets/svgs/ic_us_flag.svg";
+  static const icVNFlag = "assets/svgs/ic_vn_flag.svg";
 }

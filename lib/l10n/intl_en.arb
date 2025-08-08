@@ -10,5 +10,6 @@
   "date": "Date",
   "time": "Time",
   "editTask": "Edit Task",
-  "notes": "Notes"
+  "notes": "Notes",
+  "myTodoList": "My Todo List"
 }

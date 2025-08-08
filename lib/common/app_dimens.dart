@@ -35,6 +35,7 @@ class AppDimens {
   static const double circleButtonSize = 48;
 
   ///Icon
+  static const double iconBigSize = 40;
   static const double iconNormalSize = 24;
   static const double iconSmallSize = 20;
 
@@ -44,6 +45,7 @@ class AppDimens {
   static const double paddingSmall = 12;
 
   ///Margin
+  static const double margin40 = 40;
   static const double marginLarge = 24;
   static const double marginNormal = 16;
   static const double marginSmall = 12;

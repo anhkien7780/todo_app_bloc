@@ -72,6 +72,7 @@ class _MyAppState extends State<MyApp> {
 
   Widget _buildMaterialApp({required Locale locale}) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

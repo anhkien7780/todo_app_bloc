@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Tải danh sách việc làm thất bại",
     ),
+    "myTodoList": MessageLookupByLibrary.simpleMessage("Danh sách việc làm"),
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
     "save": MessageLookupByLibrary.simpleMessage("Lưu"),
     "taskTitle": MessageLookupByLibrary.simpleMessage("Tiêu đề"),

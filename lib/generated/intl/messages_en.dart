@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Failed to load todos",
     ),
+    "myTodoList": MessageLookupByLibrary.simpleMessage("My Todo List"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "taskTitle": MessageLookupByLibrary.simpleMessage("Task Title"),

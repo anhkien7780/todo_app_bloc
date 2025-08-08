@@ -118,6 +118,11 @@ class S {
   String get notes {
     return Intl.message('Notes', name: 'notes', desc: '', args: []);
   }
+
+  /// `My TodoList`
+  String get myTodoList {
+    return Intl.message('My Todo List', name: 'myTodoList', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
