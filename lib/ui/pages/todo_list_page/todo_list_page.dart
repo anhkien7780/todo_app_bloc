@@ -55,14 +55,14 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TodoListCubit, TodoListState>(
-      buildWhen: (prev, current) {
-        return prev.loadTodoStatus != current.loadTodoStatus;
-      },
-      builder: (context, state) {
-        return Scaffold(// TODO:
-          backgroundColor: AppColors.background,
-          body: Stack(
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: BlocBuilder<TodoListCubit, TodoListState>(
+        buildWhen: (prev, current) {
+          return prev.loadTodoStatus != current.loadTodoStatus;
+        },
+        builder: (context, state) {
+          return Stack(
             fit: StackFit.expand,
             children: [
               Positioned.fill(
@@ -81,9 +81,9 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
               _buildTodoList(),
               _buildAddNewTaskButton(context),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 

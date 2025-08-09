@@ -24,7 +24,7 @@ class AppDimens {
   static const double todoListPageHeaderHeight = 240;
   static const double addTodoPageHeaderHeight = 96;
 
-  ///Todo Item
+  ///TodoItem
   static const double todoItemHeight = 80;
 
   ///Button

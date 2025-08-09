@@ -59,19 +59,6 @@ class TodoListCubit extends Cubit<TodoListState> {
       ),
     );
   }
-  // TODO: xoa
-  void addTodo(Todo todo) async {
-    final addedTodo = await repository.addTodo(todo);
-    final newUnCompleted = List<Todo>.from(state.unCompletedTodos);
-    final newCompleted = List<Todo>.from(state.completedTodos);
-    newUnCompleted.add(addedTodo);
-    emit(
-      state.copyWith(
-        unCompletedTodos: newUnCompleted,
-        completedTodos: newCompleted,
-      ),
-    );
-  }
 
   // TODO: Dialog confirm
   void deleteTodo(Todo todo) async {
