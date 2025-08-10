@@ -4,7 +4,7 @@ import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
-import 'package:todo_app_bloc/ui/widgets/common/todo_item.dart';
+import 'package:todo_app_bloc/ui/pages/todo_list_page/widgets/todo_item.dart';
 
 class TodoListView extends StatelessWidget {
   final List<Todo> todoList;

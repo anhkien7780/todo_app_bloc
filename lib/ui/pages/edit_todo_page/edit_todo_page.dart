@@ -14,9 +14,9 @@ import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_navigator.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/edit_todo_header.dart';
-import 'package:todo_app_bloc/ui/widgets/common/category_selector.dart';
-import 'package:todo_app_bloc/ui/widgets/common/custom_text_field.dart';
-import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/category_selector.dart';
+import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_field.dart';
+import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
 
 import 'edit_todo_state.dart';
 

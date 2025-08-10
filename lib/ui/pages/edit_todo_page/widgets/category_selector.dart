@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
+import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
 
-import 'category_button.dart';
+import '../../../widgets/buttons/category_button.dart';
 
 class CategorySelector extends StatelessWidget {
   final Category selectedCategory;
@@ -21,7 +22,7 @@ class CategorySelector extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       spacing: AppDimens.marginLarge,
       children: [
-        Text("Category", style: AppTextStyles.blackS14SemiBold),
+        Text(S.of(context).category, style: AppTextStyles.blackS14SemiBold),
         Row(
           spacing: AppDimens.marginNormal,
           children: [

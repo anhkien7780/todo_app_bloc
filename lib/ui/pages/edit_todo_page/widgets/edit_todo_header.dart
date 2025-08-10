@@ -5,7 +5,7 @@ import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/model/enums/edit_todo_page_mode.dart';
-import 'package:todo_app_bloc/ui/widgets/common/svg_image.dart';
+import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
 
 class EditTodoHeader extends StatelessWidget {
   final VoidCallback onCloseButtonPressed;

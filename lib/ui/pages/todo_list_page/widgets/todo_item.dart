@@ -3,8 +3,8 @@ import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 
-import '../../../model/entities/todo.dart';
-import 'category_button.dart';
+import '../../../../model/entities/todo.dart';
+import '../../../widgets/buttons/category_button.dart';
 
 class TodoItem extends StatelessWidget {
   const TodoItem({
