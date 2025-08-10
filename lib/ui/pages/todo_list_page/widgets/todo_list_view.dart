@@ -4,6 +4,7 @@ import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
+import 'package:todo_app_bloc/ui/pages/todo_list_page/widgets/confirm_delete_dialog.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/widgets/todo_item.dart';
 
 class TodoListView extends StatelessWidget {
@@ -40,8 +41,13 @@ class TodoListView extends StatelessWidget {
             },
             child: Dismissible(
               key: Key(todoList[index].id),
-              onDismissed: (direction) {
-                cubit.deleteTodo(todoList[index]);
+              confirmDismiss: (direction) async {
+                final result = await _buildShowDialog(context);
+                if (result == true) {
+                  cubit.deleteTodo(todoList[index]);
+                  return true;
+                }
+                return false;
               },
               child: TodoItem(
                 todo: todoList[index],
@@ -56,6 +62,15 @@ class TodoListView extends StatelessWidget {
         ),
         itemCount: todoList.length,
       ),
+    );
+  }
+
+  Future<bool?> _buildShowDialog(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return ConfirmDeleteDialog();
+      },
     );
   }
 }

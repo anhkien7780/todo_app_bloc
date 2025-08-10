@@ -60,7 +60,6 @@ class TodoListCubit extends Cubit<TodoListState> {
     );
   }
 
-  // TODO: Dialog confirm
   void deleteTodo(Todo todo) async {
     await SupabaseServices.deleteTodo(todo);
     if (todo.isCompleted) {

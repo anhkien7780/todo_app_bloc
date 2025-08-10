@@ -23,9 +23,14 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addNewTask": MessageLookupByLibrary.simpleMessage("Thêm công việc mới"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Từ chối"),
     "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
     "completed": MessageLookupByLibrary.simpleMessage("Hoàn thành"),
     "date": MessageLookupByLibrary.simpleMessage("Ngày"),
+    "delete": MessageLookupByLibrary.simpleMessage("Đồng ý"),
+    "deleteDialogTitle": MessageLookupByLibrary.simpleMessage(
+      "Xác nhận xoá công việc này",
+    ),
     "editTask": MessageLookupByLibrary.simpleMessage("Sửa công việc"),
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Tải danh sách việc làm thất bại",

@@ -53,4 +53,8 @@ class AppDimens {
 
   ///Divider
   static const double dividerSize = 1;
+
+  ///Dialog
+  static const double dialogHeight = 200;
+  static const double dialogWidth = 150;
 }

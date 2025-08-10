@@ -119,9 +119,29 @@ class S {
     return Intl.message('Notes', name: 'notes', desc: '', args: []);
   }
 
-  /// `My TodoList`
+  /// `My Todo List`
   String get myTodoList {
     return Intl.message('My Todo List', name: 'myTodoList', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to delete this item?`
+  String get deleteDialogTitle {
+    return Intl.message(
+      'Are you sure you want to delete this item?',
+      name: 'deleteDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
   }
 }
 
