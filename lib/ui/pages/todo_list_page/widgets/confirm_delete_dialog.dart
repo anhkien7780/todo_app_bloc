@@ -32,13 +32,10 @@ class ConfirmDeleteDialog extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextButton(
-                    style: TextButton.styleFrom(
-                      backgroundColor: AppColors.error,
-                    ),
                     onPressed: () => Navigator.of(context).pop(false),
                     child: Text(
                       S.of(context).cancel,
-                      style: AppTextStyles.whiteS14SemiBold,
+                      style: AppTextStyles.whiteS14SemiBold.copyWith(color: AppColors.primary),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -46,7 +43,7 @@ class ConfirmDeleteDialog extends StatelessWidget {
                 Expanded(
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: AppColors.primary,
+                      backgroundColor: AppColors.error,
                     ),
                     onPressed: () => Navigator.of(context).pop(true),
                     child: Text(
