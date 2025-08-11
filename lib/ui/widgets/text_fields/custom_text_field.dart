@@ -13,6 +13,8 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final int? maxLines;
   final Color? borderColor;
+  final bool readOnly;
+  final GestureTapCallback? onTap;
 
   const CustomTextField({
     super.key,
@@ -25,6 +27,8 @@ class CustomTextField extends StatelessWidget {
     this.maxLines,
     this.controller,
     this.borderColor,
+    this.readOnly = false,
+    this.onTap,
   });
 
   @override
@@ -35,10 +39,7 @@ class CustomTextField extends StatelessWidget {
         spacing: AppDimens.marginSmaller,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: AppTextStyles.blackS14SemiBold,
-          ),
+          Text(title, style: AppTextStyles.blackS14SemiBold),
           Container(
             height: height,
             decoration: BoxDecoration(
@@ -46,6 +47,8 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimens.cornerRadiusSmall),
             ),
             child: TextField(
+              onTap: onTap,
+              readOnly: readOnly,
               controller: controller,
               onChanged: onChange,
               maxLines: maxLines,
@@ -70,10 +73,7 @@ class CustomTextField extends StatelessWidget {
                     color: borderColor ?? AppColors.textFieldEnableBorder,
                   ),
                 ),
-                hint: Text(
-                  hint,
-                  style: AppTextStyles.blackS16,
-                ),
+                hint: Text(hint, style: AppTextStyles.blackS16),
                 suffixIcon: suffixIcon,
               ),
             ),

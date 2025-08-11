@@ -26,10 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("Từ chối"),
     "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
     "completed": MessageLookupByLibrary.simpleMessage("Hoàn thành"),
+    "confirm": MessageLookupByLibrary.simpleMessage("Đồng ý"),
     "date": MessageLookupByLibrary.simpleMessage("Ngày"),
-    "delete": MessageLookupByLibrary.simpleMessage("Đồng ý"),
+    "delete": MessageLookupByLibrary.simpleMessage("Xoá"),
     "deleteDialogTitle": MessageLookupByLibrary.simpleMessage(
-      "Xác nhận xoá công việc này",
+      "Bạn chắc chắn muốn xoá công việc này?",
     ),
     "editTask": MessageLookupByLibrary.simpleMessage("Sửa công việc"),
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(

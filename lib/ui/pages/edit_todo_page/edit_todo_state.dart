@@ -6,8 +6,8 @@ class EditTodoState extends Equatable {
   final String? id;
   final String taskTitle;
   final Category selectedCategory;
-  final String? date;
-  final String? time;
+  final DateTime? date;
+  final DateTime? time;
   final String? notes;
   final EditTodoPageMode mode;
   final bool isCompleted;
@@ -27,8 +27,8 @@ class EditTodoState extends Equatable {
     String? id,
     String? taskTitle,
     Category? selectedCategory,
-    String? date,
-    String? time,
+    DateTime? date,
+    DateTime? time,
     String? notes,
     EditTodoPageMode? mode,
     bool? isCompleted,
@@ -47,6 +47,7 @@ class EditTodoState extends Equatable {
 
   @override
   List<Object?> get props => [
+    id,
     taskTitle,
     selectedCategory,
     date,

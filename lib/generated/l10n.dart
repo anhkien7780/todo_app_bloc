@@ -143,6 +143,11 @@ class S {
   String get delete {
     return Intl.message('Delete', name: 'delete', desc: '', args: []);
   }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

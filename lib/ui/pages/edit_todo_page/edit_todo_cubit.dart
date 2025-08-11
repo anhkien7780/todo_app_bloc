@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:todo_app_bloc/configs/app_configs.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
 import 'package:todo_app_bloc/model/enums/edit_todo_page_mode.dart';
@@ -13,7 +15,10 @@ class EditTodoCubit extends Cubit<EditTodoState> {
     required this.repository,
     required this.navigator,
     required this.mode,
-  }) : super(EditTodoState(mode: mode));
+    Todo? todo,
+  }) : super(EditTodoState(mode: mode)) {
+    setTodo(todo);
+  }
 
   final TodoRepository repository;
   final EditTodoNavigator navigator;
@@ -35,10 +40,17 @@ class EditTodoCubit extends Cubit<EditTodoState> {
 
   void setTodo(Todo? todo) {
     if (todo == null) return;
-    dateTextController.text = todo.date ?? "";
-    timeTextController.text = todo.time ?? "";
+
+    dateTextController.text = todo.date != null
+        ? DateFormat(AppConfigs.dateDisplayFormat).format(todo.date!)
+        : "";
+
+    timeTextController.text =
+    todo.time != null ? DateFormat.jm().format(todo.time!) : "";
+
     taskTitleController.text = todo.taskTitle;
     notesController.text = todo.note ?? "";
+
     emit(
       state.copyWith(
         id: todo.id,
@@ -52,13 +64,14 @@ class EditTodoCubit extends Cubit<EditTodoState> {
     );
   }
 
-  void setDate(String date) {
-    dateTextController.text = date;
-    emit(state.copyWith(date: date));// TODO:
+  void setDate(DateTime date) {
+    dateTextController.text =
+        DateFormat(AppConfigs.dateDisplayFormat).format(date);
+    emit(state.copyWith(date: date));
   }
 
-  void setTime(String time) {
-    timeTextController.text = time;
+  void setTime(DateTime time) {
+    timeTextController.text = DateFormat.jm().format(time);
     emit(state.copyWith(time: time));
   }
 
@@ -77,7 +90,7 @@ class EditTodoCubit extends Cubit<EditTodoState> {
   }
 
   Todo getTodo() {
-    final todo = Todo(
+    return Todo(
       id: state.id,
       taskTitle: state.taskTitle,
       category: state.selectedCategory,
@@ -86,7 +99,6 @@ class EditTodoCubit extends Cubit<EditTodoState> {
       note: state.notes,
       isCompleted: state.isCompleted,
     );
-    return todo;
   }
 
   void onCloseButtonPressed() {

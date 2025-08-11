@@ -1,14 +1,12 @@
 import 'package:uuid/uuid.dart';
-
 import '../enums/category.dart';
-
 
 class Todo {
   final String id;
   final String taskTitle;
   final Category category;
-  final String? date;
-  final String? time;
+  final DateTime? date;
+  final DateTime? time;
   final String? note;
   final bool isCompleted;
 
@@ -26,8 +24,8 @@ class Todo {
     String? id,
     String? taskTitle,
     Category? category,
-    String? date,
-    String? time,
+    DateTime? date,
+    DateTime? time,
     String? note,
     bool? isCompleted,
   }) {
@@ -47,10 +45,10 @@ class Todo {
       id: json["id"],
       taskTitle: json["task_title"],
       category: CategoryExtension.fromString(json["category"]),
-      date: json["date"],
-      time: json["time"],
+      date: json["date"] != null ? DateTime.parse(json["date"]) : null,
+      time: json["time"] != null ? DateTime.parse(json["time"]) : null,
       note: json["note"],
-      isCompleted: json["is_completed"],
+      isCompleted: json["is_completed"] ?? false,
     );
   }
 
@@ -59,8 +57,8 @@ class Todo {
       "id": id,
       "task_title": taskTitle,
       "category": category.name,
-      "date": date,
-      "time": time,
+      "date": date?.toIso8601String(),
+      "time": time?.toIso8601String(),
       "note": note,
       "is_completed": isCompleted,
     };

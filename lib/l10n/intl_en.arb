@@ -14,5 +14,6 @@
   "myTodoList": "My Todo List",
   "deleteDialogTitle": "Are you sure you want to delete this item?",
   "cancel": "Cancel",
-  "delete": "Delete"
+  "delete": "Delete",
+  "confirm": "Confirm"
 }

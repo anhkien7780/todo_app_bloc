@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_svgs.dart';
@@ -13,10 +12,10 @@ import 'package:todo_app_bloc/model/enums/edit_todo_page_mode.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_navigator.dart';
-import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/edit_todo_header.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/category_selector.dart';
-import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_field.dart';
+import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/edit_todo_header.dart';
 import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
+import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_field.dart';
 
 import 'edit_todo_state.dart';
 
@@ -34,17 +33,16 @@ class EditTodoPage extends StatelessWidget {
           repository: context.read<TodoRepository>(),
           navigator: EditTodoNavigator(context: context),
           mode: mode,
+          todo: todo,
         );
       },
-      child: EditTodoChildPage(todo: todo),
+      child: EditTodoChildPage(),
     );
   }
 }
 
 class EditTodoChildPage extends StatefulWidget {
-  const EditTodoChildPage({super.key, this.todo});
-
-  final Todo? todo;
+  const EditTodoChildPage({super.key});
 
   @override
   State<EditTodoChildPage> createState() => _EditTodoChildPageState();
@@ -57,7 +55,6 @@ class _EditTodoChildPageState extends State<EditTodoChildPage> {
   void initState() {
     super.initState();
     _cubit = context.read<EditTodoCubit>();
-    _cubit.setTodo(widget.todo);
   }
 
   @override
@@ -210,6 +207,7 @@ class _EditTodoBodyState extends State<EditTodoBody> {
     required CupertinoDatePickerMode mode,
     required ValueChanged<DateTime> onDateTimeChanged,
   }) {
+    DateTime tempDateTime = initialDateTime;
     showCupertinoModalPopup(
       context: context,
       builder: (context) => Container(
@@ -217,12 +215,48 @@ class _EditTodoBodyState extends State<EditTodoBody> {
         color: AppColors.textWhite,
         child: SafeArea(
           top: false,
-          child: CupertinoDatePicker(
-            initialDateTime: initialDateTime,
-            minimumDate: AppConfigs.identityMinDate,
-            maximumDate: AppConfigs.identityMaxDate,
-            mode: mode,
-            onDateTimeChanged: onDateTimeChanged,
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CupertinoButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      S.of(context).cancel,
+                      style: AppTextStyles.blackS16Medium.copyWith(
+                        color: AppColors.error,
+                      ),
+                    ),
+                  ),
+                  CupertinoButton(
+                    onPressed: () {
+                      onDateTimeChanged(tempDateTime);
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      S.of(context).confirm,
+                      style: AppTextStyles.blackS16Medium.copyWith(
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: CupertinoDatePicker(
+                  initialDateTime: initialDateTime,
+                  minimumDate: AppConfigs.identityMinDate,
+                  maximumDate: AppConfigs.identityMaxDate,
+                  mode: mode,
+                  onDateTimeChanged: (newDateTime) {
+                    tempDateTime = newDateTime;
+                  },
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -230,73 +264,58 @@ class _EditTodoBodyState extends State<EditTodoBody> {
   }
 
   Widget _buildDateTimeSelector({required BuildContext context}) {
-    DateTime dateTime = DateTime.now();
+    final cubit = context.read<EditTodoCubit>();
+    final currentDate = cubit.state.date;
+    final currentTime = cubit.state.time;
     return Row(
       spacing: AppDimens.marginSmaller,
       children: [
-        Flexible(// TODO: bo bloc build
-          child: BlocBuilder<EditTodoCubit, EditTodoState>(
-            buildWhen: (prev, current) => prev.date != current.date,
-            builder: (context, state) {
-              return CustomTextField(
-                controller: context.read<EditTodoCubit>().dateTextController,
-                hint: S.of(context).date,
-                title: S.of(context).date,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    _buildCupertinoDateTime(
-                      context: context,
-                      initialDateTime: dateTime,
-                      mode: CupertinoDatePickerMode.date,
-                      onDateTimeChanged: (newDate) {
-                        context.read<EditTodoCubit>().setDate(
-                          DateFormat(
-                            AppConfigs.dateDisplayFormat,
-                          ).format(newDate),
-                        );
-                      },
-                    );
-                  },
-                  icon: SizedBox(
-                    height: AppDimens.iconSmallSize,
-                    width: AppDimens.iconSmallSize,
-                    child: SVGImage(imageUri: AppSvgs.icCalendar),
-                  ),
-                ),
-                maxLines: 1,
+        Flexible(
+          child: CustomTextField(
+            readOnly: true,
+            onTap: () {
+              _buildCupertinoDateTime(
+                context: context,
+                initialDateTime: currentDate ?? DateTime.now(),
+                mode: CupertinoDatePickerMode.date,
+                onDateTimeChanged: (newDate) {
+                  context.read<EditTodoCubit>().setDate(newDate);
+                },
               );
             },
+            controller: context.read<EditTodoCubit>().dateTextController,
+            hint: S.of(context).date,
+            title: S.of(context).date,
+            suffixIcon: SizedBox(
+              height: AppDimens.iconSmallSize,
+              width: AppDimens.iconSmallSize,
+              child: SVGImage(imageUri: AppSvgs.icCalendar),
+            ),
+            maxLines: 1,
           ),
         ),
         Flexible(
-          child: BlocBuilder<EditTodoCubit, EditTodoState>(
-            buildWhen: (prev, current) => prev.time != current.time,
-            builder: (context, state) {
-              final cubit = context.read<EditTodoCubit>();
-              return CustomTextField(
-                hint: S.of(context).time,
-                title: S.of(context).time,
-                controller: cubit.timeTextController,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    _buildCupertinoDateTime(
-                      context: context,
-                      initialDateTime: dateTime,
-                      mode: CupertinoDatePickerMode.time,
-                      onDateTimeChanged: (newTime) {
-                        cubit.setTime(DateFormat.jm().format(newTime));
-                      },
-                    );
-                  },
-                  icon: SizedBox(
-                    height: AppDimens.iconSmallSize,
-                    width: AppDimens.iconSmallSize,
-                    child: SVGImage(imageUri: AppSvgs.icClock),
-                  ),
-                ),
-                maxLines: 1,
+          child: CustomTextField(
+            readOnly: true,
+            onTap: () {
+              _buildCupertinoDateTime(
+                context: context,
+                initialDateTime: currentTime ?? DateTime.now(),
+                mode: CupertinoDatePickerMode.time,
+                onDateTimeChanged: (newTime) {
+                  context.read<EditTodoCubit>().setTime(newTime);
+                },
               );
             },
+            hint: S.of(context).time,
+            title: S.of(context).time,
+            controller: context.read<EditTodoCubit>().timeTextController,
+            suffixIcon: SizedBox(
+              height: AppDimens.iconSmallSize,
+              width: AppDimens.iconSmallSize,
+              child: SVGImage(imageUri: AppSvgs.icClock),
+            ),
+            maxLines: 1,
           ),
         ),
       ],

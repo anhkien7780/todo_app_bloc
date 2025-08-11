@@ -15,11 +15,11 @@ extension EnvironmentExt on Environment{
   String get baseUrl {
     switch(this){
       case Environment.dev:
-        return "https://ijywzybzbkkqtlqrwkiu.supabase.co";
+        return "https://raffpmryzsjtrgifysgv.supabase.co";
       case Environment.stg:
-        return "https://ijywzybzbkkqtlqrwkiu.supabase.co";
+        return "https://raffpmryzsjtrgifysgv.supabase.co";
       case Environment.prod:
-        return "https://ijywzybzbkkqtlqrwkiu.supabase.co";
+        return "https://raffpmryzsjtrgifysgv.supabase.co";
     }
   }
 }

@@ -12,7 +12,8 @@
   "editTask": "Sửa công việc",
   "notes": "Ghi chú",
   "myTodoList": "Danh sách việc làm",
-  "deleteDialogTitle": "Xác nhận xoá công việc này",
+  "deleteDialogTitle": "Bạn chắc chắn muốn xoá công việc này?",
   "cancel": "Từ chối",
-  "delete": "Đồng ý"
+  "delete": "Xoá",
+  "confirm": "Đồng ý"
 }

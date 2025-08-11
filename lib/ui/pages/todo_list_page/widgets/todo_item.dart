@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
@@ -60,9 +61,9 @@ class TodoItem extends StatelessWidget {
             ),
           ),
         ),
-        if (todo.time != null && todo.time!.isNotEmpty)
+        if (todo.time != null)
           Text(
-            todo.time!,
+            DateFormat.jm().format(todo.time!),
             maxLines: 1,
             overflow: TextOverflow.fade,
             softWrap: false,
