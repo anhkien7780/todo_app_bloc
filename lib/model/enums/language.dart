@@ -21,14 +21,6 @@ extension LanguageExt on Language {
     }
   }
 
-  String get dateFormat{
-    switch (this){
-      case Language.english:
-        return "MMMM dd, yyyy";
-      case Language.vietnamese:
-        return "dd/MM/yyyy";
-    }
-  }
 
   static Language? languageFromCode(String code) {
     if (code == Language.english.code) {

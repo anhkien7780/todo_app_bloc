@@ -1,4 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/configs/app_env_config.dart';
 import 'package:todo_app_bloc/model/enums/language.dart';
 
@@ -17,7 +18,12 @@ class AppConfigs {
   static const defaultLanguage = Language.english;
 
   ///DateFormat
-  static String dateDisplayFormat = defaultLanguage.dateFormat;
+  static String get dateDisplayFormat {
+    final locale = Intl.getCurrentLocale();
+    if (locale == 'vi') return "dd MMMM, yyyy";
+    return "MMMM dd, yyyy";
+  }
+
 
   ///Date range
   static final identityMinDate = DateTime(1900, 1, 1);
