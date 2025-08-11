@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
@@ -37,7 +35,6 @@ class TodoListView extends StatelessWidget {
               final result = await cubit.navigator.showEditTodoPage(
                 todo: todoList[index],
               );
-              log("$result");
               if (result == true) {
                 cubit.fetchTodos();
               }

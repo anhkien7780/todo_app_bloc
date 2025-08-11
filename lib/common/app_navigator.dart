@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:todo_app_bloc/router/router_config.dart';
 
 class AppNavigator {
@@ -60,14 +59,6 @@ class AppNavigator {
       queryParameters: queryParameters,
       extra: extra,
     );
-  }
-
-  void showLoadingOverlay() {
-    context.loaderOverlay.show();
-  }
-
-  void hideLoadingOverlay() {
-    context.loaderOverlay.hide();
   }
 
   Future<void> openTodoListPage() {
