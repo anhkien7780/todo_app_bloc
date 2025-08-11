@@ -27,7 +27,7 @@ class TodoListPage extends StatelessWidget {
           navigator: TodoListNavigator(context: context),
         );
       },
-      child: TodoListChildPage(),
+      child: const TodoListChildPage(),
     );
   }
 }
