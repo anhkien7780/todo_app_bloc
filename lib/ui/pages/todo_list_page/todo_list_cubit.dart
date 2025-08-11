@@ -13,11 +13,12 @@ class TodoListCubit extends Cubit<TodoListState> {
   final TodoRepository repository;
   final TodoListNavigator navigator;
 
-  void fetchTodos() async {
+  Future<void> fetchTodos() async {
     if (state.loadTodoStatus == LoadStatus.loading) {
       return;
     }
     emit(state.copyWith(loadTodoStatus: LoadStatus.loading));
+    // await Future.delayed(Duration(seconds: 2)); // fake loading
     try {
       final todos = await repository.fetchTodos();
       final uncompletedTodo = todos.where((todo) => !todo.isCompleted).toList();

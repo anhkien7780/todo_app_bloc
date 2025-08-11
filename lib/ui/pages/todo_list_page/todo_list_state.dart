@@ -26,5 +26,5 @@ class TodoListState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [unCompletedTodos, completedTodos];
+  List<Object?> get props => [loadTodoStatus, unCompletedTodos, completedTodos];
 }
