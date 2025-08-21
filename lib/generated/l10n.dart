@@ -148,6 +148,16 @@ class S {
   String get confirm {
     return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
   }
+
+  /// `Task is empty.\nPlease add new task!`
+  String get taskIsEmpty {
+    return Intl.message(
+      'Task is empty.\nPlease add new task!',
+      name: 'taskIsEmpty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

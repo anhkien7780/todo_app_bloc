@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "myTodoList": MessageLookupByLibrary.simpleMessage("My Todo List"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
+    "taskIsEmpty": MessageLookupByLibrary.simpleMessage(
+      "Task is empty.\nPlease add new task!",
+    ),
     "taskTitle": MessageLookupByLibrary.simpleMessage("Task Title"),
     "taskTitleIsEmpty": MessageLookupByLibrary.simpleMessage(
       "Task title is empty",

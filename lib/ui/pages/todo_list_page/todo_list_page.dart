@@ -80,6 +80,16 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
                   },
                 ),
               ),
+              if (_cubit.taskIsEmpty())
+                Positioned.fill(
+                  child: Center(
+                    child: Text(
+                      S.of(context).taskIsEmpty,
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.blackS16Medium,
+                    ),
+                  ),
+                ),
               _buildTodoList(),
               _buildAddNewTaskButton(context),
               if (state.loadTodoStatus == LoadStatus.loading)
@@ -108,7 +118,7 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
                 return TodoListView(
                   todoList: state.unCompletedTodos,
                   onToggleCheckBox: (todo) {
-                    context.read<TodoListCubit>().toggleCheckBox(todo);
+                    _cubit.toggleCheckBox(todo);
                   },
                 );
               },
@@ -134,7 +144,7 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
                     TodoListView(
                       todoList: state.completedTodos,
                       onToggleCheckBox: (todo) {
-                        context.read<TodoListCubit>().toggleCheckBox(todo);
+                        _cubit.toggleCheckBox(todo);
                       },
                     ),
                   ],

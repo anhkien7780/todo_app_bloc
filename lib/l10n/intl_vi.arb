@@ -15,5 +15,6 @@
   "deleteDialogTitle": "Bạn chắc chắn muốn xoá công việc này?",
   "cancel": "Từ chối",
   "delete": "Xoá",
-  "confirm": "Đồng ý"
+  "confirm": "Đồng ý",
+  "taskIsEmpty": "Công việc trống.\nVui lòng thêm công việc mới!"
 }

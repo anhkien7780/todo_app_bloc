@@ -39,6 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "myTodoList": MessageLookupByLibrary.simpleMessage("Danh sách việc làm"),
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
     "save": MessageLookupByLibrary.simpleMessage("Lưu"),
+    "taskIsEmpty": MessageLookupByLibrary.simpleMessage(
+      "Công việc trống.\nVui lòng thêm công việc mới!",
+    ),
     "taskTitle": MessageLookupByLibrary.simpleMessage("Tiêu đề"),
     "taskTitleIsEmpty": MessageLookupByLibrary.simpleMessage(
       "Tiêu đề không được để trống",
