@@ -36,7 +36,6 @@ class TodoListCubit extends Cubit<TodoListState> {
   }
 
   bool taskIsEmpty() {
-    emit(state.copyWith());
     return state.unCompletedTodos.isEmpty && state.completedTodos.isEmpty;
   }
 
