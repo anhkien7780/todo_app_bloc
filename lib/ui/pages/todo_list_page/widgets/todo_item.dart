@@ -45,6 +45,17 @@ class TodoItem extends StatelessWidget {
   }
 
   Column _buildTaskTitleAndTime(Todo todo) {
+    Color textColor = AppColors.textBlack;
+    if (todo.isCompleted == false) {
+      DateTime now = DateTime.now();
+      if (todo.time != null && todo.time!.isBefore(now)) {
+        textColor = AppColors.textRed;
+      } else if (todo.date != null &&
+          todo.date!.isBefore(now) &&
+          todo.time == null) {
+        textColor = AppColors.textRed;
+      }
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +67,7 @@ class TodoItem extends StatelessWidget {
           softWrap: false,
           style: AppTextStyles.blackS16SemiBold.copyWith(
             decoration: todo.isCompleted ? TextDecoration.lineThrough : null,
-            color: AppColors.textBlack.withAlpha(
+            color: textColor.withAlpha(
               todo.isCompleted ? AppDimens.blurAlpha : AppDimens.normalAlpha,
             ),
           ),
@@ -69,7 +80,7 @@ class TodoItem extends StatelessWidget {
             softWrap: false,
             style: AppTextStyles.blackS14Medium.copyWith(
               decoration: todo.isCompleted ? TextDecoration.lineThrough : null,
-              color: AppColors.textBlack.withAlpha(AppDimens.blurAlpha),
+              color: textColor.withAlpha(AppDimens.blurAlpha),
             ),
           ),
       ],

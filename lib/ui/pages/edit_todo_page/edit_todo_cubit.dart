@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/configs/app_configs.dart';
+import 'package:todo_app_bloc/extensions/datetime_extensions.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
 import 'package:todo_app_bloc/model/enums/edit_todo_page_mode.dart';
@@ -45,8 +46,9 @@ class EditTodoCubit extends Cubit<EditTodoState> {
         ? DateFormat(AppConfigs.dateDisplayFormat).format(todo.date!)
         : "";
 
-    timeTextController.text =
-    todo.time != null ? DateFormat.jm().format(todo.time!) : "";
+    timeTextController.text = todo.time != null
+        ? DateFormat.jm().format(todo.time!)
+        : "";
 
     taskTitleController.text = todo.taskTitle;
     notesController.text = todo.note ?? "";
@@ -65,12 +67,21 @@ class EditTodoCubit extends Cubit<EditTodoState> {
   }
 
   void setDate(DateTime date) {
-    dateTextController.text =
-        DateFormat(AppConfigs.dateDisplayFormat).format(date);
+    if(state.time != null){
+      date = date.withTimeOf(state.time!);
+    }
+    dateTextController.text = DateFormat(
+      AppConfigs.dateDisplayFormat,
+    ).format(date);
     emit(state.copyWith(date: date));
   }
 
   void setTime(DateTime time) {
+    if (state.date != null) {
+      time = state.date!.withTimeOf(time);
+    } else {
+      emit(state.copyWith(date: time));
+    }
     timeTextController.text = DateFormat.jm().format(time);
     emit(state.copyWith(time: time));
   }

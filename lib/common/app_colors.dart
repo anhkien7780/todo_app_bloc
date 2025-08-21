@@ -11,6 +11,7 @@ class AppColors {
   ///Text
   static const Color textWhite = Colors.white;
   static const Color textBlack = Colors.black;
+  static const Color textRed = error;
 
   ///TextField
   static const Color textFieldBGEnable = Colors.white;

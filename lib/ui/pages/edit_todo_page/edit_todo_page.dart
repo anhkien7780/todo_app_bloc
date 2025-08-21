@@ -179,21 +179,16 @@ class _EditTodoBodyState extends State<EditTodoBody> {
                 },
               ),
               _buildDateTimeSelector(context: context),
-              BlocBuilder<EditTodoCubit, EditTodoState>(
-                buildWhen: (prev, current) => prev.notes != current.notes,
-                builder: (context, state) {
-                  return CustomTextField(
-                    controller: _cubit.notesController,
-                    hint: S.of(context).notes,
-                    title: S.of(context).notes,
-                    borderColor: Colors.transparent,
-                    height: AppDimens.textFieldHeightNormal,
-                    onChange: (value) {
-                      cubit.setNotes(value);
-                    },
-                  );
+              CustomTextField(
+                controller: _cubit.notesController,
+                hint: S.of(context).notes,
+                title: S.of(context).notes,
+                borderColor: Colors.transparent,
+                height: AppDimens.textFieldHeightNormal,
+                onChange: (value) {
+                  cubit.setNotes(value);
                 },
-              ),
+              )
             ],
           ),
         ],
