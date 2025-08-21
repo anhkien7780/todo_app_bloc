@@ -80,6 +80,8 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
                   },
                 ),
               ),
+              _buildTodoList(),
+              _buildAddNewTaskButton(context),
               if (_cubit.taskIsEmpty())
                 Positioned.fill(
                   child: Center(
@@ -90,8 +92,6 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
                     ),
                   ),
                 ),
-              _buildTodoList(),
-              _buildAddNewTaskButton(context),
               if (state.loadTodoStatus == LoadStatus.loading)
                 FullScreenLoading(),
             ],

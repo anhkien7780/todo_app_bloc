@@ -41,10 +41,10 @@ class TodoListView extends StatelessWidget {
             },
             child: Dismissible(
               key: Key(todoList[index].id),
-              confirmDismiss: (direction) async {
+              confirmDismiss: (_) async {
                 final result = await _buildShowDialog(context);
                 if (result == true) {
-                  cubit.deleteTodo(todoList[index]);
+                  await cubit.deleteTodo(todoList[index]);
                   cubit.fetchTodos();
                   return true;
                 }
