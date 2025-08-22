@@ -22,11 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "account": MessageLookupByLibrary.simpleMessage("Tài khoản"),
     "addNewTask": MessageLookupByLibrary.simpleMessage("Thêm công việc mới"),
     "cancel": MessageLookupByLibrary.simpleMessage("Từ chối"),
     "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
     "completed": MessageLookupByLibrary.simpleMessage("Hoàn thành"),
     "confirm": MessageLookupByLibrary.simpleMessage("Đồng ý"),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage(
+      "Xác nhận mật khẩu",
+    ),
     "date": MessageLookupByLibrary.simpleMessage("Ngày"),
     "delete": MessageLookupByLibrary.simpleMessage("Xoá"),
     "deleteDialogTitle": MessageLookupByLibrary.simpleMessage(
@@ -36,9 +40,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Tải danh sách việc làm thất bại",
     ),
+    "iAlreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Tôi đã có tài khoản",
+    ),
+    "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("Danh sách việc làm"),
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
+    "orConnectWith": MessageLookupByLibrary.simpleMessage("Hoặc kết nối với"),
+    "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
+    "registerNewAccount": MessageLookupByLibrary.simpleMessage(
+      "Tạo tài khoản mới",
+    ),
     "save": MessageLookupByLibrary.simpleMessage("Lưu"),
+    "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
     "taskIsEmpty": MessageLookupByLibrary.simpleMessage(
       "Công việc trống.\nVui lòng thêm công việc mới!",
     ),

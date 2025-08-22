@@ -12,4 +12,6 @@ class AppSvgs {
   static const todoLogoPSvg = "assets/svgs/ic_todo_logo.svg";
   static const icUSFlag = "assets/svgs/ic_us_flag.svg";
   static const icVNFlag = "assets/svgs/ic_vn_flag.svg";
+  static const icGoogle = "assets/svgs/ic_google.svg";
+  static const icFacebook = "assets/svgs/ic_facebook.svg";
 }

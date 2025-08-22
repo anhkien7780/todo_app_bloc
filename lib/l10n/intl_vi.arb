@@ -16,5 +16,13 @@
   "cancel": "Từ chối",
   "delete": "Xoá",
   "confirm": "Đồng ý",
-  "taskIsEmpty": "Công việc trống.\nVui lòng thêm công việc mới!"
+  "taskIsEmpty": "Công việc trống.\nVui lòng thêm công việc mới!",
+  "account": "Tài khoản",
+  "password": "Mật khẩu",
+  "login": "Đăng nhập",
+  "signUp": "Đăng ký",
+  "registerNewAccount": "Tạo tài khoản mới",
+  "confirmPassword": "Xác nhận mật khẩu",
+  "orConnectWith": "Hoặc kết nối với",
+  "iAlreadyHaveAccount": "Tôi đã có tài khoản"
 }

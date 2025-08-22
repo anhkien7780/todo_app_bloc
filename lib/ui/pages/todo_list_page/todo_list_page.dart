@@ -13,6 +13,7 @@ import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_navigator.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_state.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/widgets/todo_list_view.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/widgets/todos_screen_header.dart';
+import 'package:todo_app_bloc/ui/widgets/buttons/custom_button.dart';
 import 'package:todo_app_bloc/ui/widgets/loadings/full_screen_loading.dart';
 
 class TodoListPage extends StatelessWidget {
@@ -163,22 +164,30 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
       bottom: AppDimens.marginLarge,
       right: AppDimens.marginNormal,
       left: AppDimens.marginNormal,
-      child: SizedBox(
-        height: AppDimens.buttonHeight,
-        child: OutlinedButton(
-          style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(AppColors.primary),
-          ),
-          onPressed: () async {
-            final result = await cubit.navigator.showEditTodoPage();
-            cubit.handleResultFromEditTodoPage(result);
-          },
-          child: Text(
-            S.of(context).addNewTask,
-            style: AppTextStyles.whiteS16Bold,
-          ),
-        ),
+      child: CustomOutlinedButton(
+        onPressed: () async {
+          final result = await cubit.navigator.showEditTodoPage();
+          cubit.handleResultFromEditTodoPage(result);
+        },
+        text: S.of(context).addNewTask,
       ),
+
+      // SizedBox(
+      //   height: AppDimens.buttonHeight,
+      //   child: OutlinedButton(
+      //     style: ButtonStyle(
+      //       backgroundColor: WidgetStatePropertyAll(AppColors.primary),
+      //     ),
+      //     onPressed: () async {
+      //       final result = await cubit.navigator.showEditTodoPage();
+      //       cubit.handleResultFromEditTodoPage(result);
+      //     },
+      //     child: Text(
+      //       S.of(context).addNewTask,
+      //       style: AppTextStyles.whiteS16Bold,
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
