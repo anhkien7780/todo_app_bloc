@@ -77,4 +77,9 @@ class TodoListCubit extends Cubit<TodoListState> {
       emit(state.copyWith(unCompletedTodos: newUnCompleted));
     }
   }
+
+  Future<void> deleteAndFetchTodo(Todo todo) async {
+    await deleteTodo(todo);
+    fetchTodos();
+  }
 }
