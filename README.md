@@ -32,8 +32,10 @@ It demonstrates clean state handling, separation of concerns, and interactive UI
    git clone https://github.com/anhkien7780/todo_app_bloc.git
    cd todo_app_bloc
 2. Install dependencies
+   ```bash
    flutter pub get
 3. Run generator launcher icon and localizations
+   ```bash
    dart run flutter_launcher_icons
    flutter pub run intl_utils:generate
 ## 📂 Project Structure
