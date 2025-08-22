@@ -37,6 +37,7 @@ It demonstrates clean state handling, separation of concerns, and interactive UI
    dart run flutter_launcher_icons
    flutter pub run intl_utils:generate
 ## 📂 Project Structure
+```
 lib/
  ├── ui/                     # UI layer (pages, widgets)
  │    └── todo_list_page/
@@ -47,3 +48,4 @@ lib/
  ├── model/                  # Data models (Todo, enums, etc.)
  ├── repositories/           # Repository layer (data handling)
  └── common/                 # Shared constants (colors, dimens, styles)
+```
