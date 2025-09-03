@@ -61,6 +61,8 @@ dependencies:
 
   # --- Development Tools ---
   flutter_launcher_icons: ^0.14.4 # Automatically generate app launcher icons
+  firebase_core: ^4.1.0
+  firebase_messaging: ^16.0.1
 
 dev_dependencies:
   flutter_test:
