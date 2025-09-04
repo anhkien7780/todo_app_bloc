@@ -20,7 +20,7 @@ void main() async {
     await Firebase.initializeApp();
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     String? token = await messaging.getToken();
-    if(token != null){
+    if (token != null) {
       log("Token: ${token.toString()}");
     }
   }

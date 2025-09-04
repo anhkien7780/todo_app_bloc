@@ -36,3 +36,7 @@ class AppConfigs {
 class TodoSupabaseConfig {
   static final String anonKey = dotenv.env["SUPABASE_API_KEY"] ?? "";
 }
+
+class FirebaseConfig{
+  static final String apiKey = dotenv.env["FIREBASE_API_KEY"] ?? "";
+}
