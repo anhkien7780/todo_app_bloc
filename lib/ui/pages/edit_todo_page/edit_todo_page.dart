@@ -14,6 +14,7 @@ import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_navigator.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/category_selector.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/widgets/edit_todo_header.dart';
+import 'package:todo_app_bloc/ui/widgets/buttons/custom_outlined_button.dart';
 import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
 import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_field.dart';
 
@@ -111,14 +112,11 @@ class _EditTodoChildPageState extends State<EditTodoChildPage> {
       child: SizedBox(
         width: double.infinity,
         height: AppDimens.buttonHeight,
-        child: OutlinedButton(
+        child: CustomOutlinedButton(
           onPressed: () async {
             await _cubit.onSaveButtonPressed();
           },
-          style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(AppColors.buttonBGPrimary),
-          ),
-          child: Text(S.of(context).save, style: AppTextStyles.whiteS16Bold),
+          text: S.of(context).save,
         ),
       ),
     );
@@ -188,7 +186,7 @@ class _EditTodoBodyState extends State<EditTodoBody> {
                 onChange: (value) {
                   cubit.setNotes(value);
                 },
-              )
+              ),
             ],
           ),
         ],

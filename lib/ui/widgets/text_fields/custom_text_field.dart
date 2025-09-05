@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
   final Color? borderColor;
   final bool readOnly;
   final GestureTapCallback? onTap;
+  final bool obscureText;
 
   const CustomTextField({
     super.key,
@@ -24,11 +25,12 @@ class CustomTextField extends StatelessWidget {
     this.height,
     this.onChange,
     this.suffixIcon,
-    this.maxLines,
+    this.maxLines = 1,
     this.controller,
     this.borderColor,
     this.readOnly = false,
     this.onTap,
+    this.obscureText = false,
   });
 
   @override
@@ -47,6 +49,7 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimens.cornerRadiusSmall),
             ),
             child: TextField(
+              obscureText: obscureText,
               onTap: onTap,
               readOnly: readOnly,
               controller: controller,
@@ -57,28 +60,23 @@ class CustomTextField extends StatelessWidget {
                 contentPadding: EdgeInsets.symmetric(
                   horizontal: AppDimens.marginNormal,
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    AppDimens.cornerRadiusSmall,
-                  ),
-                  borderSide: BorderSide(
-                    color: borderColor ?? AppColors.textFieldEnableBorder,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    AppDimens.cornerRadiusSmall,
-                  ),
-                  borderSide: BorderSide(
-                    color: borderColor ?? AppColors.textFieldEnableBorder,
-                  ),
-                ),
+                enabledBorder: _buildOutlineInputBorder(),
+                focusedBorder: _buildOutlineInputBorder(),
                 hint: Text(hint, style: AppTextStyles.blackS16),
                 suffixIcon: suffixIcon,
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  OutlineInputBorder _buildOutlineInputBorder() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppDimens.cornerRadiusSmall),
+      borderSide: BorderSide(
+        color: borderColor ?? AppColors.textFieldEnableBorder,
       ),
     );
   }

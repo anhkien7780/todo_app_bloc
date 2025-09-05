@@ -38,11 +38,13 @@ class AppDimens {
   static const double iconBigSize = 40;
   static const double iconNormalSize = 24;
   static const double iconSmallSize = 20;
+  static const double appLogoSize = 100;
 
   ///Padding
   static const double paddingLarge = 24;
   static const double paddingNormal = 16;
   static const double paddingSmall = 12;
+  static const double padding100 = 100;
 
   ///Margin
   static const double margin40 = 40;

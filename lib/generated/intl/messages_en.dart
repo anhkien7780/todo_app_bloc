@@ -22,11 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "account": MessageLookupByLibrary.simpleMessage("Account"),
     "addNewTask": MessageLookupByLibrary.simpleMessage("Add New Task"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm password"),
     "date": MessageLookupByLibrary.simpleMessage("Date"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteDialogTitle": MessageLookupByLibrary.simpleMessage(
@@ -36,9 +38,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Failed to load todos",
     ),
+    "iAlreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "I already have account",
+    ),
     "myTodoList": MessageLookupByLibrary.simpleMessage("My Todo List"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
+    "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
     "taskIsEmpty": MessageLookupByLibrary.simpleMessage(
       "Task is empty.\nPlease add new task!",
     ),

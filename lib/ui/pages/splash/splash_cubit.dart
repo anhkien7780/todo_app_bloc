@@ -11,4 +11,10 @@ class SplashCubit extends Cubit<SplashState> {
     await Future.delayed(Duration(seconds: 3));
     navigator.openTodoListPage();
   }
+
+  // Test ui only
+  Future<void> openSignUpListPage() async {
+    await Future.delayed(Duration(seconds: 3));
+    navigator.openSignUpPage();
+  }
 }

@@ -16,5 +16,10 @@
   "cancel": "Cancel",
   "delete": "Delete",
   "confirm": "Confirm",
-  "taskIsEmpty": "Task is empty.\nPlease add new task!"
+  "taskIsEmpty": "Task is empty.\nPlease add new task!",
+  "account": "Account",
+  "password": "Password",
+  "confirmPassword": "Confirm password",
+  "signUp": "Sign up",
+  "iAlreadyHaveAccount": "I already have account"
 }
