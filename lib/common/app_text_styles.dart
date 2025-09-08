@@ -91,4 +91,15 @@ class AppTextStyles {
     fontSize: 30,
     fontWeight: FontWeight.w700,
   );
+
+  /// Red
+  static final red = TextStyle(
+    color: AppColors.textRed,
+    fontWeight: FontWeight.w400,
+  );
+
+  static final redS12Medium = red.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
 }

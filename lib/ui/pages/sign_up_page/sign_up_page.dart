@@ -7,6 +7,8 @@ import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_cubit.dart';
 import 'package:todo_app_bloc/ui/widgets/buttons/custom_outlined_button.dart';
 import 'package:todo_app_bloc/ui/widgets/logo/todo_logo.dart';
 import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_field.dart';
+import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_form_field.dart';
+import 'package:todo_app_bloc/utils/app_validator.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -47,31 +49,7 @@ class SignUpChildPage extends StatelessWidget {
             child: Column(
               spacing: AppDimens.paddingNormal,
               children: [
-                CustomTextField(
-                  controller: cubit.accountTextController,
-                  hint: S.of(context).account,
-                  title: S.of(context).account,
-                ),
-                CustomTextField(
-                  controller: cubit.passwordTextController,
-                  obscureText: true,
-                  hint: S.of(context).password,
-                  title: S.of(context).password,
-                ),
-                CustomTextField(
-                  controller: cubit.confirmPasswordTextController,
-                  obscureText: true,
-                  hint: S.of(context).confirmPassword,
-                  title: S.of(context).confirmPassword,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: AppDimens.buttonHeight,
-                  child: CustomOutlinedButton(
-                    onPressed: () {},
-                    text: S.of(context).signUp,
-                  ),
-                ),
+                _buildSignInForm(context),
                 GestureDetector(
                   onTap: () {},
                   child: Text(
@@ -82,6 +60,61 @@ class SignUpChildPage extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSignInForm(BuildContext context) {
+    final cubit = context.read<SignUpCubit>();
+    final formKey = GlobalKey<FormState>();
+    return Form(
+      key: formKey,
+      child: Column(
+        spacing: AppDimens.paddingNormal,
+        children: [
+          CustomTextFormField(
+            validator: (email) {
+              return AppValidator.validateEmail(email);
+            },
+            controller: cubit.accountTextController,
+            hint: S.of(context).account,
+            title: S.of(context).account,
+          ),
+          CustomTextFormField(
+            validator: (password) {
+              return AppValidator.validatePassword(password);
+            },
+            controller: cubit.passwordTextController,
+            obscureText: true,
+            hint: S.of(context).password,
+            title: S.of(context).password,
+          ),
+          CustomTextFormField(
+            validator: (confirmPassword) {
+              final password = cubit.passwordTextController.text;
+              return AppValidator.validateConfirmPassword(
+                password,
+                confirmPassword,
+              );
+            },
+            controller: cubit.confirmPasswordTextController,
+            obscureText: true,
+            hint: S.of(context).confirmPassword,
+            title: S.of(context).confirmPassword,
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: AppDimens.buttonHeight,
+            child: CustomOutlinedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  // Todo: Call api after sign in button pressed.
+                }
+              },
+              text: S.of(context).signUp,
             ),
           ),
         ],
