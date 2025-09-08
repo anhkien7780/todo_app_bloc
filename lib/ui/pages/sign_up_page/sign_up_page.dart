@@ -7,6 +7,7 @@ import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_cubit.dart';
+import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_navigator.dart';
 import 'package:todo_app_bloc/ui/widgets/buttons/custom_outlined_button.dart';
 import 'package:todo_app_bloc/ui/widgets/logo/todo_logo.dart';
 import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_form_field.dart';
@@ -19,7 +20,10 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SignUpCubit>(
       create: (context) {
-        return SignUpCubit(repository: context.read<AuthRepository>());
+        return SignUpCubit(
+          repository: context.read<AuthRepository>(),
+          navigator: SignUpNavigator(context: context),
+        );
       },
       child: const SignUpChildPage(),
     );
@@ -49,18 +53,7 @@ class SignUpChildPage extends StatelessWidget {
             ),
             child: Column(
               spacing: AppDimens.paddingNormal,
-              children: [
-                _buildSignInForm(context),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).iAlreadyHaveAccount,
-                    style: AppTextStyles.blackS16.copyWith(
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-              ],
+              children: [_buildSignInForm(context)],
             ),
           ),
         ],
@@ -112,10 +105,21 @@ class SignUpChildPage extends StatelessWidget {
             child: CustomOutlinedButton(
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
-                  log(cubit.onSignUpButtonPressed().toString());
+                  cubit.onSignUpButtonPressed();
                 }
               },
               text: S.of(context).signUp,
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              cubit.navigator.openLoginPage();
+            },
+            child: Text(
+              S.of(context).iAlreadyHaveAccount,
+              style: AppTextStyles.blackS16.copyWith(
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ),
         ],

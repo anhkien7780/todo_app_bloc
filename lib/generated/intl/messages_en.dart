@@ -41,9 +41,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "iAlreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "I already have account",
     ),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("My Todo List"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
+    "orConnectWith": MessageLookupByLibrary.simpleMessage("Or connect with"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "registerNewAccount": MessageLookupByLibrary.simpleMessage(
+      "Register new account",
+    ),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
     "taskIsEmpty": MessageLookupByLibrary.simpleMessage(

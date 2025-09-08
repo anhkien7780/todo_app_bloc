@@ -184,11 +184,36 @@ class S {
     return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
   }
 
+  /// `Login`
+  String get login {
+    return Intl.message('Login', name: 'login', desc: '', args: []);
+  }
+
   /// `I already have account`
   String get iAlreadyHaveAccount {
     return Intl.message(
       'I already have account',
       name: 'iAlreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register new account`
+  String get registerNewAccount {
+    return Intl.message(
+      'Register new account',
+      name: 'registerNewAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or connect with`
+  String get orConnectWith {
+    return Intl.message(
+      'Or connect with',
+      name: 'orConnectWith',
       desc: '',
       args: [],
     );

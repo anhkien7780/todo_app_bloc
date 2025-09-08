@@ -9,7 +9,7 @@ class SplashNavigator extends AppNavigator{
     return pushReplacementNamed(AppRouter.todoList);
   }
 
-  Future<void> openSignUpPage() async {
-    return pushReplacementNamed(AppRouter.signUp);
+  Future<void> openLoginPage() async {
+    return pushReplacementNamed(AppRouter.login);
   }
 }

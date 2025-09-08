@@ -43,9 +43,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "iAlreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Tôi đã có tài khoản",
     ),
+    "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("Danh sách việc làm"),
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
+    "orConnectWith": MessageLookupByLibrary.simpleMessage("Hoặc kết nối với"),
     "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
+    "registerNewAccount": MessageLookupByLibrary.simpleMessage(
+      "Đăng ký tài khoản mới",
+    ),
     "save": MessageLookupByLibrary.simpleMessage("Lưu"),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
     "taskIsEmpty": MessageLookupByLibrary.simpleMessage(

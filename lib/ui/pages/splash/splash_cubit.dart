@@ -13,8 +13,8 @@ class SplashCubit extends Cubit<SplashState> {
   }
 
   // Test ui only
-  Future<void> openSignUpListPage() async {
+  Future<void> openLoginPage() async {
     await Future.delayed(Duration(seconds: 3));
-    navigator.openSignUpPage();
+    navigator.openLoginPage();
   }
 }

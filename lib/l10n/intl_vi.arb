@@ -21,5 +21,8 @@
   "password": "Mật khẩu",
   "confirmPassword": "Nhập lại mật khẩu",
   "signUp": "Đăng ký",
-  "iAlreadyHaveAccount": "Tôi đã có tài khoản"
+  "login": "Đăng nhập",
+  "iAlreadyHaveAccount": "Tôi đã có tài khoản",
+  "registerNewAccount": "Đăng ký tài khoản mới",
+  "orConnectWith": "Hoặc kết nối với"
 }

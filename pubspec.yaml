@@ -55,6 +55,7 @@ dependencies:
   uuid: ^4.5.1               # Generate UUIDs (unique IDs)
   shared_preferences: ^2.5.3 # Store small amounts of persistent key-value data
   flutter_dotenv: ^5.2.1     # Load environment variables from a .env file
+  flutter_secure_storage: ^9.2.4 # Store sensitive data in a secure way
 
   # --- Backend & API ---
   supabase_flutter: ^2.9.1 # Supabase SDK for Flutter (database, auth, storage)

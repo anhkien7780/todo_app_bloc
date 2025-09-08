@@ -21,5 +21,8 @@
   "password": "Password",
   "confirmPassword": "Confirm password",
   "signUp": "Sign up",
-  "iAlreadyHaveAccount": "I already have account"
+  "login": "Login",
+  "iAlreadyHaveAccount": "I already have account",
+  "registerNewAccount": "Register new account",
+  "orConnectWith": "Or connect with"
 }

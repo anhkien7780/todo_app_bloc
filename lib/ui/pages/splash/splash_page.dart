@@ -44,7 +44,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
     // await _cubit.openTodoListPage();
 
     //Test ui only
-    await _cubit.openSignUpListPage();
+    await _cubit.openLoginPage();
   }
 
   @override

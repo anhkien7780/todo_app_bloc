@@ -4,12 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
+import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_navigator.dart';
 import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   final AuthRepository repository;
+  final SignUpNavigator navigator;
 
-  SignUpCubit({required this.repository}) : super(SignUpState());
+  SignUpCubit({required this.navigator, required this.repository})
+    : super(SignUpState());
 
   final accountTextController = TextEditingController();
   final passwordTextController = TextEditingController();
@@ -18,8 +21,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   Future<void> onSignUpButtonPressed() async {
     log(
       "account: ${accountTextController.text}\n"
-          "password: ${passwordTextController.text}\n"
-          "confirm password: ${confirmPasswordTextController.text}",
+      "password: ${passwordTextController.text}\n"
+      "confirm password: ${confirmPasswordTextController.text}",
     );
     final AuthResponse response = await repository.signUp(
       email: accountTextController.text,
