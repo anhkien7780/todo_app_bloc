@@ -1,12 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
+import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_cubit.dart';
 import 'package:todo_app_bloc/ui/widgets/buttons/custom_outlined_button.dart';
 import 'package:todo_app_bloc/ui/widgets/logo/todo_logo.dart';
-import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_field.dart';
 import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_form_field.dart';
 import 'package:todo_app_bloc/utils/app_validator.dart';
 
@@ -17,9 +19,9 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SignUpCubit>(
       create: (context) {
-        return SignUpCubit();
+        return SignUpCubit(repository: context.read<AuthRepository>());
       },
-      child: SignUpChildPage(),
+      child: const SignUpChildPage(),
     );
   }
 }
@@ -33,7 +35,6 @@ class SignUpChildPage extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    final cubit = context.read<SignUpCubit>();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,9 +110,9 @@ class SignUpChildPage extends StatelessWidget {
             width: double.infinity,
             height: AppDimens.buttonHeight,
             child: CustomOutlinedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (formKey.currentState!.validate()) {
-                  // Todo: Call api after sign in button pressed.
+                  log(cubit.onSignUpButtonPressed().toString());
                 }
               },
               text: S.of(context).signUp,

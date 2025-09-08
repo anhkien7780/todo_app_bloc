@@ -1,11 +1,15 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:todo_app_bloc/configs/app_env_config.dart';
 import 'package:todo_app_bloc/model/enums/oauth_mode.dart';
 import 'package:todo_app_bloc/network/supabase_services.dart';
 
 abstract class AuthRepository {
   Future<void> login({required String email, required String password});
 
-  Future<void> signUp({required String email, required String password});
+  Future<AuthResponse> signUp({
+    required String email,
+    required String password,
+  });
 
   Future<void> loginWithOAuth({required OAuthMode mode});
 
@@ -15,10 +19,8 @@ abstract class AuthRepository {
 class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<void> login({required String email, required String password}) async {
-    final AuthResponse res = await SupabaseServices.supabaseClient.auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
+    final AuthResponse res = await SupabaseServices.supabaseClient.auth
+        .signInWithPassword(email: email, password: password);
   }
 
   @override
@@ -34,8 +36,14 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<void> signUp({required String email, required String password}) {
-    // TODO: implement signIn
-    throw UnimplementedError();
+  Future<AuthResponse> signUp({
+    required String email,
+    required String password,
+  }) async {
+    return await SupabaseServices.supabaseClient.auth.signUp(
+      email: email,
+      password: password,
+      emailRedirectTo: Environment.prod.redirectUrl,
+    );
   }
 }

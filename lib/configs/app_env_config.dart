@@ -22,4 +22,15 @@ extension EnvironmentExt on Environment{
         return "https://raffpmryzsjtrgifysgv.supabase.co";
     }
   }
+
+  String get redirectUrl {
+    switch(this){
+      case Environment.dev:
+        return "todoapp://login-callback/";
+      case Environment.stg:
+        return "todoapp://login-callback/";
+      case Environment.prod:
+        return "todoapp://login-callback/";
+    }
+  }
 }

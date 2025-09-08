@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
 import 'package:todo_app_bloc/model/enums/language.dart';
+import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/router/router_config.dart';
 
@@ -29,10 +30,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<TodoRepository>(
-      create: (BuildContext context) {
-        return TodoRepositoryImpl();
-      },
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<TodoRepository>(
+          create: (context) => TodoRepositoryImpl(),
+        ),
+        RepositoryProvider<AuthRepository>(
+          create: (context) => AuthRepositoryImpl(),
+        ),
+      ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AppSettingCubit>(create: (context) => AppSettingCubit()),
