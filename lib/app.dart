@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:todo_app_bloc/common/app_keys.dart';
 import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
 import 'package:todo_app_bloc/model/enums/language.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
@@ -62,6 +63,7 @@ class _MyAppState extends State<MyApp> {
 
   Widget _buildMaterialApp({required Locale locale}) {
     return MaterialApp.router(
+      scaffoldMessengerKey: AppKeys.rootScaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.router,
       localizationsDelegates: const [

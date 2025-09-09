@@ -1,14 +1,17 @@
 import 'package:equatable/equatable.dart';
+import 'package:todo_app_bloc/model/enums/load_status.dart';
 
 class SignUpState extends Equatable {
-  final String? message;
+  final LoadStatus loadStatus;
 
-  const SignUpState({this.message});
+  const SignUpState({this.loadStatus = LoadStatus.initial});
 
-  SignUpState copyWith({String? message}) {
-    return SignUpState(message: message ?? this.message);
+  SignUpState copyWith({LoadStatus? loadStatus, String? message}) {
+    return SignUpState(
+      loadStatus: loadStatus ?? this.loadStatus,
+    );
   }
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [loadStatus];
 }

@@ -37,6 +37,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Bạn chắc chắn muốn xoá công việc này?",
     ),
     "editTask": MessageLookupByLibrary.simpleMessage("Sửa công việc"),
+    "emailIsAlreadyRegistered": MessageLookupByLibrary.simpleMessage(
+      "Email đã được đăng ký",
+    ),
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Tải danh sách việc làm thất bại",
     ),
@@ -53,6 +56,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "save": MessageLookupByLibrary.simpleMessage("Lưu"),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+    "signUpSuccess": MessageLookupByLibrary.simpleMessage(
+      "Đăng ký thành công, vui lòng xác nhận email",
+    ),
     "taskIsEmpty": MessageLookupByLibrary.simpleMessage(
       "Công việc trống.\nVui lòng thêm công việc mới!",
     ),

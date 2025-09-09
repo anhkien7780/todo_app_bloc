@@ -218,6 +218,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign up successfully, please confirm your email`
+  String get signUpSuccess {
+    return Intl.message(
+      'Sign up successfully, please confirm your email',
+      name: 'signUpSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is already registered`
+  String get emailIsAlreadyRegistered {
+    return Intl.message(
+      'Email is already registered',
+      name: 'emailIsAlreadyRegistered',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

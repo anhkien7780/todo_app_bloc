@@ -24,5 +24,7 @@
   "login": "Đăng nhập",
   "iAlreadyHaveAccount": "Tôi đã có tài khoản",
   "registerNewAccount": "Đăng ký tài khoản mới",
-  "orConnectWith": "Hoặc kết nối với"
+  "orConnectWith": "Hoặc kết nối với",
+  "signUpSuccess": "Đăng ký thành công, vui lòng xác nhận email",
+  "emailIsAlreadyRegistered": "Email đã được đăng ký"
 }

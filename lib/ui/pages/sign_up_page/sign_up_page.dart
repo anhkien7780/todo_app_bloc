@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
+import 'package:todo_app_bloc/common/app_keys.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
+import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_navigator.dart';
@@ -42,10 +44,15 @@ class SignUpChildPage extends StatelessWidget {
     return SingleChildScrollView(
       child: BlocConsumer<SignUpCubit, SignUpState>(
         listener: (BuildContext context, state) {
-          if (state.message != null) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(Utils.buildSnackBar(state.message!));
+          if (state.loadStatus == LoadStatus.success) {
+            AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
+              Utils.buildSnackBar(S.of(context).signUpSuccess),
+            );
+            context.read<SignUpCubit>().navigator.openLoginPage();
+          } else if (state.loadStatus == LoadStatus.failure) {
+            AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
+              Utils.buildSnackBar(S.of(context).emailIsAlreadyRegistered),
+            );
           }
         },
         builder: (BuildContext context, state) {
@@ -76,7 +83,7 @@ class SignUpChildPage extends StatelessWidget {
 
   Widget _buildSignInForm(BuildContext context) {
     final cubit = context.read<SignUpCubit>();
-    final formKey = GlobalKey<FormState>();
+    final formKey = cubit.formKey;
     return Form(
       key: formKey,
       child: Column(
@@ -112,17 +119,26 @@ class SignUpChildPage extends StatelessWidget {
             hint: S.of(context).confirmPassword,
             title: S.of(context).confirmPassword,
           ),
-          SizedBox(
-            width: double.infinity,
-            height: AppDimens.buttonHeight,
-            child: CustomOutlinedButton(
-              onPressed: () async {
-                if (formKey.currentState!.validate()) {
-                  cubit.onSignUpButtonPressed();
-                }
-              },
-              text: S.of(context).signUp,
-            ),
+          BlocBuilder<SignUpCubit, SignUpState>(
+            buildWhen: (pre, current) {
+              return pre.loadStatus != current.loadStatus;
+            },
+            builder: (BuildContext context, state) {
+              return state.loadStatus == LoadStatus.loading
+                  ? const CircularProgressIndicator()
+                  : SizedBox(
+                      width: double.infinity,
+                      height: AppDimens.buttonHeight,
+                      child: CustomOutlinedButton(
+                        onPressed: () async {
+                          if (formKey.currentState!.validate()) {
+                            cubit.onSignUpButtonPressed();
+                          }
+                        },
+                        text: S.of(context).signUp,
+                      ),
+                    );
+            },
           ),
           InkWell(
             onTap: () {

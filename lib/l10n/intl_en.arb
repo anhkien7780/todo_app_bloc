@@ -24,5 +24,7 @@
   "login": "Login",
   "iAlreadyHaveAccount": "I already have account",
   "registerNewAccount": "Register new account",
-  "orConnectWith": "Or connect with"
+  "orConnectWith": "Or connect with",
+  "signUpSuccess": "Sign up successfully, please confirm your email",
+  "emailIsAlreadyRegistered": "Email is already registered"
 }

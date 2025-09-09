@@ -35,6 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Are you sure you want to delete this item?",
     ),
     "editTask": MessageLookupByLibrary.simpleMessage("Edit Task"),
+    "emailIsAlreadyRegistered": MessageLookupByLibrary.simpleMessage(
+      "Email is already registered",
+    ),
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Failed to load todos",
     ),
@@ -51,6 +54,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+    "signUpSuccess": MessageLookupByLibrary.simpleMessage(
+      "Sign up successfully, please confirm your email",
+    ),
     "taskIsEmpty": MessageLookupByLibrary.simpleMessage(
       "Task is empty.\nPlease add new task!",
     ),
