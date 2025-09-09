@@ -6,6 +6,8 @@ import 'package:todo_app_bloc/ui/pages/splash/splash_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_navigator.dart';
 import 'package:todo_app_bloc/ui/widgets/logo/todo_logo.dart';
 
+// Todo: Kiểm tra xem người dùng đã đăng nhập từ trước chưa
+
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 

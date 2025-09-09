@@ -8,6 +8,7 @@ class AppSettingCubit extends Cubit<AppSettingState> {
 
   Future<void> getInitialSetting() async {
     final currentLanguage = await SharedPreferencesHelper.getCurrentLanguage();
+
     emit(state.copyWith(language: currentLanguage));
   }
 

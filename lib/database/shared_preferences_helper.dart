@@ -3,6 +3,20 @@ import 'package:todo_app_bloc/model/enums/language.dart';
 
 class SharedPreferencesHelper {
   static const _currentLanguageKey = "current_language";
+  static const _isFirstRunKey = "is_first_run";
+
+  static Future<bool> isFirstRun() async {
+    try {
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      final isFirstRun = preferences.getBool(_isFirstRunKey) ?? true;
+      if (isFirstRun) {
+        await preferences.setBool(_isFirstRunKey, false);
+      }
+      return isFirstRun;
+    } catch (e) {
+      return false;
+    }
+  }
 
   static Future<Language?> getCurrentLanguage() async {
     try {
