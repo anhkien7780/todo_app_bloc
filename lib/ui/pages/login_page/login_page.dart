@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
+import 'package:todo_app_bloc/common/app_keys.dart';
 import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
+import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/ui/pages/login_page/login_navigator.dart';
 import 'package:todo_app_bloc/ui/widgets/buttons/custom_outlined_button.dart';
@@ -11,8 +13,10 @@ import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
 import 'package:todo_app_bloc/ui/widgets/logo/todo_logo.dart';
 import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_form_field.dart';
 import 'package:todo_app_bloc/utils/app_validator.dart';
+import 'package:todo_app_bloc/utils/utils.dart';
 
 import 'login_cubit.dart';
+import 'login_state.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -38,18 +42,35 @@ class LoginPageChild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(AppDimens.paddingNormal),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: AppDimens.padding100),
-                child: const TodoLogo(),
+        child: BlocConsumer<LoginCubit, LoginState>(
+          listener: (BuildContext context, state) {
+            if (state.loadStatus == LoadStatus.success) {
+              AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
+                Utils.buildSnackBar("Login success"),
+              );
+            } else if (state.loadStatus == LoadStatus.failure) {
+              AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
+                Utils.buildSnackBar("Login failure, your account or password is incorrect"),
+              );
+            }
+          },
+          builder: (BuildContext context, state) {
+            return Padding(
+              padding: const EdgeInsets.all(AppDimens.paddingNormal),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: AppDimens.padding100,
+                    ),
+                    child: const TodoLogo(),
+                  ),
+                  _buildLoginForm(context),
+                ],
               ),
-              _buildLoginForm(context),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
@@ -57,7 +78,7 @@ class LoginPageChild extends StatelessWidget {
 
   Widget _buildLoginForm(BuildContext context) {
     final cubit = context.read<LoginCubit>();
-    final formKey = GlobalKey<FormState>();
+    final formKey = cubit.formKey;
     return Form(
       key: formKey,
       child: Column(
@@ -81,17 +102,26 @@ class LoginPageChild extends StatelessWidget {
             title: S.of(context).password,
             hint: S.of(context).password,
           ),
-          SizedBox(
-            width: double.infinity,
-            height: AppDimens.buttonHeight,
-            child: CustomOutlinedButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  cubit.onLoginButtonPressed();
-                }
-              },
-              text: S.of(context).login,
-            ),
+          BlocBuilder<LoginCubit, LoginState>(
+            buildWhen: (pre, current) {
+              return pre.loadStatus != current.loadStatus;
+            },
+            builder: (BuildContext context, LoginState state) {
+              return state.loadStatus == LoadStatus.loading
+                  ? const CircularProgressIndicator()
+                  : SizedBox(
+                      width: double.infinity,
+                      height: AppDimens.buttonHeight,
+                      child: CustomOutlinedButton(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            cubit.onLoginButtonPressed();
+                          }
+                        },
+                        text: S.of(context).login,
+                      ),
+                    );
+            },
           ),
           InkWell(
             onTap: () {
