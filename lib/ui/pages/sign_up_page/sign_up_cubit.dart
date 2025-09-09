@@ -12,23 +12,25 @@ class SignUpCubit extends Cubit<SignUpState> {
   final SignUpNavigator navigator;
 
   SignUpCubit({required this.navigator, required this.repository})
-    : super(SignUpState());
+      : super(SignUpState());
 
   final accountTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
 
   Future<void> onSignUpButtonPressed() async {
-    log(
-      "account: ${accountTextController.text}\n"
-      "password: ${passwordTextController.text}\n"
-      "confirm password: ${confirmPasswordTextController.text}",
-    );
-    final AuthResponse response = await repository.signUp(
-      email: accountTextController.text,
-      password: passwordTextController.text,
-    );
-    final Session? session = response.session;
-    final User? user = response.user;
+    try {
+      final AuthResponse response = await repository.signUp(
+        email: accountTextController.text,
+        password: passwordTextController.text,
+      );
+      final Session? session = response.session;
+      final User? user = response.user;
+      if(user != null){
+        emit(state.copyWith(message: "Sign up successfully, please confirm your email"));
+      }
+    } on AuthException catch (_, e){
+      emit(state.copyWith(message: "Email is already registered"));
+    }
   }
 }

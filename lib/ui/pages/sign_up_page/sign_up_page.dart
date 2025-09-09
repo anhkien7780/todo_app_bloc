@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
@@ -8,10 +6,12 @@ import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_navigator.dart';
+import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_state.dart';
 import 'package:todo_app_bloc/ui/widgets/buttons/custom_outlined_button.dart';
 import 'package:todo_app_bloc/ui/widgets/logo/todo_logo.dart';
 import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_form_field.dart';
 import 'package:todo_app_bloc/utils/app_validator.dart';
+import 'package:todo_app_bloc/utils/utils.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -40,23 +40,36 @@ class SignUpChildPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppDimens.padding100),
-            child: const TodoLogo(),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppDimens.paddingNormal,
-            ),
-            child: Column(
-              spacing: AppDimens.paddingNormal,
-              children: [_buildSignInForm(context)],
-            ),
-          ),
-        ],
+      child: BlocConsumer<SignUpCubit, SignUpState>(
+        listener: (BuildContext context, state) {
+          if (state.message != null) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(Utils.buildSnackBar(state.message!));
+          }
+        },
+        builder: (BuildContext context, state) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppDimens.padding100,
+                ),
+                child: const TodoLogo(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimens.paddingNormal,
+                ),
+                child: Column(
+                  spacing: AppDimens.paddingNormal,
+                  children: [_buildSignInForm(context)],
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
