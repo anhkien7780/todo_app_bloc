@@ -4,17 +4,12 @@ import 'package:todo_app_bloc/model/enums/oauth_mode.dart';
 import 'package:todo_app_bloc/network/supabase_services.dart';
 
 abstract class AuthRepository {
-  Future<AuthResponse> login({
-    required String email,
-    required String password,
-  });
+  Future<AuthResponse> login({required String email, required String password});
 
   Future<AuthResponse> signUp({
     required String email,
     required String password,
   });
-
-  Future<void> loginWithOAuth({required OAuthMode mode});
 
   Future<void> logout();
 }
@@ -29,12 +24,6 @@ class AuthRepositoryImpl extends AuthRepository {
       email: email,
       password: password,
     );
-  }
-
-  @override
-  Future<void> loginWithOAuth({required OAuthMode mode}) {
-    // TODO: implement loginWithOAuth
-    throw UnimplementedError();
   }
 
   @override

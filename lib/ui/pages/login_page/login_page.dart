@@ -136,24 +136,6 @@ class LoginPageChild extends StatelessWidget {
             S.of(context).orConnectWith,
             style: AppTextStyles.blackS14SemiBold,
           ),
-          Row(
-            spacing: AppDimens.paddingNormal,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  // Todo: Handle facebook login
-                },
-                child: SVGImage(imageUri: AppSvgs.icFacebook),
-              ),
-              InkWell(
-                onTap: () {
-                  // Todo: Handle google login
-                },
-                child: SVGImage(imageUri: AppSvgs.icGoogle),
-              ),
-            ],
-          ),
         ],
       ),
     );
