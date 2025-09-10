@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app_bloc/common/app_navigator.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/edit_todo_page_mode.dart';
+import 'package:todo_app_bloc/router/router_config.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_page.dart';
 
 class TodoListNavigator extends AppNavigator {
@@ -19,5 +20,9 @@ class TodoListNavigator extends AppNavigator {
         return EditTodoPage(todo: todo, mode: pageMode);
       },
     );
+  }
+
+  Future<void> openSettingPage() async {
+    await pushNamed(AppRouter.setting);
   }
 }

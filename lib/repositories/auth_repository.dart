@@ -26,9 +26,8 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<void> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<void> logout() async {
+    await SupabaseServices.supabaseClient.auth.signOut();
   }
 
   @override

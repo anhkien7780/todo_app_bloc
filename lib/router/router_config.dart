@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_app_bloc/ui/pages/login_page/login_page.dart';
+import 'package:todo_app_bloc/ui/pages/setting_page/setting_page.dart';
 import 'package:todo_app_bloc/ui/pages/sign_up_page/sign_up_page.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_page.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_page.dart';
@@ -20,6 +21,7 @@ class AppRouter {
   static const String todoList = "/todo_list";
   static const String signUp = "/sign_up";
   static const String login = "/login";
+  static const String setting = "/setting";
 
   static final _routes = <RouteBase>[
     GoRoute(path: splash, builder: (context, state) => const SplashPage()),
@@ -37,6 +39,11 @@ class AppRouter {
       path: login,
       name: login,
       builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      path: setting,
+      name: setting,
+      builder: (context, state) => const SettingPage(),
     ),
   ];
 }

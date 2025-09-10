@@ -4,8 +4,6 @@ import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
-import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
-import 'package:todo_app_bloc/model/enums/language.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/todo_list_page/todo_list_cubit.dart';
@@ -70,14 +68,8 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
             children: [
               Positioned.fill(
                 child: TodosScreenHeader(
-                  onChangeButtonPressed: () {
-                    final appCubit = context.read<AppSettingCubit>();
-                    final language = appCubit.state.language;
-                    appCubit.changeLanguage(
-                      language: language == Language.english
-                          ? Language.vietnamese
-                          : Language.english,
-                    );
+                  onSettingButtonPressed: () {
+                    _cubit.navigator.openSettingPage();
                   },
                 ),
               ),

@@ -13,9 +13,9 @@ import 'package:todo_app_bloc/model/enums/language.dart';
 import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
 
 class TodosScreenHeader extends StatelessWidget {
-  const TodosScreenHeader({super.key, required this.onChangeButtonPressed});
+  const TodosScreenHeader({super.key, required this.onSettingButtonPressed});
 
-  final Function onChangeButtonPressed;
+  final Function onSettingButtonPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +35,10 @@ class TodosScreenHeader extends StatelessWidget {
             _buildEllipse1(),
             _buildEllipse2(),
             _buildDateText(date: date),
-            _buildChangeLanguageButton(
+            _buildSettingButton(
               onPressed: () {
-                onChangeButtonPressed();
+                onSettingButtonPressed();
               },
-              language: context.read<AppSettingCubit>().state.language,
             ),
             _buildCenterTitle(title: S.of(context).myTodoList),
           ],
@@ -48,17 +47,7 @@ class TodosScreenHeader extends StatelessWidget {
     );
   }
 
-  Positioned _buildChangeLanguageButton({
-    required Function onPressed,
-    required Language language,
-  }) {
-    final String imageUri;
-    switch (language) {
-      case Language.english:
-        imageUri = AppSvgs.icUSFlag;
-      case Language.vietnamese:
-        imageUri = AppSvgs.icVNFlag;
-    }
+  Positioned _buildSettingButton({required Function onPressed}) {
     return Positioned(
       top: AppDimens.margin40,
       right: AppDimens.marginNormal,
@@ -66,10 +55,10 @@ class TodosScreenHeader extends StatelessWidget {
         onPressed: () {
           onPressed();
         },
-        icon: SvgPicture.asset(
-          imageUri,
-          height: AppDimens.iconBigSize,
-          width: AppDimens.iconBigSize,
+        icon: Icon(
+          Icons.settings,
+          color: Colors.white,
+          size: AppDimens.circleButtonSize,
         ),
       ),
     );

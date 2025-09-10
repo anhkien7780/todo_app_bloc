@@ -28,5 +28,9 @@
   "signUpSuccess": "Đăng ký thành công, vui lòng xác nhận email",
   "emailIsAlreadyRegistered": "Email đã được đăng ký",
   "loginSuccess": "Đăng nhập thành công",
-  "loginFailure": "Đăng nhập thất bại, tài khoản hoặc mật khẩu không đúng"
+  "loginFailure": "Đăng nhập thất bại, tài khoản hoặc mật khẩu không đúng",
+  "setting": "Cài đặt",
+  "logout": "Đăng xuất",
+  "changePassword": "Đổi mật khẩu",
+  "changeLanguage": "Đổi ngôn ngữ"
 }

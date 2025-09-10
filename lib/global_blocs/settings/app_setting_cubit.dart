@@ -12,8 +12,18 @@ class AppSettingCubit extends Cubit<AppSettingState> {
     emit(state.copyWith(language: currentLanguage));
   }
 
-  void changeLanguage({required Language language}) async {
+  void setLanguage({required Language language}) async {
     await SharedPreferencesHelper.setCurrentLanguage(language);
     emit(state.copyWith(language: language));
   }
+
+  void changeLanguage() async{
+    final currentLanguage = await SharedPreferencesHelper.getCurrentLanguage();
+    if(currentLanguage == Language.english){
+      setLanguage(language: Language.vietnamese);
+    }else{
+      setLanguage(language: Language.english);
+    }
+  }
+
 }

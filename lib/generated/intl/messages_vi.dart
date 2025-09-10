@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "addNewTask": MessageLookupByLibrary.simpleMessage("Thêm công việc mới"),
     "cancel": MessageLookupByLibrary.simpleMessage("Từ chối"),
     "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
+    "changeLanguage": MessageLookupByLibrary.simpleMessage("Đổi ngôn ngữ"),
+    "changePassword": MessageLookupByLibrary.simpleMessage("Đổi mật khẩu"),
     "completed": MessageLookupByLibrary.simpleMessage("Hoàn thành"),
     "confirm": MessageLookupByLibrary.simpleMessage("Đồng ý"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -53,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginSuccess": MessageLookupByLibrary.simpleMessage(
       "Đăng nhập thành công",
     ),
+    "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("Danh sách việc làm"),
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Hoặc kết nối với"),
@@ -61,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Đăng ký tài khoản mới",
     ),
     "save": MessageLookupByLibrary.simpleMessage("Lưu"),
+    "setting": MessageLookupByLibrary.simpleMessage("Cài đặt"),
     "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
     "signUpSuccess": MessageLookupByLibrary.simpleMessage(
       "Đăng ký thành công, vui lòng xác nhận email",
