@@ -238,6 +238,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Login successfully`
+  String get loginSuccess {
+    return Intl.message(
+      'Login successfully',
+      name: 'loginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login failure, your account or password is incorrect`
+  String get loginFailure {
+    return Intl.message(
+      'Login failure, your account or password is incorrect',
+      name: 'loginFailure',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

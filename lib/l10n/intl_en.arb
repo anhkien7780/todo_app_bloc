@@ -26,5 +26,7 @@
   "registerNewAccount": "Register new account",
   "orConnectWith": "Or connect with",
   "signUpSuccess": "Sign up successfully, please confirm your email",
-  "emailIsAlreadyRegistered": "Email is already registered"
+  "emailIsAlreadyRegistered": "Email is already registered",
+  "loginSuccess": "Login successfully",
+  "loginFailure": "Login failure, your account or password is incorrect"
 }

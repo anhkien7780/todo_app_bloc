@@ -26,5 +26,7 @@
   "registerNewAccount": "Đăng ký tài khoản mới",
   "orConnectWith": "Hoặc kết nối với",
   "signUpSuccess": "Đăng ký thành công, vui lòng xác nhận email",
-  "emailIsAlreadyRegistered": "Email đã được đăng ký"
+  "emailIsAlreadyRegistered": "Email đã được đăng ký",
+  "loginSuccess": "Đăng nhập thành công",
+  "loginFailure": "Đăng nhập thất bại, tài khoản hoặc mật khẩu không đúng"
 }

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:todo_app_bloc/configs/app_configs.dart';
 import 'package:todo_app_bloc/configs/app_env_config.dart';
+import 'package:todo_app_bloc/database/secure_storage_helper.dart';
 import 'package:todo_app_bloc/network/supabase_services.dart';
 
 import 'app.dart';
@@ -21,7 +21,7 @@ void main() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     String? token = await messaging.getToken();
     if (token != null) {
-      log("Token: ${token.toString()}");
+      SecureStorageHelper.instance.saveFCMToken(token);
     }
   }
   runApp(const MyApp());

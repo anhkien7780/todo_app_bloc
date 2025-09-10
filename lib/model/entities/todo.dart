@@ -3,6 +3,7 @@ import '../enums/category.dart';
 
 class Todo {
   final String id;
+  final String userID;
   final String taskTitle;
   final Category category;
   final DateTime? date;
@@ -12,6 +13,7 @@ class Todo {
 
   Todo({
     String? id,
+    required this.userID,
     required this.taskTitle,
     required this.category,
     this.date,
@@ -22,6 +24,7 @@ class Todo {
 
   Todo copyWith({
     String? id,
+    String? userID,
     String? taskTitle,
     Category? category,
     DateTime? date,
@@ -31,6 +34,7 @@ class Todo {
   }) {
     return Todo(
       id: id ?? this.id,
+      userID: userID ?? this.userID,
       taskTitle: taskTitle ?? this.taskTitle,
       category: category ?? this.category,
       date: date ?? this.date,
@@ -43,6 +47,7 @@ class Todo {
   factory Todo.fromJson(Map<String, dynamic> json) {
     return Todo(
       id: json["id"],
+      userID: json["user_id"],
       taskTitle: json["task_title"],
       category: CategoryExtension.fromString(json["category"]),
       date: json["date"] != null ? DateTime.parse(json["date"]) : null,
@@ -55,6 +60,7 @@ class Todo {
   Map<String, dynamic> toJson() {
     return {
       "id": id,
+      "user_id": userID,
       "task_title": taskTitle,
       "category": category.name,
       "date": date?.toIso8601String(),

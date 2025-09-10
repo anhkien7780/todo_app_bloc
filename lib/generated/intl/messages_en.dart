@@ -45,6 +45,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "I already have account",
     ),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginFailure": MessageLookupByLibrary.simpleMessage(
+      "Login failure, your account or password is incorrect",
+    ),
+    "loginSuccess": MessageLookupByLibrary.simpleMessage("Login successfully"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("My Todo List"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Or connect with"),

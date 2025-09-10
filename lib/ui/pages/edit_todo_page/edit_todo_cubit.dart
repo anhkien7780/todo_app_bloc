@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/configs/app_configs.dart';
+import 'package:todo_app_bloc/database/secure_storage_helper.dart';
 import 'package:todo_app_bloc/extensions/datetime_extensions.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
@@ -67,7 +68,7 @@ class EditTodoCubit extends Cubit<EditTodoState> {
   }
 
   void setDate(DateTime date) {
-    if(state.time != null){
+    if (state.time != null) {
       date = date.withTimeOf(state.time!);
     }
     dateTextController.text = DateFormat(
@@ -103,6 +104,7 @@ class EditTodoCubit extends Cubit<EditTodoState> {
   Todo getTodo() {
     return Todo(
       id: state.id,
+      userID: SecureStorageHelper.instance.userID,
       taskTitle: state.taskTitle,
       category: state.selectedCategory,
       date: state.date,

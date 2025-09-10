@@ -1,6 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_app_bloc/configs/app_env_config.dart';
-import 'package:todo_app_bloc/model/enums/oauth_mode.dart';
 import 'package:todo_app_bloc/network/supabase_services.dart';
 
 abstract class AuthRepository {

@@ -47,6 +47,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tôi đã có tài khoản",
     ),
     "login": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
+    "loginFailure": MessageLookupByLibrary.simpleMessage(
+      "Đăng nhập thất bại, tài khoản hoặc mật khẩu không đúng",
+    ),
+    "loginSuccess": MessageLookupByLibrary.simpleMessage(
+      "Đăng nhập thành công",
+    ),
     "myTodoList": MessageLookupByLibrary.simpleMessage("Danh sách việc làm"),
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Hoặc kết nối với"),

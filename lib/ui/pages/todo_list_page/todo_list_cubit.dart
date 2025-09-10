@@ -21,6 +21,10 @@ class TodoListCubit extends Cubit<TodoListState> {
     // await Future.delayed(Duration(seconds: 2)); // fake loading
     try {
       final todos = await repository.fetchTodos();
+      print("Fetching...");
+      for (final todo in todos) {
+        print(todo.taskTitle);
+      }
       final uncompletedTodo = todos.where((todo) => !todo.isCompleted).toList();
       final completedTodo = todos.where((todo) => todo.isCompleted).toList();
       emit(

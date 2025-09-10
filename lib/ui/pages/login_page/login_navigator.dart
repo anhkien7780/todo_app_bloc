@@ -7,4 +7,8 @@ class LoginNavigator extends AppNavigator{
   Future<void> openSignUpPage(){
     return pushReplacementNamed(AppRouter.signUp);
   }
+
+  Future<void> openTodoListPage(){
+    return pushReplacementNamed(AppRouter.todoList);
+  }
 }

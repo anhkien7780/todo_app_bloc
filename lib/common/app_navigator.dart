@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:todo_app_bloc/router/router_config.dart';
 
 class AppNavigator {
   BuildContext context;
@@ -61,10 +60,4 @@ class AppNavigator {
     );
   }
 
-  Future<void> openTodoListPage() {
-    while (GoRouter.of(context).canPop()) {
-      GoRouter.of(context).pop();
-    }
-    return GoRouter.of(context).pushNamed(AppRouter.todoList);
-  }
 }

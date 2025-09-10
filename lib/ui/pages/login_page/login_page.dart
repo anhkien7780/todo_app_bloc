@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
 import 'package:todo_app_bloc/common/app_keys.dart';
-import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/ui/pages/login_page/login_navigator.dart';
 import 'package:todo_app_bloc/ui/widgets/buttons/custom_outlined_button.dart';
-import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
 import 'package:todo_app_bloc/ui/widgets/logo/todo_logo.dart';
 import 'package:todo_app_bloc/ui/widgets/text_fields/custom_text_form_field.dart';
 import 'package:todo_app_bloc/utils/app_validator.dart';
@@ -46,11 +44,11 @@ class LoginPageChild extends StatelessWidget {
           listener: (BuildContext context, state) {
             if (state.loadStatus == LoadStatus.success) {
               AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
-                Utils.buildSnackBar("Login success"),
+                Utils.buildSnackBar(S.of(context).loginSuccess),
               );
             } else if (state.loadStatus == LoadStatus.failure) {
               AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
-                Utils.buildSnackBar("Login failure, your account or password is incorrect"),
+                Utils.buildSnackBar(S.of(context).loginFailure),
               );
             }
           },
@@ -131,10 +129,6 @@ class LoginPageChild extends StatelessWidget {
               S.of(context).registerNewAccount,
               style: AppTextStyles.blackS16,
             ),
-          ),
-          Text(
-            S.of(context).orConnectWith,
-            style: AppTextStyles.blackS14SemiBold,
           ),
         ],
       ),
