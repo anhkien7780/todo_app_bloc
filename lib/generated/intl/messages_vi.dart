@@ -30,6 +30,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "changePassword": MessageLookupByLibrary.simpleMessage("Đổi mật khẩu"),
     "completed": MessageLookupByLibrary.simpleMessage("Hoàn thành"),
     "confirm": MessageLookupByLibrary.simpleMessage("Đồng ý"),
+    "confirmLogout": MessageLookupByLibrary.simpleMessage(
+      "Bạn có chắc muốn đăng xuất chứ?",
+    ),
     "confirmPassword": MessageLookupByLibrary.simpleMessage(
       "Nhập lại mật khẩu",
     ),
@@ -57,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("Danh sách việc làm"),
+    "no": MessageLookupByLibrary.simpleMessage("Không"),
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Hoặc kết nối với"),
     "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
@@ -77,5 +81,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tiêu đề không được để trống",
     ),
     "time": MessageLookupByLibrary.simpleMessage("Thời gian"),
+    "yes": MessageLookupByLibrary.simpleMessage("Đúng"),
   };
 }

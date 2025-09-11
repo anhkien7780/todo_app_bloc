@@ -8,6 +8,7 @@ import 'package:todo_app_bloc/model/enums/language.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/ui/pages/setting_page/setting_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/setting_page/setting_navigator.dart';
+import 'package:todo_app_bloc/ui/pages/setting_page/widgets/confirm_logout_dialog.dart';
 import 'package:todo_app_bloc/ui/pages/setting_page/widgets/setting_button.dart';
 import 'package:todo_app_bloc/ui/pages/setting_page/widgets/setting_header.dart';
 import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
@@ -67,14 +68,23 @@ class SettingChildPage extends StatelessWidget {
             SettingButton(
               leadingIcon: Icon(Icons.logout),
               title: S.of(context).logout,
-              onPressed: () {
-                // TODO: fix bux - back button back to todo list page after logout
-                settingCubit.onLogoutButtonPressed();
+              onPressed: () async {
+                final result = await _buildShowDialog(context);
+                if (result == true) {
+                  settingCubit.onLogoutButtonPressed();
+                }
               },
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Future<bool?> _buildShowDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => ConfirmLogoutDialog(),
     );
   }
 }

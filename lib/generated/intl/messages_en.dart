@@ -30,6 +30,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+    "confirmLogout": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to logout?",
+    ),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm password"),
     "date": MessageLookupByLibrary.simpleMessage("Date"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -53,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginSuccess": MessageLookupByLibrary.simpleMessage("Login successfully"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("My Todo List"),
+    "no": MessageLookupByLibrary.simpleMessage("No"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Or connect with"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -73,5 +77,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Task title is empty",
     ),
     "time": MessageLookupByLibrary.simpleMessage("Time"),
+    "yes": MessageLookupByLibrary.simpleMessage("Yes"),
   };
 }

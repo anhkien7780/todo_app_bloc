@@ -5,14 +5,14 @@ import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
 import 'package:todo_app_bloc/ui/widgets/alert_dialogs/base_alert_dialog.dart';
 
-class ConfirmDeleteDialog extends StatelessWidget {
-  const ConfirmDeleteDialog({super.key});
+class ConfirmLogoutDialog extends StatelessWidget {
+  const ConfirmLogoutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BaseAlertDialog(
       title: Text(
-        S.of(context).deleteDialogTitle,
+        S.of(context).confirmLogout,
         textAlign: TextAlign.center,
         maxLines: 2,
         style: AppTextStyles.blackS16SemiBold,
@@ -25,20 +25,20 @@ class ConfirmDeleteDialog extends StatelessWidget {
             child: TextButton(
               onPressed: () => Navigator.of(context).pop(false),
               child: Text(
-                S.of(context).cancel,
-                style: AppTextStyles.whiteS14SemiBold.copyWith(color: AppColors.primary),
+                S.of(context).no,
+                style: AppTextStyles.whiteS14SemiBold.copyWith(
+                  color: AppColors.primary,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
           ),
           Expanded(
             child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: AppColors.error,
-              ),
+              style: TextButton.styleFrom(backgroundColor: AppColors.error),
               onPressed: () => Navigator.of(context).pop(true),
               child: Text(
-                S.of(context).delete,
+                S.of(context).yes,
                 style: AppTextStyles.whiteS14SemiBold,
                 textAlign: TextAlign.center,
               ),

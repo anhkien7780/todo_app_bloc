@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
 import 'package:todo_app_bloc/common/app_dimens.dart';
@@ -8,8 +6,6 @@ import 'package:todo_app_bloc/common/app_svgs.dart';
 import 'package:todo_app_bloc/common/app_text_styles.dart';
 import 'package:todo_app_bloc/configs/app_configs.dart';
 import 'package:todo_app_bloc/generated/l10n.dart';
-import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
-import 'package:todo_app_bloc/model/enums/language.dart';
 import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
 
 class TodosScreenHeader extends StatelessWidget {

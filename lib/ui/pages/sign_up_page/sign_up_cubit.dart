@@ -25,7 +25,6 @@ class SignUpCubit extends Cubit<SignUpState> {
         email: accountTextController.text,
         password: passwordTextController.text,
       );
-      final Session? session = response.session;
       final User? user = response.user;
       if(user != null){
         emit(state.copyWith(loadStatus: LoadStatus.success));

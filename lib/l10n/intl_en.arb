@@ -32,5 +32,8 @@
   "setting": "Setting",
   "logout": "Logout",
   "changePassword": "Change Password",
-  "changeLanguage": "Change Language"
+  "changeLanguage": "Change Language",
+  "confirmLogout": "Are you sure you want to logout?",
+  "yes": "Yes",
+  "no": "No"
 }
