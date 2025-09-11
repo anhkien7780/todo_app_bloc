@@ -43,9 +43,6 @@ class _SplashChildPageState extends State<SplashChildPage> {
 
   void _setup() async {
     await _appSettingCubit.getInitialSetting();
-    // await _cubit.openTodoListPage();
-
-    //Test ui only
     await _cubit.openLoginPage();
   }
 

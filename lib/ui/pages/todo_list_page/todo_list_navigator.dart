@@ -23,6 +23,6 @@ class TodoListNavigator extends AppNavigator {
   }
 
   Future<void> openSettingPage() async {
-    await pushNamed(AppRouter.setting);
+    goNamed(AppRouter.setting);
   }
 }

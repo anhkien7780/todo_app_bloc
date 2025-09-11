@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -33,7 +31,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         emit(state.copyWith(loadStatus: LoadStatus.success));
         emit(state.copyWith(message: "Sign up successfully, please confirm your email"));
       }
-    } on AuthException catch (_, e){
+    } on AuthException catch (_, _){
       emit(state.copyWith(loadStatus: LoadStatus.failure));
       emit(state.copyWith(message: "Email is already registered"));
     }
