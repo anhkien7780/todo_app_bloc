@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
+import 'package:todo_app_bloc/database/secure_storage_helper.dart';
 import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_navigator.dart';
@@ -43,7 +44,12 @@ class _SplashChildPageState extends State<SplashChildPage> {
 
   void _setup() async {
     await _appSettingCubit.getInitialSetting();
-    await _cubit.openLoginPage();
+    final session = await SecureStorageHelper.instance.getSession();
+    if (session != null) {
+      _cubit.openTodoListPage();
+    } else {
+      await _cubit.openLoginPage();
+    }
   }
 
   @override

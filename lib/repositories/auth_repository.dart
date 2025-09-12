@@ -30,7 +30,6 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<void> logout() async {
     await SupabaseServices.supabaseClient.auth.signOut();
     SecureStorageHelper.instance.removeSession();
-    SecureStorageHelper.instance.removeUser();
   }
 
   @override

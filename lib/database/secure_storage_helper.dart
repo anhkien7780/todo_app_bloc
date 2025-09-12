@@ -7,7 +7,6 @@ import 'package:todo_app_bloc/database/shared_preferences_helper.dart';
 class SecureStorageHelper {
   static const _fcmToken = 'fcm_token';
   static const _session = 'session';
-  static const _user = 'user';
 
   final FlutterSecureStorage _storage;
 
@@ -28,11 +27,7 @@ class SecureStorageHelper {
 
   void saveSession(Session session) async {
     await _storage.write(key: _session, value: jsonEncode(session.toJson()));
-  }
-
-  void saveUser(User user) async {
-    _userID = user.id;
-    await _storage.write(key: _user, value: jsonEncode(user.toJson()));
+    _userID = session.user.id;
   }
 
   void removeSession() async {
@@ -41,11 +36,6 @@ class SecureStorageHelper {
 
   void removeFCMToken() async {
     await _storage.delete(key: _fcmToken);
-  }
-
-  void removeUser() async {
-    _userID = "";
-    await _storage.delete(key: _user);
   }
 
   Future<String?> getFCMToken() async {
@@ -79,26 +69,9 @@ class SecureStorageHelper {
     }
   }
 
-  Future<User?> getUser() async {
-    try {
-      final isFirstTime = await SharedPreferencesHelper.isFirstRun();
-      if (isFirstTime) {
-        firstTimeSetup();
-        return null;
-      }
-      final userJson = await _storage.read(key: _user);
-      if (userJson == null) {
-        return null;
-      }
-      return User.fromJson(jsonDecode(userJson));
-    } catch (e) {
-      return null;
-    }
-  }
 
   void firstTimeSetup() {
     removeFCMToken();
     removeSession();
-    removeUser();
   }
 }

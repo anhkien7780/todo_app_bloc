@@ -7,6 +7,7 @@ import 'package:todo_app_bloc/model/enums/language.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/router/router_config.dart';
+import 'package:todo_app_bloc/utils/auth_deeplink_handle.dart';
 
 import 'generated/l10n.dart';
 import 'global_blocs/settings/app_setting_state.dart';
@@ -19,9 +20,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final AuthDeepLinkHandler _authDeepLinkHandler = AuthDeepLinkHandler();
+
   @override
   void initState() {
     super.initState();
+    _authDeepLinkHandler.init();
   }
 
   @override

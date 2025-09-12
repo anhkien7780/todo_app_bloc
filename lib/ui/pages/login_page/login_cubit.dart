@@ -32,7 +32,6 @@ class LoginCubit extends Cubit<LoginState> {
 
       if (user != null && session != null) {
         SecureStorageHelper.instance.saveSession(session);
-        SecureStorageHelper.instance.saveUser(user);
         emit(state.copyWith(loadStatus: LoadStatus.success));
         navigator.openTodoListPage();
       }
