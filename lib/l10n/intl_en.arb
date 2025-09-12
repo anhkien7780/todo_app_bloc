@@ -35,5 +35,12 @@
   "changeLanguage": "Change Language",
   "confirmLogout": "Are you sure you want to logout?",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "enterYourNewPassword": "Enter your new password",
+  "enterYourCurrentPassword": "Enter your current password",
+  "enterYourConfirmPassword": "Enter your confirm password",
+  "newPassword": "New password",
+  "changePasswordSuccess": "Change password success!",
+  "changePasswordFailure": "Your current password is incorrect!",
+  "changePasswordError": "Change password failed! Please try again!"
 }

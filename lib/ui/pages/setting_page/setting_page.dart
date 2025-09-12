@@ -50,7 +50,7 @@ class SettingChildPage extends StatelessWidget {
               leadingIcon: Icon(Icons.lock),
               title: S.of(context).changePassword,
               onPressed: () {
-                //TODO: Implement change password
+                settingCubit.onChangePasswordButtonPressed();
               },
             ),
             SettingButton(

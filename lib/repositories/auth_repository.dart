@@ -11,6 +11,10 @@ abstract class AuthRepository {
     required String password,
   });
 
+  Future<UserResponse> changePassword({
+    required String newPassword,
+  });
+
   Future<void> logout();
 }
 
@@ -41,6 +45,15 @@ class AuthRepositoryImpl extends AuthRepository {
       email: email,
       password: password,
       emailRedirectTo: Environment.prod.redirectUrl,
+    );
+  }
+
+  @override
+  Future<UserResponse> changePassword({
+    required String newPassword,
+  }) async {
+    return await SupabaseServices.supabaseClient.auth.updateUser(
+      UserAttributes(password: newPassword),
     );
   }
 }

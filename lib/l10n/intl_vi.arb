@@ -35,5 +35,12 @@
   "changeLanguage": "Đổi ngôn ngữ",
   "confirmLogout": "Bạn có chắc muốn đăng xuất chứ?",
   "yes": "Đúng",
-  "no": "Không"
+  "no": "Không",
+  "enterYourNewPassword": "Nhập mật khẩu mới",
+  "enterYourCurrentPassword": "Nhập mật khẩu hiện tại",
+  "enterYourConfirmPassword": "Nhập lại mật khẩu",
+  "newPassword": "Mật khẩu mới",
+  "changePasswordSuccess": "Đổi mật khẩu thành công!",
+  "changePasswordFailure": "Mật khẩu hiện tại của bạn không đúng!",
+  "changePasswordError": "Đổi mật khẩu thất bại! Vui lòng thử lại!"
 }

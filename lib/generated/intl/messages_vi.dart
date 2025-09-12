@@ -28,6 +28,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "category": MessageLookupByLibrary.simpleMessage("Danh mục"),
     "changeLanguage": MessageLookupByLibrary.simpleMessage("Đổi ngôn ngữ"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Đổi mật khẩu"),
+    "changePasswordError": MessageLookupByLibrary.simpleMessage(
+      "Đổi mật khẩu thất bại! Vui lòng thử lại!",
+    ),
+    "changePasswordFailure": MessageLookupByLibrary.simpleMessage(
+      "Mật khẩu hiện tại của bạn không đúng!",
+    ),
+    "changePasswordSuccess": MessageLookupByLibrary.simpleMessage(
+      "Đổi mật khẩu thành công!",
+    ),
     "completed": MessageLookupByLibrary.simpleMessage("Hoàn thành"),
     "confirm": MessageLookupByLibrary.simpleMessage("Đồng ý"),
     "confirmLogout": MessageLookupByLibrary.simpleMessage(
@@ -45,6 +54,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailIsAlreadyRegistered": MessageLookupByLibrary.simpleMessage(
       "Email đã được đăng ký",
     ),
+    "enterYourConfirmPassword": MessageLookupByLibrary.simpleMessage(
+      "Nhập lại mật khẩu",
+    ),
+    "enterYourCurrentPassword": MessageLookupByLibrary.simpleMessage(
+      "Nhập mật khẩu hiện tại",
+    ),
+    "enterYourNewPassword": MessageLookupByLibrary.simpleMessage(
+      "Nhập mật khẩu mới",
+    ),
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Tải danh sách việc làm thất bại",
     ),
@@ -60,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("Danh sách việc làm"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("Mật khẩu mới"),
     "no": MessageLookupByLibrary.simpleMessage("Không"),
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Hoặc kết nối với"),

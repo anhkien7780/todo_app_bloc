@@ -28,6 +28,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "category": MessageLookupByLibrary.simpleMessage("Category"),
     "changeLanguage": MessageLookupByLibrary.simpleMessage("Change Language"),
     "changePassword": MessageLookupByLibrary.simpleMessage("Change Password"),
+    "changePasswordError": MessageLookupByLibrary.simpleMessage(
+      "Change password failed! Please try again!",
+    ),
+    "changePasswordFailure": MessageLookupByLibrary.simpleMessage(
+      "Your current password is incorrect!",
+    ),
+    "changePasswordSuccess": MessageLookupByLibrary.simpleMessage(
+      "Change password success!",
+    ),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmLogout": MessageLookupByLibrary.simpleMessage(
@@ -43,6 +52,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailIsAlreadyRegistered": MessageLookupByLibrary.simpleMessage(
       "Email is already registered",
     ),
+    "enterYourConfirmPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter your confirm password",
+    ),
+    "enterYourCurrentPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter your current password",
+    ),
+    "enterYourNewPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter your new password",
+    ),
     "failedToLoadTodos": MessageLookupByLibrary.simpleMessage(
       "Failed to load todos",
     ),
@@ -56,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginSuccess": MessageLookupByLibrary.simpleMessage("Login successfully"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "myTodoList": MessageLookupByLibrary.simpleMessage("My Todo List"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
     "no": MessageLookupByLibrary.simpleMessage("No"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Or connect with"),

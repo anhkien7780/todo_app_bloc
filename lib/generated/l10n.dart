@@ -308,6 +308,76 @@ class S {
   String get no {
     return Intl.message('No', name: 'no', desc: '', args: []);
   }
+
+  /// `Enter your new password`
+  String get enterYourNewPassword {
+    return Intl.message(
+      'Enter your new password',
+      name: 'enterYourNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your current password`
+  String get enterYourCurrentPassword {
+    return Intl.message(
+      'Enter your current password',
+      name: 'enterYourCurrentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your confirm password`
+  String get enterYourConfirmPassword {
+    return Intl.message(
+      'Enter your confirm password',
+      name: 'enterYourConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password`
+  String get newPassword {
+    return Intl.message(
+      'New password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password success!`
+  String get changePasswordSuccess {
+    return Intl.message(
+      'Change password success!',
+      name: 'changePasswordSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your current password is incorrect!`
+  String get changePasswordFailure {
+    return Intl.message(
+      'Your current password is incorrect!',
+      name: 'changePasswordFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password failed! Please try again!`
+  String get changePasswordError {
+    return Intl.message(
+      'Change password failed! Please try again!',
+      name: 'changePasswordError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
