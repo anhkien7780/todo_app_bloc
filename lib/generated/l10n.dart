@@ -378,6 +378,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter your email.`
+  String get pleaseEnterYourEmail {
+    return Intl.message(
+      'Please enter your email.',
+      name: 'pleaseEnterYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid email.`
+  String get pleaseEnterValidEmail {
+    return Intl.message(
+      'Please enter valid email.',
+      name: 'pleaseEnterValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password.`
+  String get pleaseEnterYourPassword {
+    return Intl.message(
+      'Please enter your password.',
+      name: 'pleaseEnterYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character.`
+  String get passwordRuleError {
+    return Intl.message(
+      'Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character.',
+      name: 'passwordRuleError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password again.`
+  String get pleaseEnterPasswordAgain {
+    return Intl.message(
+      'Please enter your password again.',
+      name: 'pleaseEnterPasswordAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password not match.`
+  String get passwordNotMatch {
+    return Intl.message(
+      'Password not match.',
+      name: 'passwordNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

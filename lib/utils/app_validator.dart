@@ -1,3 +1,5 @@
+import 'package:todo_app_bloc/generated/l10n.dart';
+
 class AppValidator {
   AppValidator._();
 
@@ -17,18 +19,18 @@ class AppValidator {
 
   static String? validateEmail(String? email) {
     if (email == null || email.isEmpty) {
-      return "Please enter your email.";
+      return S.current.pleaseEnterYourEmail;
     } else if (!AppValidator._isValidEmail(email)) {
-      return "Please enter valid email.";
+      return S.current.pleaseEnterValidEmail;
     }
     return null;
   }
 
   static String? validatePassword(String? password) {
     if (password == null || password.isEmpty) {
-      return "Please enter your password.";
+      return S.current.pleaseEnterYourPassword;
     } else if (!_isValidPassword(password)) {
-      return "Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character.";
+      return S.current.passwordRuleError;
     }
     return null;
   }
@@ -38,9 +40,9 @@ class AppValidator {
     String? confirmPassword,
   ) {
     if (confirmPassword == null || confirmPassword.isEmpty) {
-      return "Please enter your password again.";
+      return S.current.pleaseEnterPasswordAgain;
     } else if(password != confirmPassword){
-      return "Password not match";
+      return S.current.passwordNotMatch;
     }
     return null;
   }

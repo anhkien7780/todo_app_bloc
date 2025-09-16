@@ -83,6 +83,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "notes": MessageLookupByLibrary.simpleMessage("Ghi chú"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Hoặc kết nối với"),
     "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
+    "passwordNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Mật khẩu không khớp.",
+    ),
+    "passwordRuleError": MessageLookupByLibrary.simpleMessage(
+      "Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ hoa, 1 số và 1 ký tự đặc biệt.",
+    ),
+    "pleaseEnterPasswordAgain": MessageLookupByLibrary.simpleMessage(
+      "Vui lòng nhập lại mật khẩu.",
+    ),
+    "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
+      "Vui lòng nhập email hợp lệ.",
+    ),
+    "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
+      "Vui lòng nhập email.",
+    ),
+    "pleaseEnterYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Vui lòng nhập mật khẩu.",
+    ),
     "registerNewAccount": MessageLookupByLibrary.simpleMessage(
       "Đăng ký tài khoản mới",
     ),

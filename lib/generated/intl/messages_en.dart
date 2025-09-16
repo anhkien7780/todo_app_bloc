@@ -79,6 +79,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
     "orConnectWith": MessageLookupByLibrary.simpleMessage("Or connect with"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordNotMatch": MessageLookupByLibrary.simpleMessage(
+      "Password not match.",
+    ),
+    "passwordRuleError": MessageLookupByLibrary.simpleMessage(
+      "Password must be at least 8 characters, include 1 uppercase letter, 1 number, and 1 special character.",
+    ),
+    "pleaseEnterPasswordAgain": MessageLookupByLibrary.simpleMessage(
+      "Please enter your password again.",
+    ),
+    "pleaseEnterValidEmail": MessageLookupByLibrary.simpleMessage(
+      "Please enter valid email.",
+    ),
+    "pleaseEnterYourEmail": MessageLookupByLibrary.simpleMessage(
+      "Please enter your email.",
+    ),
+    "pleaseEnterYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Please enter your password.",
+    ),
     "registerNewAccount": MessageLookupByLibrary.simpleMessage(
       "Register new account",
     ),
