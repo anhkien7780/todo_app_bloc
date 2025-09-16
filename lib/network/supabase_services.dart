@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_app_bloc/configs/app_configs.dart';
+import 'package:todo_app_bloc/model/entities/profile.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 
 class SupabaseServices {
@@ -20,7 +21,7 @@ class SupabaseServices {
     }
   }
 
-  void adb(){}
+  void adb() {}
 
   static Future<Todo> toggleCheckBox(Todo todo) async {
     try {
@@ -65,6 +66,68 @@ class SupabaseServices {
       return todos[0];
     } catch (e) {
       throw Exception("Add todo is failed: ${e.toString()}");
+    }
+  }
+
+  static Future<void> logout() async {
+    try {
+      await supabaseClient.auth.signOut();
+    } catch (e) {
+      throw Exception("Logout is failed: ${e.toString()}");
+    }
+  }
+
+  static Future<Profile> addProfile(Profile profile) async {
+    try {
+      final response = await supabaseClient
+          .from("profiles")
+          .insert(profile)
+          .select();
+      final profiles = response
+          .map((profile) => Profile.fromJson(profile))
+          .toList();
+      return profiles[0];
+    } catch (e) {
+      throw Exception("Add profile is failed: ${e.toString()}");
+    }
+  }
+
+  static Future<Profile> updateProfile(Profile profile) async {
+    try {
+      final response = await supabaseClient
+          .from("profiles")
+          .update(profile.toJson())
+          .eq("id", profile.id)
+          .select();
+      final profiles = response
+          .map((profile) => Profile.fromJson(profile))
+          .toList();
+      return profiles[0];
+    } catch (e) {
+      throw Exception("Update profile is failed: ${e.toString()}");
+    }
+  }
+
+  static Future<Profile> getProfile(String userID) async {
+    try {
+      final response = await supabaseClient
+          .from("profiles")
+          .select()
+          .eq("id", userID);
+      final profiles = response
+          .map((profile) => Profile.fromJson(profile))
+          .toList();
+      return profiles[0];
+    } catch (e) {
+      throw Exception("Get profile is failed: ${e.toString()}");
+    }
+  }
+
+  static Future<void> deleteProfile(String userID) async {
+    try {
+      await supabaseClient.from("profiles").delete().eq("id", userID);
+    } catch (e) {
+      throw Exception("Delete profile is failed: ${e.toString()}");
     }
   }
 }

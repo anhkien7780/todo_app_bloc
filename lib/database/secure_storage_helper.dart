@@ -2,11 +2,13 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:todo_app_bloc/database/shared_preferences_helper.dart';
 
 class SecureStorageHelper {
-  static const _fcmToken = 'fcm_token';
+  static const _fcmTokenKey = 'fcm_token';
+
+  late final String _fcmToken;
+
+  String get fcmToken => _fcmToken;
 
   final FlutterSecureStorage _storage;
-
-
 
   SecureStorageHelper._(this._storage);
 
@@ -17,11 +19,12 @@ class SecureStorageHelper {
   static SecureStorageHelper get instance => _instance;
 
   void saveFCMToken(String fcmToken) async {
-    await _storage.write(key: _fcmToken, value: fcmToken);
+    _fcmToken = fcmToken;
+    await _storage.write(key: _fcmTokenKey, value: fcmToken);
   }
 
   void removeFCMToken() async {
-    await _storage.delete(key: _fcmToken);
+    await _storage.delete(key: _fcmTokenKey);
   }
 
   Future<String?> getFCMToken() async {
@@ -31,14 +34,12 @@ class SecureStorageHelper {
         firstTimeSetup();
         return null;
       }
-      final fcmToken = await _storage.read(key: _fcmToken);
+      final fcmToken = await _storage.read(key: _fcmTokenKey);
       return fcmToken;
     } catch (e) {
       return null;
     }
   }
-
-
 
   void firstTimeSetup() {
     removeFCMToken();

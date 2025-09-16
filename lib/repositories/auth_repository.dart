@@ -31,7 +31,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<void> logout() async {
-    await SupabaseServices.supabaseClient.auth.signOut();
+    await SupabaseServices.logout();
   }
 
   @override

@@ -1,19 +1,26 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo_app_bloc/ui/pages/splash/spash_state.dart';
+import 'package:todo_app_bloc/network/supabase_services.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_navigator.dart';
+import 'package:todo_app_bloc/ui/pages/splash/splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
   final SplashNavigator navigator;
 
   SplashCubit({required this.navigator}) : super(const SplashState());
 
-  Future<void> openTodoListPage() async {
-    await Future.delayed(Duration(seconds: 3));
+  void openTodoListPage() {
     navigator.openTodoListPage();
   }
 
-  Future<void> openLoginPage() async {
-    await Future.delayed(Duration(seconds: 3));
+  void openLoginPage() {
     navigator.openLoginPage();
+  }
+
+  bool isSignIn() {
+    final session = SupabaseServices.supabaseClient.auth.currentSession;
+    if (session != null) {
+      return true;
+    }
+    return false;
   }
 }

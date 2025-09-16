@@ -17,11 +17,14 @@ void main() async {
   await dotenv.load(fileName: ".env");
   await SupabaseServices.supabaseInit();
   if (Platform.isAndroid) {
-    await Firebase.initializeApp();
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
-    String? token = await messaging.getToken();
-    if (token != null) {
-      SecureStorageHelper.instance.saveFCMToken(token);
+    final token = await SecureStorageHelper.instance.getFCMToken();
+    if (token == null) {
+      await Firebase.initializeApp();
+      FirebaseMessaging messaging = FirebaseMessaging.instance;
+      String? token = await messaging.getToken();
+      if (token != null) {
+        SecureStorageHelper.instance.saveFCMToken(token);
+      }
     }
   }
   runApp(const MyApp());
