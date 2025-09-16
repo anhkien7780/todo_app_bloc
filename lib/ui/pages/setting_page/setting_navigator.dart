@@ -5,7 +5,7 @@ class SettingNavigator extends AppNavigator {
   SettingNavigator({required super.context});
 
   void onBackButtonPressed() {
-    pop();
+    pushReplacementNamed(AppRouter.todoList);
   }
 
   void openChangePasswordPage() {

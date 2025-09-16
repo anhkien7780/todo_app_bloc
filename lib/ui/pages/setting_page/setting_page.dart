@@ -36,47 +36,45 @@ class SettingChildPage extends StatelessWidget {
     final settingCubit = context.read<SettingCubit>();
     final appCubit = context.read<AppSettingCubit>();
     final language = appCubit.state.language;
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          spacing: AppDimens.paddingSmallest,
-          children: [
-            SettingHeader(
-              onCloseButtonPressed: () {
-                settingCubit.onBackButtonPressed();
-              },
+    return Scaffold(
+      body: Column(
+        spacing: AppDimens.paddingSmallest,
+        children: [
+          SettingHeader(
+            onCloseButtonPressed: () {
+              settingCubit.onBackButtonPressed();
+            },
+          ),
+          SettingButton(
+            leadingIcon: Icon(Icons.lock),
+            title: S.of(context).changePassword,
+            onPressed: () {
+              settingCubit.onChangePasswordButtonPressed();
+            },
+          ),
+          SettingButton(
+            leadingIcon: Icon(Icons.language),
+            title: S.of(context).changeLanguage,
+            onPressed: () {
+              appCubit.changeLanguage();
+            },
+            trailingIcon: SVGImage(
+              imageUri: language == Language.english
+                  ? AppSvgs.icUSFlag
+                  : AppSvgs.icVNFlag,
             ),
-            SettingButton(
-              leadingIcon: Icon(Icons.lock),
-              title: S.of(context).changePassword,
-              onPressed: () {
-                settingCubit.onChangePasswordButtonPressed();
-              },
-            ),
-            SettingButton(
-              leadingIcon: Icon(Icons.language),
-              title: S.of(context).changeLanguage,
-              onPressed: () {
-                appCubit.changeLanguage();
-              },
-              trailingIcon: SVGImage(
-                imageUri: language == Language.english
-                    ? AppSvgs.icUSFlag
-                    : AppSvgs.icVNFlag,
-              ),
-            ),
-            SettingButton(
-              leadingIcon: Icon(Icons.logout),
-              title: S.of(context).logout,
-              onPressed: () async {
-                final result = await _buildShowDialog(context);
-                if (result == true) {
-                  settingCubit.onLogoutButtonPressed();
-                }
-              },
-            ),
-          ],
-        ),
+          ),
+          SettingButton(
+            leadingIcon: Icon(Icons.logout),
+            title: S.of(context).logout,
+            onPressed: () async {
+              final result = await _buildShowDialog(context);
+              if (result == true) {
+                settingCubit.onLogoutButtonPressed();
+              }
+            },
+          ),
+        ],
       ),
     );
   }

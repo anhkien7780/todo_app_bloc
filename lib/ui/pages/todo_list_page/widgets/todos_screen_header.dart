@@ -25,7 +25,7 @@ class TodosScreenHeader extends StatelessWidget {
           fit: StackFit.loose,
           children: [
             Container(
-              height: AppDimens.todoListPageHeaderHeight,
+              height: AppDimens.headerHeightBig,
               decoration: BoxDecoration(color: AppColors.primary),
             ),
             _buildEllipse1(),

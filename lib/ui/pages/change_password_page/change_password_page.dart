@@ -36,42 +36,40 @@ class ChangePasswordChildPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
-            listener: (BuildContext context, state) {
-              if (state.loadStatus == LoadStatus.success) {
-                AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
-                  Utils.buildSnackBar(S.of(context).changePasswordSuccess),
-                );
-              } else if (state.loadStatus == LoadStatus.failure) {
-                AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
-                  Utils.buildSnackBar(S.of(context).changePasswordFailure),
-                );
-              } else if (state.loadStatus == LoadStatus.error) {
-                AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
-                  Utils.buildSnackBar(S.of(context).changePasswordError),
-                );
-              }
-            },
-            builder: (BuildContext context, state) {
-              return Column(
-                children: [
-                  _buildHeader(context),
-                  const SizedBox(height: AppDimens.paddingLarge),
-                  _buildForm(context),
-                  const SizedBox(height: AppDimens.paddingNormal),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppDimens.paddingNormal,
-                    ),
-                    child: _buildButtons(context),
-                  ),
-                ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
+          listener: (BuildContext context, state) {
+            if (state.loadStatus == LoadStatus.success) {
+              AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
+                Utils.buildSnackBar(S.of(context).changePasswordSuccess),
               );
-            },
-          ),
+            } else if (state.loadStatus == LoadStatus.failure) {
+              AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
+                Utils.buildSnackBar(S.of(context).changePasswordFailure),
+              );
+            } else if (state.loadStatus == LoadStatus.error) {
+              AppKeys.rootScaffoldMessengerKey.currentState?.showSnackBar(
+                Utils.buildSnackBar(S.of(context).changePasswordError),
+              );
+            }
+          },
+          builder: (BuildContext context, state) {
+            return Column(
+              children: [
+                _buildHeader(context),
+                const SizedBox(height: AppDimens.paddingLarge),
+                _buildForm(context),
+                const SizedBox(height: AppDimens.paddingNormal),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppDimens.paddingNormal,
+                  ),
+                  child: _buildButtons(context),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -79,6 +77,7 @@ class ChangePasswordChildPage extends StatelessWidget {
 
   Widget _buildHeader(BuildContext context) {
     return BaseHeader(
+      headerHeight: AppDimens.headerHeightNormal,
       title: S.of(context).changePassword,
       leadingButton: _buildCloseButton(context),
     );

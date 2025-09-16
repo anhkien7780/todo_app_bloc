@@ -15,6 +15,7 @@ class SettingHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseHeader(
       title: S.of(context).setting,
+      headerHeight: AppDimens.headerHeightNormal,
       leadingButton: _buildCloseButton(),
     );
   }

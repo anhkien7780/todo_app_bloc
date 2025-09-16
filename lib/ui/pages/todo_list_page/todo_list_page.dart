@@ -96,7 +96,7 @@ class _TodoListChildPageState extends State<TodoListChildPage> {
 
   Positioned _buildTodoList() {
     return Positioned.fill(
-      top: (AppDimens.todoListPageHeaderHeight / 2) + AppDimens.marginLarge,
+      top: (AppDimens.headerHeightBig / 2) + AppDimens.marginLarge,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppDimens.marginNormal,

@@ -8,11 +8,13 @@ import 'package:todo_app_bloc/ui/widgets/images/svg_image.dart';
 class BaseHeader extends StatelessWidget {
   final String? title;
   final Widget? leadingButton;
+  final double? headerHeight;
 
   const BaseHeader({
     super.key,
     this.title,
     this.leadingButton,
+    this.headerHeight,
   });
 
   @override
@@ -23,7 +25,7 @@ class BaseHeader extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          height: AppDimens.addTodoPageHeaderHeight,
+          height: headerHeight ?? AppDimens.headerHeightSmall,
           color: AppColors.primary,
         ),
         _buildEllipse1(),
