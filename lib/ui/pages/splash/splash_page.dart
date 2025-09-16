@@ -42,18 +42,6 @@ class _SplashChildPageState extends State<SplashChildPage> {
     _cubit = context.read<SplashCubit>();
     _appSettingCubit = context.read<AppSettingCubit>();
     _setup();
-    // Deep link listener
-    _authSubscription = SupabaseServices.supabaseClient.auth.onAuthStateChange
-        .listen((data) {
-      final AuthChangeEvent event = data.event;
-      switch (event) {
-        case AuthChangeEvent.signedIn:
-          _cubit.openTodoListPage();
-          break;
-        default:
-          break;
-      }
-    });
   }
 
   @override
@@ -64,12 +52,29 @@ class _SplashChildPageState extends State<SplashChildPage> {
 
   void _setup() async {
     await _appSettingCubit.getInitialSetting();
-    final session = SupabaseServices.supabaseClient.auth.currentSession;
+    // Deep link listener
+    _authSubscription = SupabaseServices.supabaseClient.auth.onAuthStateChange
+        .listen((data) {
+          final AuthChangeEvent event = data.event;
+          switch (event) {
+            case AuthChangeEvent.signedIn:
+              _cubit.openTodoListPage();
+              break;
+            default:
+              break;
+          }
+        });
+
     await Future.delayed(Duration(seconds: 3));
+    final session = SupabaseServices.supabaseClient.auth.currentSession;
     if (session != null) {
-      _cubit.openTodoListPage();
+      if (mounted) {
+        _cubit.openTodoListPage();
+      }
     } else {
-      _cubit.openLoginPage();
+      if(mounted) {
+        _cubit.openLoginPage();
+      }
     }
   }
 
