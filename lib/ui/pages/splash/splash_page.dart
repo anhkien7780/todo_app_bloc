@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
-import 'package:todo_app_bloc/database/secure_storage_helper.dart';
 import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
+import 'package:todo_app_bloc/network/supabase_services.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_navigator.dart';
 import 'package:todo_app_bloc/ui/widgets/logo/todo_logo.dart';
@@ -31,24 +34,46 @@ class SplashChildPage extends StatefulWidget {
 class _SplashChildPageState extends State<SplashChildPage> {
   late SplashCubit _cubit;
   late AppSettingCubit _appSettingCubit;
+  late final StreamSubscription<AuthState> _authSubscription;
 
   @override
   void initState() {
     super.initState();
+
+    // Deep link listener
+    _authSubscription = SupabaseServices.supabaseClient.auth.onAuthStateChange
+        .listen((data) {
+          final AuthChangeEvent event = data.event;
+          switch (event) {
+            case AuthChangeEvent.signedIn:
+              _cubit.openTodoListPage();
+              break;
+            default:
+              break;
+          }
+        });
     _cubit = context.read<SplashCubit>();
     _appSettingCubit = context.read<AppSettingCubit>();
     _setup();
   }
 
+  @override
+  void dispose(){
+    _authSubscription.cancel();
+    _cubit.close();
+    super.dispose();
+  }
+
   void _setup() async {
     await _appSettingCubit.getInitialSetting();
-    final session = await SecureStorageHelper.instance.getSession();
+    final session = SupabaseServices.supabaseClient.auth.currentSession;
     if (session != null) {
       _cubit.openTodoListPage();
     } else {
       await _cubit.openLoginPage();
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +87,4 @@ class _SplashChildPageState extends State<SplashChildPage> {
     );
   }
 
-  @override
-  void dispose() {
-    _cubit.close();
-    super.dispose();
-  }
 }

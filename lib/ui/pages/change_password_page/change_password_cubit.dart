@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:todo_app_bloc/database/secure_storage_helper.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
+import 'package:todo_app_bloc/network/supabase_services.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/router/router_config.dart';
 import 'package:todo_app_bloc/ui/pages/change_password_page/change_password_state.dart';
@@ -20,7 +20,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     try {
       String email = "";
       emit(state.copyWith(loadStatus: LoadStatus.loading));
-      final session = await SecureStorageHelper.instance.getSession();
+      final session = SupabaseServices.supabaseClient.auth.currentSession;
       if (session != null) {
         email = session.user.email!;
       }

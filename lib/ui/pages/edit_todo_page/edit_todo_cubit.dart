@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app_bloc/configs/app_configs.dart';
-import 'package:todo_app_bloc/database/secure_storage_helper.dart';
 import 'package:todo_app_bloc/extensions/datetime_extensions.dart';
 import 'package:todo_app_bloc/model/entities/todo.dart';
 import 'package:todo_app_bloc/model/enums/category.dart';
 import 'package:todo_app_bloc/model/enums/edit_todo_page_mode.dart';
+import 'package:todo_app_bloc/network/supabase_services.dart';
 import 'package:todo_app_bloc/repositories/todo_repository.dart';
 import 'package:todo_app_bloc/ui/pages/edit_todo_page/edit_todo_navigator.dart';
 
@@ -102,9 +102,13 @@ class EditTodoCubit extends Cubit<EditTodoState> {
   }
 
   Todo getTodo() {
+    final userID = SupabaseServices.supabaseClient.auth.currentUser?.id;
+    if (userID == null) {
+      throw Exception("User ID is null");
+    }
     return Todo(
       id: state.id,
-      userID: SecureStorageHelper.instance.userID,
+      userID: userID,
       taskTitle: state.taskTitle,
       category: state.selectedCategory,
       date: state.date,

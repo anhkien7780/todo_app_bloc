@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:todo_app_bloc/database/secure_storage_helper.dart';
 import 'package:todo_app_bloc/model/enums/load_status.dart';
 import 'package:todo_app_bloc/repositories/auth_repository.dart';
 import 'package:todo_app_bloc/ui/pages/login_page/login_state.dart';
@@ -31,7 +30,6 @@ class LoginCubit extends Cubit<LoginState> {
       final User? user = response.user;
 
       if (user != null && session != null) {
-        SecureStorageHelper.instance.saveSession(session);
         emit(state.copyWith(loadStatus: LoadStatus.success));
         navigator.openTodoListPage();
       }

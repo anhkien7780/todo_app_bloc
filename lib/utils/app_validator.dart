@@ -40,7 +40,6 @@ class AppValidator {
     if (confirmPassword == null || confirmPassword.isEmpty) {
       return "Please enter your password again.";
     } else if(password != confirmPassword){
-      print("password: $password, confirmPassword: $confirmPassword");
       return "Password not match";
     }
     return null;
