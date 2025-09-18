@@ -123,9 +123,9 @@ class SupabaseServices {
     }
   }
 
-  static Future<void> deleteProfile(String userID) async {
+  static Future<void> deleteProfile(String id) async {
     try {
-      await supabaseClient.from("profiles").delete().eq("id", userID);
+      await supabaseClient.from("profiles").delete().eq("id", id);
     } catch (e) {
       throw Exception("Delete profile is failed: ${e.toString()}");
     }

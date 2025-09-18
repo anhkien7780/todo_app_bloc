@@ -21,6 +21,7 @@ void main() async {
     if (token == null) {
       await Firebase.initializeApp();
       FirebaseMessaging messaging = FirebaseMessaging.instance;
+      await messaging.requestPermission();
       String? token = await messaging.getToken();
       if (token != null) {
         SecureStorageHelper.instance.saveFCMToken(token);

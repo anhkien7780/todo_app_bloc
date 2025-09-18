@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todo_app_bloc/common/app_colors.dart';
+import 'package:todo_app_bloc/database/secure_storage_helper.dart';
 import 'package:todo_app_bloc/global_blocs/settings/app_setting_cubit.dart';
+import 'package:todo_app_bloc/model/entities/profile.dart';
 import 'package:todo_app_bloc/network/supabase_services.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_cubit.dart';
 import 'package:todo_app_bloc/ui/pages/splash/splash_navigator.dart';
@@ -51,19 +53,29 @@ class _SplashChildPageState extends State<SplashChildPage> {
   }
 
   void _setup() async {
-    await _appSettingCubit.getInitialSetting();
-    // Deep link listener
-    _authSubscription = SupabaseServices.supabaseClient.auth.onAuthStateChange
-        .listen((data) {
-          final AuthChangeEvent event = data.event;
-          switch (event) {
-            case AuthChangeEvent.signedIn:
-              _cubit.openTodoListPage();
-              break;
-            default:
-              break;
-          }
-        });
+    try {
+      await _appSettingCubit.getInitialSetting();
+      // Deep link listener
+      _authSubscription = SupabaseServices.supabaseClient.auth.onAuthStateChange
+          .listen((data) async {
+            final AuthChangeEvent event = data.event;
+            switch (event) {
+              case AuthChangeEvent.signedIn:
+                final userID = data.session!.user.id;
+                final fcmToken = await SecureStorageHelper.instance
+                    .getFCMToken();
+                SupabaseServices.addProfile(
+                  Profile(id: userID, fcmToken: fcmToken!),
+                );
+                _cubit.openTodoListPage();
+                break;
+              default:
+                break;
+            }
+          });
+    } catch (e) {
+      rethrow;
+    }
 
     await Future.delayed(Duration(seconds: 3));
     final session = SupabaseServices.supabaseClient.auth.currentSession;
@@ -72,7 +84,7 @@ class _SplashChildPageState extends State<SplashChildPage> {
         _cubit.openTodoListPage();
       }
     } else {
-      if(mounted) {
+      if (mounted) {
         _cubit.openLoginPage();
       }
     }

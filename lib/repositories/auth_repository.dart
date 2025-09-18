@@ -10,9 +10,7 @@ abstract class AuthRepository {
     required String password,
   });
 
-  Future<UserResponse> changePassword({
-    required String newPassword,
-  });
+  Future<UserResponse> changePassword({required String newPassword});
 
   Future<void> logout();
 }
@@ -31,6 +29,8 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<void> logout() async {
+    final userID = SupabaseServices.supabaseClient.auth.currentUser!.id;
+    await SupabaseServices.deleteProfile(userID);
     await SupabaseServices.logout();
   }
 
@@ -47,9 +47,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<UserResponse> changePassword({
-    required String newPassword,
-  }) async {
+  Future<UserResponse> changePassword({required String newPassword}) async {
     return await SupabaseServices.supabaseClient.auth.updateUser(
       UserAttributes(password: newPassword),
     );
