@@ -1,0 +1,41 @@
+
+firebase_cd() {
+    while [[ "$#" -gt 0 ]]; do
+        case $1 in
+            --notes) NOTES="$2"; shift;;
+            *) echo "Unknow parameter: $1"; exit 1 ;;
+        esac
+        shift
+    done
+
+    if [[ -z "$NOTES" ]]; then
+        echo "Missing required parameter: --notes"
+        echo "Usage: firebase_cd --notes <notes>"
+        exit 1
+    fi
+
+    # Tăng versionCode trong pubspec.yaml
+    YAML_FILE="pubspec.yaml"
+
+    current_line=$(grep "^version:" $YAML_FILE)
+    current_version=$(echo "$current_line" | cut -d' ' -f2)
+
+    version_name=$(echo "$current_version" | cut -d'+' -f1)
+    version_code=$(echo "$current_version" | cut -d'+' -f2)
+
+    new_version_code=$((version_code + 1))
+
+
+    sed -i "s/version: $version_name+$version_code/version: $version_name+$new_version_code/" $YAML_FILE
+
+    echo "Updated pubspec.yaml version: $version_name+$version_code → $version_name+$new_version_code"
+
+    # Build apk
+    flutter pub get
+    flutter build apk
+
+    # Upload Firebase Distribution
+    firebase appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk --app 1:786209083685:android:8e447c638dd9c1295fcacc --token 1//0gvwvpDnGhPqICgYIARAAGBASNwF-L9IrbSLZSdgxaMWxUn-vQwLR1MDWCUpaZ1BQOIZ2DMU1L5eJdLiN1vu_j1ypjsqYA67Zl_o --release-notes "$NOTES" --testers "anhkien7780@gmail.com"
+}
+
+firebase_cd "$@"
